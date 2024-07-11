@@ -1,0 +1,8 @@
+.hero-bg{
+    background-image: 
+        linear-gradient(to bottom, #000000be, #010d37e5), 
+        url('/images/download (1).jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
