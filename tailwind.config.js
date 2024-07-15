@@ -6,6 +6,8 @@ module.exports = {
     './components/**/*.{js,jsx}',
     './app/**/*.{js,jsx}',
     './src/**/*.{js,jsx}',
+    './node_modules/preline/dist/*.js',
+
   ],
   prefix: "",
   theme: {
@@ -52,6 +54,9 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      transitionDuration: {
+        '1500': '1500ms',
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -73,5 +78,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("preline/plugin")],
 }

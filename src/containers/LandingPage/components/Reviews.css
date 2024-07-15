@@ -1,0 +1,12 @@
+.reviews-bg {
+  background-image: linear-gradient(to bottom, #021352d7, #000000bb), url("/images/Speckles.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.reviews2-bg {
+  background-image: linear-gradient(to bottom, #fff, #010d37bb), url("/images/Speckles.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}

@@ -1,18 +1,18 @@
 import React from "react";
-
+import './About.css';
 const About = () => {
   return (
-    <div className="py-10">
+    <div className="md:py-10 py-5" id="about">
       <div className="mx-auto">
-        <h1 className="my-10 text-4xl font-medium text-center">About Us</h1>
+        <h1 className="md:my-10 m-5 md:text-4xl text-2xl font-medium text-center">About Us</h1>
       </div>
-      <section className="grid grid-cols-2 gap-10 w-[80%] mx-auto py-10">
+      <section className="grid md:grid-cols-2 grid-cols-1 gap-10 md:w-[80%] w-[90%] mx-auto py-10">
         <div className="flex flex-col">
-          <img src="/images/meds.png" alt="" className="rounded-2xl w-96 "/>
-          <img src="/images/eyediagnosis.png" alt="" className="rounded-2xl w-96 ml-auto mr-0 relative mt-[-100px]"/>
-          <img src="/images/eyediagnosis1.png" alt="" className="rounded-2xl w-96 relative mt-[-100px]"/>
+          <img src="/images/meds.png" alt="" className="hidden md:inline-block rounded-2xl w-96 hover:rotate-3 duration-300 custom-shadow transform origin-center transition-transform"/>
+          <img src="/images/eyediagnosis.png" alt="" className="rounded-2xl w-96 ml-auto mr-0 relative md:mt-[-100px] hover:rotate-3 duration-300 custom-shadow transform origin-center transition-transform"/>
+          <img src="/images/eyediagnosis1.png" alt="" className="hidden md:inline-block rounded-2xl w-96 relative mt-[-100px] hover:rotate-3 duration-300 custom-shadow transform origin-center transition-transform"/>
         </div>
-        <div className="flex flex-col gap-5 text-xl rounded-xl bg-slate-200 px-12 font-medium pt-20">
+        <div className="flex flex-col gap-5 text-xl rounded-xl bg-slate-200 md:px-12 px-6 font-medium md:pt-20 pt-10 pb-10 md:pb-0">
           <p>
             We are a forward thinking eye health startup committed to
             revolutionizing eye care in Nigeria and Africa.

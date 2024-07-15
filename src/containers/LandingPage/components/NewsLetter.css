@@ -1,0 +1,13 @@
+.newsletter-bg{
+    background-image:  url("/images/Decorative Shapes.png");
+  background-repeat: no-repeat;
+  background-position: top left;
+  /* background-size: cover;  */
+}
+
+@media(max-width: 600px){
+  .newsletter-bg{
+    background-size: 20%;
+  }
+}
+

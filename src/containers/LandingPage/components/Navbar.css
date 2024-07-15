@@ -1,0 +1,27 @@
+.waitlist-bg{
+    background-image: 
+        linear-gradient(to bottom, #010d3777, #010d37 ); 
+    background-repeat: repeat;
+    background-position: center;
+}
+
+.custom-form{
+    background-image:  url("/images/Decorative Shape.png");
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: 10%;
+}
+
+.party:hover{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+@media(max-width: 600px) {
+    .waitlist-sm-bg{
+        background-image: 
+            linear-gradient(to bottom, transparent, #010d37, #010D37, #010d37 ); 
+        background-repeat: repeat;
+        background-position: center;
+    }
+    
+}

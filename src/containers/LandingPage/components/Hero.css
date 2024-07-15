@@ -1,8 +1,14 @@
 .hero-bg{
     background-image: 
-        linear-gradient(to bottom, #000000be, #010d37e5), 
-        url('/images/download (1).jpeg');
+        linear-gradient(to bottom, #000000be, #010d37e5);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+}
+
+.custom-form-bg{
+    background-image:  url("/images/Decorative Shapes.png");
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: 20%;
 }
