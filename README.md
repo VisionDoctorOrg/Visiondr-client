@@ -1,4 +1,4 @@
-# VisionDR Version 1.1
+# VisionDR Landing page
 
 ## Installation
 ### Prerequisites
