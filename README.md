@@ -18,7 +18,7 @@ Before getting started, ensure you have the following installed on your local ma
    Clone the Repository:
 
 ```bash
-  git clone https://github.com/VisionDR/web-frontend-landing-page.git
+  git clone https://github.com/VisionDoctorOrg/Visiondr-client.git
 ```
 
  Install Dependencies:

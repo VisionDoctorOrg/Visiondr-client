@@ -15,6 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import ContactUs from "../forms/ContactUs";
 const Footer = () => {
   const [isIndividual, setIsIndividual] = useState(false);
   const [isOrg, setIsOrg] = useState(false);
@@ -29,281 +30,111 @@ const Footer = () => {
     }
   };
   return (
-    <div className="bg-[#030712] flex flex-col justify-center items-center py-16">
-      <div className="flex md:flex-col gap-20 md:gap-0">
-      <section>
-        <div className="flex md:justify-center grow md:gap-16 gap-10 md:flex-row flex-col">
-          <div className="flex items-center justify-center py-3 md:py-4 ps-px sm:px-3 ">
-            <a
-              class=" text-gray-200 hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all"
-              href="#about"
-              aria-current="page"
-            >
-              About us
-            </a>
-          </div>
-          <div className="flex items-center justify-center py-3 md:py-4 ps-px sm:px-3 ">
-            <a
-              class=" text-gray-200 hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all"
-              href="#feature"
-              aria-current="page"
-            >
-              Features
-            </a>
-          </div>
-          <div className="flex items-center justify-center py-3 md:py-4 ps-px sm:px-3 ">
-            <a
-              class=" text-gray-200 hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all"
-              href="#faq"
-              aria-current="page"
-            >
-              FAQ
-            </a>
-          </div>
-          <div className="flex items-center justify-center py-3 md:py-4 ps-px sm:px-3 ">
-            <a
-              class=" text-gray-200 hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all"
-              href="#partners"
-              aria-current="page"
-            >
-              Partners
-            </a>
-          </div>
-          <div className="flex items-center justify-center py-3 md:py-4 ps-px sm:px-3 ">
-            <div
-              class="cursor-pointer text-gray-200 hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all"
-              aria-current="page"
-            >
-              <Dialog>
-                <DialogTrigger>Contact us</DialogTrigger>
-                <DialogContent className="md:max-w-[60%] h-full p-0">
-                  <div className="w-full h-full custom-form ">
-                    <div className="md:w-[80%] w-[90%] mx-auto">
-                      <h2 className="text-center md:text-3xl text-xl font-semibold my-5">
-                        Get in Touch!
-                      </h2>
-                      <p className="text-center my-5">
-                        For further inquiries about VisionDR, you can share you
-                        inquiries and questions by filling in your questions. We
-                        will reply promptly to your querie.
-                      </p>
-                      <label
-                        htmlFor="UserName"
-                        className="my-5 relative block overflow-hidden border-b border-gray-200 bg-transparent pt-3 focus-within:border-blue-600 w-full"
-                      >
-                        <input
-                          type="text"
-                          id="UserName"
-                          placeholder="Name"
-                          className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
-                        />
-
-                        <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-400 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
-                          Enter your Name
-                        </span>
-                      </label>
-                      <div className=" my-5 flex gap-10">
-                        <label
-                          htmlFor="UserPhone"
-                          className=" relative block overflow-hidden border-b border-gray-200 bg-transparent pt-3 focus-within:border-blue-600 w-full"
-                        >
-                          <input
-                            type="tel"
-                            id="UserPhone"
-                            placeholder="Phone"
-                            className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
-                          />
-
-                          <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-400 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
-                            Phone Number
-                          </span>
-                        </label>
-                        <label
-                          htmlFor="Useremail"
-                          className="relative block overflow-hidden border-b border-gray-200 bg-transparent pt-3 focus-within:border-blue-600 w-full"
-                        >
-                          <input
-                            type="email"
-                            id="Useremail"
-                            placeholder="Email"
-                            className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
-                          />
-
-                          <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-400 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
-                            Enter your email
-                          </span>
-                        </label>
-                      </div>
-
-                      <div className="h-32 space-y-3 my-5">
-                        <textarea
-                          className=" h-full py-3 px-4 block w-full border-gray-200 border-2 rounded-lg text-sm focus:border-primary focus:ring-primary focus:outline-primary disabled:opacity-50 disabled:pointer-events-none resize-none"
-                          rows="3"
-                          placeholder="Leave us a message"
-                        ></textarea>
-                      </div>
-                      <div className="flex justify-between md:gap-16 gap-4 my-5">
-                        <div
-                          className={`relative h-36 w-full border-2 rounded-md flex justify-center items-center flex-col party cursor-pointer ${
-                            isIndividual ? "border-primary" : ""
-                          } `}
-                          onClick={() => partyClicked("Individual")}
-                        >
-                          <img
-                            src="/images/Star 6.png"
-                            className={`absolute top-2 left-8 ${
-                              isIndividual ? "" : "hidden"
-                            }`}
-                          />
-                          <img
-                            src="/images/Star 6.png"
-                            className={`absolute bottom-5 left-12 ${
-                              isIndividual ? "" : "hidden"
-                            } `}
-                          />
-                          <img
-                            src="/images/Star 6.png"
-                            className={`absolute top-5 right-5 ${
-                              isIndividual ? "" : "hidden"
-                            } `}
-                          />
-                          <img
-                            src="/images/Star 6.png"
-                            className={`absolute top-15 right-12 ${
-                              isIndividual ? "" : "hidden"
-                            } `}
-                          />
-                          <img
-                            src="/images/Star 6.png"
-                            className={`absolute bottom-5 right-8 ${
-                              isIndividual ? "" : "hidden"
-                            } `}
-                          />
-
-                          <div className="flex -space-x-2">
-                            <img
-                              className="inline-block size-8 rounded-full ring-2 ring-white dark:ring-neutral-900"
-                              src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
-                              alt="Image Description"
-                            />
-                            <img
-                              className="inline-block size-10 rounded-full ring-2 ring-white dark:ring-neutral-900 z-10"
-                              src="https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
-                              alt="Image Description"
-                            />
-                            <img
-                              className="inline-block size-8 rounded-full ring-2 ring-white dark:ring-neutral-900"
-                              src="https://images.unsplash.com/photo-1541101767792-f9b2b1c4f127?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&&auto=format&fit=facearea&facepad=3&w=300&h=300&q=80"
-                              alt="Image Description"
-                            />
-                          </div>
-                          <p className="text-sm">I'm an individual</p>
-                        </div>
-                        <div
-                          className={` relative h-36 w-full border-2 rounded-md flex justify-center items-center flex-col party cursor-pointer ${
-                            isOrg ? "border-primary" : ""
-                          }`}
-                          onClick={() => partyClicked("org")}
-                        >
-                          <img
-                            src="/images/Star 6.png"
-                            className={`absolute top-2 left-8 ${
-                              isOrg ? "" : "hidden"
-                            }`}
-                          />
-                          <img
-                            src="/images/Star 6.png"
-                            className={`absolute bottom-5 left-12 ${
-                              isOrg ? "" : "hidden"
-                            } `}
-                          />
-                          <img
-                            src="/images/Star 6.png"
-                            className={`absolute top-5 right-5 ${
-                              isOrg ? "" : "hidden"
-                            } `}
-                          />
-                          <img
-                            src="/images/Star 6.png"
-                            className={`absolute top-15 right-12 ${
-                              isOrg ? "" : "hidden"
-                            } `}
-                          />
-                          <img
-                            src="/images/Star 6.png"
-                            className={`absolute bottom-5 right-8 ${
-                              isOrg ? "" : "hidden"
-                            } `}
-                          />
-                          <div className="flex -space-x-2">
-                            <img
-                              className="inline-block size-8 rounded-full ring-2 ring-white dark:ring-neutral-900"
-                              src="/images/bullet-2157465_640.png"
-                              alt="Image Description"
-                            />
-                            <img
-                              className="inline-block size-10 rounded-full ring-2 ring-gray-400 dark:ring-neutral-900 z-10"
-                              src="/images/humming-bird-1935665_640.png"
-                              alt="Image Description"
-                            />
-                            <img
-                              className="inline-block size-8 rounded-full ring-2 ring-white dark:ring-neutral-900"
-                              src="/images/logo-2144403_640.png"
-                              alt="Image Description"
-                            />
-                          </div>
-                          <p className="text-sm">I'm an Organization</p>
-                        </div>
-                      </div>
-                      <Button
-                        className={cn(
-                          "hover:border-white border-2 border-primary w-full"
-                        )}
-                      >
-                        Submit <MdArrowOutward className="ml-2 h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-                </DialogContent>
-              </Dialog>
+    <div className="bg-[#030712] flex flex-col justify-center items-center md:py-16 py-8">
+      <div className="flex md:flex-col md:gap-0 md:w-[55%] w-[80%] justify-between">
+        <section>
+          <div className="flex md:justify-center grow md:gap-16 gap-[24px] md:flex-row flex-col">
+            <div className="flex items-center md:justify-center md:py-4 ps-px sm:px-3 ">
+              <a
+                class=" text-gray-200 hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all"
+                href="#about"
+                aria-current="page"
+              >
+                About us
+              </a>
+            </div>
+            <div className="flex items-center md:justify-center md:py-4 ps-px sm:px-3">
+              <a
+                class=" text-gray-200 hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all"
+                href="#feature"
+                aria-current="page"
+              >
+                Features
+              </a>
+            </div>
+            <div className="flex items-center md:justify-center md:py-4 ps-px sm:px-3 ">
+              <a
+                class=" text-gray-200 hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all"
+                href="#faq"
+                aria-current="page"
+              >
+                FAQ
+              </a>
+            </div>
+            <div className="flex items-center md:justify-center md:py-4 ps-px sm:px-3 ">
+              <a
+                class=" text-gray-200 hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all"
+                href="#partners"
+                aria-current="page"
+              >
+                Partners
+              </a>
+            </div>
+            <div className="flex items-center md:justify-center md:py-4 ps-px sm:px-3 ">
+              <div
+                class="cursor-pointer text-gray-200 hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all"
+                aria-current="page"
+              >
+                <Dialog>
+                  <DialogTrigger>Contact us</DialogTrigger>
+                  <DialogContent className="md:max-w-[60%] max-w-[80%] max-h-full py-5 px-0">
+                   <ContactUs/>
+                  </DialogContent>
+                </Dialog>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      <section className="md:my-16 ">
-        <h1 className="text-gray-400 text-center md:my-6 my-3 font-medium text-xl">
-          Social Links
-        </h1>
-        <div className="text-gray-100 flex justify-between md:flex-row flex-col gap-10">
-          <a href="https://twitter.com/vision_doctors" target="_blank">
-            <RiTwitterXLine className="h-10 w-10 hover:text-gray-300 transition-all duration-300 mx-auto" />
-          </a>
-          <a href="https://www.linkedin.com/company/visiondr/" target="_blank">
-            <FaLinkedin className="h-10 w-10 hover:text-gray-300 transition-all duration-300 mx-auto" />
-          </a>
-          <a href="#">
-          <FaYoutube className="h-10 w-10 hover:text-gray-300 transition-all duration-300 mx-auto" />
-
-          </a>
-          <a
-            href="https://www.instagram.com/visiondoctors?igsh=MXh4eWkwdTQ0cDhiaw=="
-            target="_blank"
-          >
-            <FiInstagram className="h-10 w-10 hover:text-gray-300 transition-all duration-300 mx-auto" />
-          </a>
-          <a
-            href="https://www.facebook.com/profile.php?id=61551442276562&mibextid=ZbWKwL"
-            target="_blank"
-          >
-            <FaFacebook className="h-10 w-10 hover:text-gray-300 transition-all duration-300 mx-auto" />
-          </a>
-        </div>
-      </section>
-
+        </section>
+        <section className="md:my-16 md:mt-20">
+          <h1 className="text-gray-50 md:text-[#8c8f98] text-center md:my-8 mb-2 md:text-[22px] text-[16px] tracking-tight">
+            Social Links
+          </h1>
+          <div className="text-[#8c8f98] md:text-white flex justify-between md:flex-row flex-col md:gap-10 gap-[24px]">
+            <a href="https://twitter.com/vision_doctors" target="_blank">
+              <RiTwitterXLine className="md:h-[40px] md:w-[40px] h-[24px] w-[24px] hover:text-gray-300 transition-all duration-300 mx-auto" />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/visiondr/"
+              target="_blank"
+            >
+              <FaLinkedin className="md:h-[40px] md:w-[40px] h-[24px] w-[24px] hover:text-gray-300 transition-all duration-300 mx-auto" />
+            </a>
+            <a href="#">
+              <FaYoutube className="md:h-[40px] md:w-[40px] h-[24px] w-[24px] hover:text-gray-300 transition-all duration-300 mx-auto" />
+            </a>
+            <a
+              href="https://www.instagram.com/visiondoctors?igsh=MXh4eWkwdTQ0cDhiaw=="
+              target="_blank"
+            >
+              <FiInstagram className="md:h-[40px] md:w-[40px] h-[24px] w-[24px] hover:text-gray-300 transition-all duration-300 mx-auto" />
+            </a>
+            <a
+              href="https://www.facebook.com/profile.php?id=61551442276562&mibextid=ZbWKwL"
+              target="_blank"
+            >
+              <FaFacebook className="md:h-[40px] md:w-[40px] h-[24px] w-[24px] hover:text-gray-300 transition-all duration-300 mx-auto" />
+            </a>
+          </div>
+        </section>
       </div>
       <section className="my-16">
-        <h1 className="text-center font-bold text-7xl text-white">VisionDR</h1>
-        <p className="text-gray-400 text-center my-4 font-medium text-xl">
+        <svg
+          width="40"
+          height="40"
+          viewBox="0 0 31 36"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="mx-auto"
+        >
+          <path
+            d="M24.9298 0.833374L20.2931 5.05504C22.4516 5.70702 24.4383 6.83016 26.1098 8.34337C31.9631 13.6767 31.9631 22.3234 26.1098 27.6567C21.7898 31.59 15.1131 34.0934 6.08314 35.1667L10.7198 30.945C8.56138 30.2931 6.57468 29.1699 4.90313 27.6567C-0.950198 22.3234 -0.985198 13.7084 4.90313 8.34337C9.22313 4.41004 15.9015 1.90671 24.9315 0.833374H24.9298ZM15.5065 8.00004C9.06313 8.00004 3.8398 12.4767 3.8398 18C3.8398 23.5234 9.06313 28 15.5065 28C21.9498 28 27.1731 23.5234 27.1731 18C27.1731 12.4767 21.9498 8.00004 15.5065 8.00004ZM15.5065 11.8334C19.1898 11.8334 22.1731 14.595 22.1731 18C22.1731 21.405 19.1898 24.1667 15.5065 24.1667C11.8231 24.1667 8.8398 21.405 8.8398 18C8.8398 14.595 11.8231 11.8334 15.5065 11.8334ZM15.5065 15.1667C13.6098 15.1667 12.1731 16.495 12.1731 18C12.1731 19.505 13.6098 20.8334 15.5065 20.8334C17.4031 20.8334 18.8398 19.505 18.8398 18C18.8398 16.495 17.4031 15.1667 15.5065 15.1667Z"
+            fill="white"
+          />
+        </svg>
+        <h1 className="text-center font-bold md:text-[80px] text-[48px] text-white">
+          VisionDR
+        </h1>
+        <p className="text-gray-400 text-center my-4 font-medium text-[22px]">
           Open 24 Hrs
         </p>
       </section>

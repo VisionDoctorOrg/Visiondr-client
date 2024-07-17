@@ -12,7 +12,7 @@ import SlideshowBackground from "./components/SlideshowBackground";
 const LandingPage = () => {
   
   return (
-    <div>
+    <div className="w-[100%]">
       <Hero />
        <Features />
       <About />

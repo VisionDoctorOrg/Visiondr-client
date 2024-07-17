@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import Navbar from "./Navbar";
-import "./Hero.css";
+import "../styles/Hero.css";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { RiMailUnreadLine } from "react-icons/ri";
@@ -15,6 +15,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { MdArrowOutward } from "react-icons/md";
+import JoinTheWaitlist from "../forms/JoinTheWaitlist";
+import JoinTheWaitlistMobile from "../forms/JoinTheWaitlistMobile";
 
 const images = [
   "/images/Default.png",
@@ -50,7 +52,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className=" md:pt-10 relative text-white overflow-hidden">
+    <div className=" relative text-white overflow-hidden ">
       {/* Current Image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
@@ -65,30 +67,44 @@ const Hero = () => {
         style={{ backgroundImage: `url(${images[nextIndex]})` }}
       />
 
-      <div className="relative z-10">
+      <div className="md:mt-10 mt-5 relative z-10 hero-bg ">
         <Navbar />
-        <section className="flex flex-col items-center justify-center text-white md:w-[60%] w-[80%] mx-auto min-h-screen md:pt-48 pt-36">
-          <div className="flex flex-col items-center justify-center">
-            <h1 className="font-medium md:text-7xl text-5xl text-center">See Clearly, Live Fully!</h1>
-            <p className="text-center text-lg text-slate-300 mt-10">
+        <section className="flex flex-col items-center justify-center text-white md:w-[70%] w-[80%] mx-auto md:pt-48 pt-36 md:min-h-screen">
+          <div className="flex flex-col items-center justify-center ">
+            <h1 className="md:mt-20 font-medium text-[28px] md:text-[62px] text-5xl text-center md:tracking-tight">
+              See Clearly, Live Fully!
+            </h1>
+            <p className="text-center text-[16px] text-slate-300 md:mt-8 mt-10 md:text-[22px]  md:leading-[1.1] md:tracking-tight">
               Enjoy a clearer view of your world with VisionDR. With our
               exclusive offerings for your optimal eye health, we will take you
               on your personalized eye health journey through eye health
               education, online eye care and services.
             </p>
-            <div className="md:mt-20 mt-10 mb-10 flex gap-5 flex-wrap md:flex-nowrap w-[80%] mx-auto md:w-full justify-center">
-              <Dialog>
-                <DialogTrigger>
+            <div className="md:mt-28 md:mb-44 mt-10 mb-10 flex gap-5 flex-wrap md:flex-nowrap mx-auto md:w-full justify-center ">
+              <Dialog className='hidden md:block'>
+                <DialogTrigger className="w-full md:w-fit">
                   <Button
                     className={cn(
-                      "w-56 md:w-full md:px-28 py-6 border-2 border-white bg-transparent hover:bg-primary hover:text-white text-white hover:border-primary duration-300 transition-all text-lg"
+                      "hidden md:flex w-full py-6 border-2 border-white bg-transparent hover:bg-primary hover:text-white text-white hover:border-primary duration-300 transition-all text-[16px] h-[60px] md:w-[374px] tracking-tight"
                     )}
                   >
                     Join the waitlist
-                    <HiOutlineArchiveBox className="ml-2 h-5 w-5" />
+                    <svg
+                      width="20"
+                      height="18"
+                      viewBox="0 0 20 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="ml-2"
+                    >
+                      <path
+                        d="M1 7H0V1.003C0 0.449002 0.455 2.19659e-06 0.992 2.19659e-06H19.008C19.1393 -0.000274335 19.2693 0.0255614 19.3905 0.076006C19.5117 0.126451 19.6217 0.200497 19.714 0.293835C19.8063 0.387173 19.8791 0.497939 19.9282 0.619688C19.9773 0.741436 20.0017 0.871735 20 1.003V7H19V17.001C19.0004 17.1318 18.975 17.2614 18.9253 17.3824C18.8756 17.5034 18.8026 17.6134 18.7104 17.7062C18.6182 17.7989 18.5086 17.8726 18.3879 17.923C18.2672 17.9735 18.1378 17.9996 18.007 18H1.993C1.8622 17.9996 1.73276 17.9735 1.61207 17.923C1.49139 17.8726 1.38181 17.7989 1.2896 17.7062C1.19739 17.6134 1.12436 17.5034 1.07467 17.3824C1.02498 17.2614 0.999605 17.1318 1 17.001V7ZM17 7H3V16H17V7ZM2 2V5H18V2H2ZM7 9H13V11H7V9Z"
+                        fill="white"
+                      />
+                    </svg>
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="z-50 md:max-w-[60%] md:h-[60%] p-0">
+                <DialogContent className="hidden md:block z-50 md:max-w-[60%] md:h-[60%] p-0">
                   <div className="w-full h-full custom-form-bg ">
                     <div className="w-[85%] mx-auto">
                       <h2 className="text-center font-semibold text-3xl my-7">
@@ -99,37 +115,57 @@ const Hero = () => {
                         discount services we have for you
                       </p>
                       <div className="flex gap-3 w-full my-10 md:mt-44 mt-24 flex-wrap md:flex-nowrap">
-                        <label
-                          htmlFor="UserEmail"
-                          className="relative block overflow-hidden border-b border-gray-200 bg-transparent pt-3 focus-within:border-blue-600 w-full"
-                        >
-                          <input
-                            type="email"
-                            id="UserEmail"
-                            placeholder="Email"
-                            className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
-                          />
-
-                          <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-400 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
-                            Enter your email
-                          </span>
-                        </label>
-                        <Button
-                          className={cn(
-                            "hover:border-white border-2 border-primary w-full md:w-fit"
-                          )}
-                        >
-                          Submit <MdArrowOutward className="ml-2 h-4 w-4" />
-                        </Button>
+                       <JoinTheWaitlist/>
+                        
                       </div>
                     </div>
                   </div>
                 </DialogContent>
+                
               </Dialog>
-              <a href="#newsletter">
+              <Dialog className='md:hidden'>
+                <DialogTrigger className="md:hidden w-full md:w-fit">
+                  <Button
+                    className={cn(
+                      "md:hidden w-full py-6 border-2 border-white bg-transparent hover:bg-primary hover:text-white text-white hover:border-primary duration-300 transition-all text-[16px] h-[60px] md:w-[374px] tracking-tight"
+                    )}
+                  >
+                    Join the waitlist
+                    <svg
+                      width="20"
+                      height="18"
+                      viewBox="0 0 20 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="ml-2"
+                    >
+                      <path
+                        d="M1 7H0V1.003C0 0.449002 0.455 2.19659e-06 0.992 2.19659e-06H19.008C19.1393 -0.000274335 19.2693 0.0255614 19.3905 0.076006C19.5117 0.126451 19.6217 0.200497 19.714 0.293835C19.8063 0.387173 19.8791 0.497939 19.9282 0.619688C19.9773 0.741436 20.0017 0.871735 20 1.003V7H19V17.001C19.0004 17.1318 18.975 17.2614 18.9253 17.3824C18.8756 17.5034 18.8026 17.6134 18.7104 17.7062C18.6182 17.7989 18.5086 17.8726 18.3879 17.923C18.2672 17.9735 18.1378 17.9996 18.007 18H1.993C1.8622 17.9996 1.73276 17.9735 1.61207 17.923C1.49139 17.8726 1.38181 17.7989 1.2896 17.7062C1.19739 17.6134 1.12436 17.5034 1.07467 17.3824C1.02498 17.2614 0.999605 17.1318 1 17.001V7ZM17 7H3V16H17V7ZM2 2V5H18V2H2ZM7 9H13V11H7V9Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="md:hidden z-50 md:max-w-[60%] md:h-[60%] h-screen p-0 flex items-center justify-center bg-[#010D37] text-white border-none">
+                    <div className=" ">
+                      <div className="w-[70%] mx-auto">
+                        <h2 className="text-center font-semibold text-[22px] my-7">
+                          Be the First to Know when we launch!
+                        </h2>
+                       
+                        <div className="flex gap-3 w-full my-10 md:mt-44 flex-wrap md:flex-nowrap">
+                          
+                          <JoinTheWaitlistMobile/>
+                        </div>
+                      </div>
+                    </div>
+                  </DialogContent>
+                
+              </Dialog>
+              <a href="#newsletter" className="w-full md:w-fit">
                 <Button
                   className={cn(
-                    "md:w-full w-56 md:px-28 py-6 border-2 border-white bg-transparent hover:bg-primary hover:text-white text-white hover:border-primary duration-300 transition-all text-lg"
+                    "md:w-[374px] w-full py-6 border-2 border-white bg-transparent hover:bg-primary hover:text-white text-white hover:border-primary duration-300 transition-all  text-[16px] h-[60px] tracking-tight"
                   )}
                 >
                   Get Eye Care Tips
