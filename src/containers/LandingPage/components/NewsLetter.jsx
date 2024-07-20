@@ -7,7 +7,7 @@ const NewsLetter = () => {
     <div className="newsletter-bg pt-16" id="newsletter">
       <section className="md:w-[53%] w-[80%] mx-auto flex flex-col justify-center">
         <h1 className="font-semibold md:text-[36px] text-[22px] text-center px-6 md:px-0">
-          Stay Updated with Vision DR
+          Stay Updated with VisionDR
         </h1>
         <p className="text-center md:my-10 my-4 text-[16px] font-medium md:tracking-tight md:leading-tight">
           Want access to reliable, interesting, and helpful information about
@@ -31,7 +31,9 @@ const NewsLetter = () => {
               Enter your email
             </span>
           </label>
-          <Button className='w-[140px] text-[16px] font-normal p-6'>Submit <MdArrowOutward className="ml-2 h-4 w-4"/></Button>
+          <Button className="w-[140px] text-[16px] font-normal p-6">
+            Submit <MdArrowOutward className="ml-2 h-4 w-4" />
+          </Button>
         </div>
       </section>
     </div>

@@ -78,7 +78,7 @@ const Footer = () => {
                 <Dialog>
                   <DialogTrigger>Contact us</DialogTrigger>
                   <DialogContent className="md:max-w-[60%] max-w-[80%] max-h-full py-5 px-0">
-                   <ContactUs/>
+                    <ContactUs />
                   </DialogContent>
                 </Dialog>
               </div>

@@ -37,19 +37,22 @@ const Navbar = () => {
     setIsNavExpanded(false);
   };
 
-  
-
   return (
-    <div onMouseLeave={handleMouseLeave} className="w-full">
+    <div
+      onMouseLeave={handleMouseLeave}
+      className={`w-full ${isExpanded ? "h-[500px] absolute" : ""} `}
+    >
       <header
-        className={`absolute md:max-w-[80%] mx-auto inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full flex-col ${
+        className={`absolute md:max-w-[80%] mx-auto md:rounded-[28px] waitlist-bg inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full flex-col ${
           isNavExpanded ? "" : "max-w-[80%]"
         }`}
       >
         <nav
-          className={`relative  w-full bg-[#010D3777] text-white md:rounded-[28px] py-4 md:px-10 md:flex md:items-center md:justify-between md:py-0 md:mx-2 lg:mx-auto md:h-[90px] ${
+          className={`relative  w-full text-white py-4 md:px-10 md:flex md:items-center md:justify-between md:py-0 md:mx-2 lg:mx-auto md:h-[90px] ${
             isExpanded ? "md:rounded-b-none" : ""
-          } ${isNavExpanded ? "bg-[#010D37] px-6" : "rounded-[8px]"}`}
+          } ${
+            isNavExpanded ? "bg-[#010D37] px-6" : "bg-[#010D3766] md:bg-transparent rounded-[8px]"
+          }`}
           aria-label="Global"
         >
           {/* ... (rest of the first nav content remains the same) */}
@@ -179,8 +182,7 @@ const Navbar = () => {
                     <Dialog>
                       <DialogTrigger>Contact us</DialogTrigger>
                       <DialogContent className="md:max-w-[60%] max-w-[80%] max-h-full py-5 px-0">
-                        
-                        <ContactUs/>
+                        <ContactUs />
                       </DialogContent>
                     </Dialog>
                   </a>
@@ -231,18 +233,7 @@ const Navbar = () => {
                     </a>
                   </DialogTrigger>
                   <DialogContent className="z-50 md:max-w-[60%] md:h-[60%] h-screen p-0 flex items-center justify-center bg-[#010D37] text-white border-none">
-                    <div className=" ">
-                      <div className="w-[70%] mx-auto">
-                        <h2 className="text-center font-semibold text-[22px] my-7">
-                          Be the First to Know when we launch!
-                        </h2>
-                       
-                        <div className="flex gap-3 w-full my-10 md:mt-44 flex-wrap md:flex-nowrap">
-                          
-                          <JoinTheWaitlistMobile/>
-                        </div>
-                      </div>
-                    </div>
+                    <JoinTheWaitlistMobile />
                   </DialogContent>
                 </Dialog>
               </div>
@@ -250,16 +241,12 @@ const Navbar = () => {
           </div>
         </nav>
         <nav
-          className={`hidden transition-all duration-300 overflow-hidden relative w-full waitlist-bg text-white rounded-[16px] rounded-t-none py-3 px-6 md:flex md:items-center md:justify-between md:py-0 mx-2 lg:mx-auto ${
-            isExpanded ? "h-[200px]" : "h-0"
+          className={`hidden transition-all duration-500 overflow-hidden relative w-full text-white rounded-[16px] rounded-t-none py-3 px-6 md:flex md:items-center md:justify-between md:py-0 mx-2 lg:mx-auto ${
+            isExpanded ? " max-h-[500px]" : "max-h-0 "
           }`}
         >
-          <div className="p-4 w-[70%] mx-auto">
-            <h3 className="text-xl">Be the first to know when we launch!</h3>
-            <div className="flex gap-3 w-full my-10">
-              <JoinTheWaitlist />
-            </div>
-          </div>
+          {" "}
+          {isExpanded ? <JoinTheWaitlist /> : ""}
         </nav>
       </header>
     </div>

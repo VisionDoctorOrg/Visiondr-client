@@ -78,10 +78,12 @@ const Hero = () => {
               Enjoy a clearer view of your world with VisionDR. With our
               exclusive offerings for your optimal eye health, we will take you
               on your personalized eye health journey through eye health
-              education, online eye care and services.
+              education, online eye care and services. We provide organizations
+              with offerings to reduce patient wait time and improve eye care
+              delivery.
             </p>
             <div className="md:mt-28 md:mb-44 mt-10 mb-10 flex gap-5 flex-wrap md:flex-nowrap mx-auto md:w-full justify-center ">
-              <Dialog className='hidden md:block'>
+              <Dialog className="hidden md:block">
                 <DialogTrigger className="w-full md:w-fit">
                   <Button
                     className={cn(
@@ -104,26 +106,11 @@ const Hero = () => {
                     </svg>
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="hidden md:block z-50 md:max-w-[60%] md:h-[60%] p-0">
-                  <div className="w-full h-full custom-form-bg ">
-                    <div className="w-[85%] mx-auto">
-                      <h2 className="text-center font-semibold text-3xl my-7">
-                        Be the First to Know!
-                      </h2>
-                      <p className="text-center my-7">
-                        Dont miss out on anything new, eye care tips and amazing
-                        discount services we have for you
-                      </p>
-                      <div className="flex gap-3 w-full my-10 md:mt-44 mt-24 flex-wrap md:flex-nowrap">
-                       <JoinTheWaitlist/>
-                        
-                      </div>
-                    </div>
-                  </div>
+                <DialogContent className="hidden md:flex items-center z-50 md:max-w-[75%] md:h-[60%] p-0 waitlist-bg bg-transparent border-0 text-white">
+                  <JoinTheWaitlist />
                 </DialogContent>
-                
               </Dialog>
-              <Dialog className='md:hidden'>
+              <Dialog className="md:hidden">
                 <DialogTrigger className="md:hidden w-full md:w-fit">
                   <Button
                     className={cn(
@@ -147,20 +134,8 @@ const Hero = () => {
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="md:hidden z-50 md:max-w-[60%] md:h-[60%] h-screen p-0 flex items-center justify-center bg-[#010D37] text-white border-none">
-                    <div className=" ">
-                      <div className="w-[70%] mx-auto">
-                        <h2 className="text-center font-semibold text-[22px] my-7">
-                          Be the First to Know when we launch!
-                        </h2>
-                       
-                        <div className="flex gap-3 w-full my-10 md:mt-44 flex-wrap md:flex-nowrap">
-                          
-                          <JoinTheWaitlistMobile/>
-                        </div>
-                      </div>
-                    </div>
-                  </DialogContent>
-                
+                  <JoinTheWaitlistMobile />
+                </DialogContent>
               </Dialog>
               <a href="#newsletter" className="w-full md:w-fit">
                 <Button

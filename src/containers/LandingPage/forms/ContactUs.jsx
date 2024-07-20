@@ -3,23 +3,49 @@ import { cn } from "@/lib/utils";
 import React, { useState } from "react";
 import { MdArrowOutward } from "react-icons/md";
 
-
 const ContactUs = () => {
-    const [isIndividual, setIsIndividual] = useState(false);
-      const [isOrg, setIsOrg] = useState(false);
-    
-      const partyClicked = (party) => {
-        if (party == "org") {
-          setIsOrg(true);
-          setIsIndividual(false);
-        } else {
-          setIsIndividual(true);
-          setIsOrg(false);
-        }
-      };
+  const [isIndividual, setIsIndividual] = useState(false);
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
+  const [isOrg, setIsOrg] = useState(false);
+
+  const partyClicked = (party) => {
+    if (party == "org") {
+      setIsOrg(true);
+      setIsIndividual(false);
+    } else {
+      setIsIndividual(true);
+      setIsOrg(false);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // setIsLoading(true);
+    // const config = {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // };
+
+    // const body = JSON.stringify({});
+    // console.log(body);
+
+    // try {
+    //   const res = await axios.post(``, body, config);
+    //   console.log(res);
+    // } catch (err) {
+    //   console.log(err);
+    //   setIsLoading(false);
+    //   //   setErrorMessage(err.response.data.error);
+    // }
+  };
   return (
     <div className="w-full h-full custom-form ">
-      <div className="md:w-[80%] w-[90%] mx-auto">
+      <form
+        className="md:w-[80%] w-[90%] mx-auto"
+        onSubmit={(e) => handleSubmit(e)}
+      >
         <h2 className="text-center md:text-3xl text-[22px] font-semibold md:my-5 my-2">
           Get in Touch!
         </h2>
@@ -34,6 +60,8 @@ const ContactUs = () => {
         >
           <input
             type="text"
+            required
+            value={name}
             id="UserName"
             placeholder="Name"
             className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
@@ -122,23 +150,9 @@ const ContactUs = () => {
             />
 
             <div className="flex -space-x-2">
-              <img
-                className="inline-block size-8 rounded-full ring-2 ring-white dark:ring-neutral-900"
-                src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
-                alt="Image Description"
-              />
-              <img
-                className="inline-block size-10 rounded-full ring-2 ring-white dark:ring-neutral-900 z-10"
-                src="https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
-                alt="Image Description"
-              />
-              <img
-                className="inline-block size-8 rounded-full ring-2 ring-white dark:ring-neutral-900"
-                src="https://images.unsplash.com/photo-1541101767792-f9b2b1c4f127?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&&auto=format&fit=facearea&facepad=3&w=300&h=300&q=80"
-                alt="Image Description"
-              />
+              <img src="/images/Group_indiv.png" alt="" />
             </div>
-            <p className="text-[12px]">I'm an individual</p>
+            <p className="text-[12px] md:text-[16px]mt-3 font-medium">I'm an individual</p>
           </div>
           <div
             className={` relative h-36 w-full border-2 rounded-md flex justify-center items-center flex-col party cursor-pointer ${
@@ -167,23 +181,9 @@ const ContactUs = () => {
               className={`absolute bottom-5 right-8 ${isOrg ? "" : "hidden"} `}
             />
             <div className="flex -space-x-2">
-              <img
-                className="inline-block size-8 rounded-full ring-2 ring-white dark:ring-neutral-900"
-                src="/images/bullet-2157465_640.png"
-                alt="Image Description"
-              />
-              <img
-                className="inline-block size-10 rounded-full ring-2 ring-gray-400 dark:ring-neutral-900 z-10"
-                src="/images/humming-bird-1935665_640.png"
-                alt="Image Description"
-              />
-              <img
-                className="inline-block size-8 rounded-full ring-2 ring-white dark:ring-neutral-900"
-                src="/images/logo-2144403_640.png"
-                alt="Image Description"
-              />
+              <img src="/images/Group_org.png" alt="" />
             </div>
-            <p className="text-[12px]">I'm an Organization</p>
+            <p className="text-[12px] md:text-[16px] mt-3 font-medium">I'm an Organization</p>
           </div>
         </div>
         <Button
@@ -191,7 +191,7 @@ const ContactUs = () => {
         >
           Submit <MdArrowOutward className="ml-2 h-4 w-4" />
         </Button>
-      </div>
+      </form>
     </div>
   );
 };

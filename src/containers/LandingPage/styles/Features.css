@@ -81,8 +81,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.75rem;
-  font: 1rem helvetica, sans-serif;
+  gap: 1rem;
   text-align: center;
   overflow: hidden;
   opacity: 0;

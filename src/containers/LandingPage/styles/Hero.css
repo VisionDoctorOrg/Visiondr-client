@@ -11,3 +11,18 @@
   background-position: left;
   background-size: 20%;
 }
+
+.waitlist-bg{
+  /* background-image: 
+      linear-gradient(to bottom, #010d3733, #010d37, #010d37 ); 
+  background-repeat: repeat;
+  background-position: center; */
+}
+
+@media (max-width: 600px){
+  .waitlist-bg {
+    background-image: transparent;
+    background-repeat: repeat;
+    background-position: center;
+  }
+}

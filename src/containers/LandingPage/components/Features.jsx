@@ -8,7 +8,7 @@ const Features = () => {
   return (
     <div>
       <section
-        className="features-bg md:py-20 py-10 text-white md:h-[97vh] w-[100vw]"
+        className="features-bg md:py-20 py-10 text-white md:min-h-[97vh] w-[100vw]"
         id="feature"
       >
         <div className="flex flex-col gap-4 items-center justify-center md:w-[55%] w-[80%] mx-auto ">
@@ -112,13 +112,14 @@ const Features = () => {
           </div>
         </div>
         <div className="hidden  md:flex gap-20 md:gap-5 md:mt-28 mt-12 mx-auto md:w-[80%] w-[80%] md:justify-between min-h-44 flex-wrap md:flex-nowrap justify-center">
-
           <div class="card">
             <div className="icon flex items-center justify-center flex-col w-full">
-              <RiBookOpenFill className="h-[48px] w-[48px]" />
-              <h2 className="mt-5 md:text-[28px] text-[22px]">Educational Resources</h2>
+              <RiBookOpenFill className="h-[67px] w-[67px]" />
+              <h2 className="mt-5 md:text-[28px] text-[22px]">
+                Educational Resources
+              </h2>
             </div>
-            <div class="card-container px-8">
+            <div class="card-container px-6">
               <div className="text-sm text-gray-300 md:text-[16px] tracking-tight leading-normal">
                 Through our platform you learn about eye health, conditions, and
                 treatments with articles, videos, audios and one on one
@@ -128,27 +129,28 @@ const Features = () => {
           </div>
           <div class="card">
             <div className="icon flex items-center justify-center flex-col w-full">
-              <RiFolder4Fill className="h-[48px] w-[48px]" />
-              <h2 className=" mt-5 md:text-[28px] text-[22px]">Eyecare Advisory</h2>
+              <RiFolder4Fill className="h-[67px] w-[67px]" />
+              <h2 className=" mt-5 md:text-[28px] text-[22px]">
+                Eyecare Advisory
+              </h2>
             </div>
-            <div class="card-container px-8">
+            <div class="card-container px-6">
               <div className="text-sm text-gray-300 md:text-[16px] tracking-tight leading-normal">
                 Connect with our eye care team online for personalised advice on
                 vision concerns, pre-appointment questions, and post-care
                 guidance.
               </div>
               <div className="text-sm text-gray-300 md:text-[16px] tracking-tight leading-normal">
-              Additionally, gain access to a safe space to share
-              your stories.
+                Additionally, gain access to a safe space to share your stories.
               </div>
             </div>
           </div>
           <div class="card">
             <div className="icon flex items-center justify-center flex-col w-full">
-              <RiUploadCloud2Fill className="h-[48px] w-[48px]" />
+              <RiUploadCloud2Fill className="h-[67px] w-[67px]" />
               <h2 className=" mt-5 md:text-[28px] text-[22px]">Online Care</h2>
             </div>
-            <div class="card-container px-8">
+            <div class="card-container px-6">
               <div className="text-sm text-gray-300 md:text-[16px] tracking-tight leading-normal">
                 To eliminate wait time, schedule virtual consultations for your
                 individual needs. As a business, manage appointments, and access
