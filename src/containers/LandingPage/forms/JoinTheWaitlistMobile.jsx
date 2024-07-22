@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import React, { useEffect, useRef, useState } from "react";
 import { MdArrowOutward } from "react-icons/md";
 import '../styles/JoinTheWaitList.css';
-const JoinTheWaitlistMobile = () => {
+const JoinTheWaitlistMobile = ({children}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
@@ -38,6 +38,28 @@ const JoinTheWaitlistMobile = () => {
       setScreen(1);
     }
   }, [isOrg]);
+
+  const handleKeyDownEmail = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      if(isValidEmail(email))
+      setScreen(screen + 1);
+    }
+  };
+  const handleKeyDownName = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      if(fullName != "")
+      setScreen(screen + 1);
+    }
+  };
+  const handleKeyDownOrgName = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      if(orgName != "")
+      setScreen(screen + 1);
+    }
+  };
 
   function isValidEmail(email) {
     // Define the regular expression pattern for a valid email
@@ -78,13 +100,14 @@ const JoinTheWaitlistMobile = () => {
     // }
   };
   return (
-    <div className={`px-4 w-[80%] mx-auto  ${screen > 3 ? "bg-gif": ""}`}>
-      <span className={`text-[16px] text-slate-50 font-thin ${screen > 3 ? "hidden": ""} `}>{screen == 0 ? "1": screen}/3</span>
+    <div className={`relative px-4 w-[80%] mx-auto  ${screen > 3 ? "bg-gif": ""}`}>
+      {children}
+      <span className={`text-[16px] text-slate-50 font-thin ${screen > 3 ? "hidden": ""} `}>{screen + 1}/4</span>
       <h3 className={`text-[22px] mt-5 transition-all duration-300 ${screen > 3 ? "hidden": ""}`}>
         Be the first to know when we launch!
       </h3>
       <p className={`flex justify-between text-[14px] font-thin text-gray-300 my-2 transition-all duration-300 ${screen > 3 ? "hidden": ""}`}>
-        <span>Help us tailor your needs better, in just 3 steps</span> 
+        <span>Help us tailor your needs better, in just 4 steps</span> 
       </p>
       <div className="flex gap-3 w-full my-8">
         <form onSubmit={(e) => handleSubmit(e)} className="w-full min-h-[150px] flex flex-col justify-center" ref={formRef}>
@@ -128,7 +151,7 @@ const JoinTheWaitlistMobile = () => {
                 />
 
                 <div className="flex -space-x-2">
-                  <img src="/images/Group_indiv.png"/>
+                  <img src="/images/Group_indiv.png" className="h-10"/>
                 </div>
                 <p className="text-[12px] md:text-[16px] mt-3 font-medium">I'm an individual</p>
               </div>
@@ -165,7 +188,7 @@ const JoinTheWaitlistMobile = () => {
                   } `}
                 />
                 <div className="flex -space-x-2">
-                  <img src="/images/Group_org.png" alt="" />
+                  <img src="/images/Group_org.png" alt="" className="h-10"/>
                 </div>
                 <p className="text-[12px] md:text-[16px] mt-3 font-medium">
                   I'm an Organization
@@ -187,6 +210,7 @@ const JoinTheWaitlistMobile = () => {
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 autoComplete="off"
+                onKeyDown={handleKeyDownName}
               />
 
               <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-400 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
@@ -235,6 +259,7 @@ const JoinTheWaitlistMobile = () => {
                 value={orgName}
                 onChange={(e) => setOrgName(e.target.value)}
                 autoComplete="off"
+                onKeyDown={handleKeyDownOrgName}
               />
 
               <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-400 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
@@ -268,6 +293,7 @@ const JoinTheWaitlistMobile = () => {
 
                 }}
                 autoComplete="off"
+                onKeyDown={handleKeyDownEmail}
               />
 
               <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-400 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">

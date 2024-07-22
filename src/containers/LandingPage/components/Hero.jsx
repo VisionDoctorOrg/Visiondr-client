@@ -8,6 +8,7 @@ import { HiOutlineArchiveBox } from "react-icons/hi2";
 
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -107,6 +108,23 @@ const Hero = () => {
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="hidden md:flex items-center z-50 md:max-w-[75%] md:h-[60%] p-0 waitlist-bg bg-transparent border-0 text-white">
+                  <DialogClose className="absolute top-4 right-4">
+                    <svg
+                      className={` flex-shrink-0 size-6 `}
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M18 6 6 18" />
+                      <path d="m6 6 12 12" />
+                    </svg>
+                  </DialogClose>
                   <JoinTheWaitlist />
                 </DialogContent>
               </Dialog>
@@ -134,7 +152,25 @@ const Hero = () => {
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="md:hidden z-50 md:max-w-[60%] md:h-[60%] h-screen p-0 flex items-center justify-center bg-[#010D37] text-white border-none">
-                  <JoinTheWaitlistMobile />
+                  <JoinTheWaitlistMobile>
+                    <DialogClose className="absolute top-0 right-4">
+                      <svg
+                        className={` flex-shrink-0 size-6 `}
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M18 6 6 18" />
+                        <path d="m6 6 12 12" />
+                      </svg>
+                    </DialogClose>
+                  </JoinTheWaitlistMobile>
                 </DialogContent>
               </Dialog>
               <a href="#newsletter" className="w-full md:w-fit">

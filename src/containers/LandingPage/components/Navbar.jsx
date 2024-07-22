@@ -6,6 +6,7 @@ import { MdArrowOutward } from "react-icons/md";
 import { cn } from "@/lib/utils";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -24,7 +25,10 @@ const Navbar = () => {
   };
 
   const handleMouseLeave = () => {
-    setIsExpanded(false);
+    if(!isInputFocused){
+      setIsExpanded(false);
+
+    }
   };
 
   const [isNavExpanded, setIsNavExpanded] = useState(false);
@@ -34,31 +38,43 @@ const Navbar = () => {
   };
 
   const handleNavMouseLeave = () => {
-    setIsNavExpanded(false);
+      setIsNavExpanded(false);
+  };
+
+  const [isInputFocused, setIsInputFocused] = useState(false);
+
+  const handleInputFocus = () => {
+    setIsInputFocused(true);
+  };
+
+  const handleInputBlur = () => {
+    setIsInputFocused(false);
   };
 
   return (
     <div
       onMouseLeave={handleMouseLeave}
-      className={`w-full ${isExpanded ? "h-[500px] absolute" : ""} `}
+      className={`w-full ${isExpanded ? " absolute" : ""} `}
     >
       <header
-        className={`absolute md:max-w-[80%] mx-auto md:rounded-[28px] waitlist-bg inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full flex-col ${
+        className={`absolute lg:max-w-[80%] mx-auto lg:rounded-[28px] waitlist-bg inset-x-0 flex flex-wrap lg:justify-start lg:flex-nowrap z-50 w-full flex-col ${
           isNavExpanded ? "" : "max-w-[80%]"
         }`}
       >
         <nav
-          className={`relative  w-full text-white py-4 md:px-10 md:flex md:items-center md:justify-between md:py-0 md:mx-2 lg:mx-auto md:h-[90px] ${
-            isExpanded ? "md:rounded-b-none" : ""
+          className={`relative  w-full text-white py-4 lg:px-10 lg:flex lg:items-center lg:justify-between lg:py-0 lg:mx-auto lg:h-[90px] ${
+            isExpanded ? "lg:rounded-b-none" : ""
           } ${
-            isNavExpanded ? "bg-[#010D37] px-6" : "bg-[#010D3766] md:bg-transparent rounded-[8px]"
+            isNavExpanded
+              ? "bg-[#010D37] px-6"
+              : "bg-[#010D3766] lg:bg-transparent rounded-[8px]"
           }`}
           aria-label="Global"
         >
           {/* ... (rest of the first nav content remains the same) */}
-          <div className="flex items-center justify-between px-6 md:px-0">
+          <div className="flex items-center justify-between px-6 lg:px-0">
             <a
-              className="flex items-center rounded-md text-xl font-semibold focus:outline-none focus:opacity-80"
+              className="flex items-center rounded-lg text-xl font-semibold focus:outline-none focus:opacity-80"
               href="/"
               aria-label="Preline"
             >
@@ -78,7 +94,7 @@ const Navbar = () => {
               <p className="font-medium text-[16px]">VisionDR</p>
             </a>
 
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <button
                 type="button"
                 className={` size-8 flex justify-center items-center text-sm font-semibold rounded-full bg-transparent text-white disabled:opacity-50 disabled:pointer-events-none`}
@@ -129,59 +145,76 @@ const Navbar = () => {
 
           <div
             id=""
-            className={`md:h-full overflow-hidden transition-all duration-300 basis-full grow md:flex md:items-center bg-[#010D377] md:bg-transparent px-6 md:px-0 ${
+            className={`lg:h-full overflow-hidden transition-all duration-300 basis-full grow lg:flex lg:items-center bg-[#010D377] lg:bg-transparent px-6 lg:px-0 ${
               isNavExpanded ? "h-screen" : " h-0"
             }`}
             onMouseLeave={handleNavMouseLeave}
           >
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between py-2 md:py-0 md:ps-7 md:grow">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between py-2 lg:py-0 lg:ps-7 lg:grow">
               {/* ... (rest of the navbar content remains the same) */}
-              <div className="flex md:justify-center grow gap-4 md:flex-row flex-col md:w-[500px]">
-                <div className="mt-10 md:mt-0 flex items-center py-3 md:py-4 ps-px sm:px-3 ">
+              <div className="flex lg:justify-center grow gap-4 lg:flex-row flex-col lg:w-[500px]">
+                <div className="mt-10 lg:mt-0 flex items-center py-3 lg:py-4 ps-px sm:px-3 ">
                   <a
-                    className=" text-white hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all md:text-[16px]"
+                    className=" text-white hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all lg:text-[16px]"
                     href="#about"
                     aria-current="page"
                   >
                     About us
                   </a>
                 </div>
-                <div className="flex items-center py-3 md:py-4 ps-px sm:px-3 ">
+                <div className="flex items-center py-3 lg:py-4 ps-px sm:px-3 ">
                   <a
-                    className=" text-white hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all md:text-[16px]"
+                    className=" text-white hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all lg:text-[16px]"
                     href="#feature"
                     aria-current="page"
                   >
                     Features
                   </a>
                 </div>
-                <div className="flex items-center py-3 md:py-4 ps-px sm:px-3 ">
+                <div className="flex items-center py-3 lg:py-4 ps-px sm:px-3 ">
                   <a
-                    className=" text-white hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all md:text-[16px]"
+                    className=" text-white hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all lg:text-[16px]"
                     href="#faq"
                     aria-current="page"
                   >
                     FAQ
                   </a>
                 </div>
-                <div className="flex items-center py-3 md:py-4 ps-px sm:px-3 ">
+                <div className="flex items-center py-3 lg:py-4 ps-px sm:px-3 ">
                   <a
-                    className=" text-white hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all md:text-[16px]"
+                    className=" text-white hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all lg:text-[16px]"
                     href="#partners"
                     aria-current="page"
                   >
                     Partners
                   </a>
                 </div>
-                <div className="flex items-center py-3 md:py-4 ps-px sm:px-3 ">
+                <div className="flex items-center py-3 lg:py-4 ps-px sm:px-3 ">
                   <a
-                    className=" text-white hover:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all md:text-[16px]"
+                    className=" text-white hover:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all lg:text-[16px]"
                     href="#"
                     aria-current="page"
                   >
                     <Dialog>
                       <DialogTrigger>Contact us</DialogTrigger>
-                      <DialogContent className="md:max-w-[60%] max-w-[80%] max-h-full py-5 px-0">
+                      <DialogContent className="lg:max-w-[60%] max-w-[80%] max-h-full py-5 px-0">
+                        <DialogClose className="absolute top-4 right-4">
+                          <svg
+                            className={` flex-shrink-0 size-6 `}
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <path d="M18 6 6 18" />
+                            <path d="m6 6 12 12" />
+                          </svg>
+                        </DialogClose>
                         <ContactUs />
                       </DialogContent>
                     </Dialog>
@@ -191,7 +224,7 @@ const Navbar = () => {
 
               <div>
                 <a
-                  className={`hidden mt-5 group md:inline-flex items-center text-lg gap-x-2 py-2 px-3 bg-primary rounded-lg focus:outline-none border-2 border-primary transition-all duration-300 md:text-[16px] tracking-tight ${
+                  className={`hidden mt-5 group lg:inline-flex items-center text-lg gap-x-2 py-2 px-3 bg-primary rounded-lg focus:outline-none border-2 border-primary transition-all duration-300 lg:text-[16px] tracking-tight ${
                     isExpanded ? "border-white text-white bg-transparent" : ""
                   }`}
                   href="#"
@@ -214,7 +247,7 @@ const Navbar = () => {
                 <Dialog>
                   <DialogTrigger className="w-full">
                     <a
-                      className={`group mt-20 md:mt-0 md:hidden inline-flex items-center text-lg gap-x-2 py-2 px-3 bg-primary rounded-lg focus:outline-none border-2 border-primary transition-all duration-300 text-[16px] tracking-tight`}
+                      className={`w-full group mt-20 lg:mt-0 lg:hidden inline-flex justify-center items-center text-lg gap-x-2 py-2 px-3 bg-primary rounded-lg focus:outline-none border-2 border-primary transition-all duration-300 text-[16px] tracking-tight`}
                       href="#"
                     >
                       Join the waitlist
@@ -232,8 +265,26 @@ const Navbar = () => {
                       </svg>
                     </a>
                   </DialogTrigger>
-                  <DialogContent className="z-50 md:max-w-[60%] md:h-[60%] h-screen p-0 flex items-center justify-center bg-[#010D37] text-white border-none">
-                    <JoinTheWaitlistMobile />
+                  <DialogContent className="z-50 lg:max-w-[60%] lg:h-[60%] h-screen p-0 flex items-center justify-center bg-[#010D37] text-white border-none">
+                    <JoinTheWaitlistMobile>
+                      <DialogClose className="absolute top-0 right-4">
+                        <svg
+                          className={` flex-shrink-0 size-6 `}
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path d="M18 6 6 18" />
+                          <path d="m6 6 12 12" />
+                        </svg>
+                      </DialogClose>
+                    </JoinTheWaitlistMobile>
                   </DialogContent>
                 </Dialog>
               </div>
@@ -241,12 +292,12 @@ const Navbar = () => {
           </div>
         </nav>
         <nav
-          className={`hidden transition-all duration-500 overflow-hidden relative w-full text-white rounded-[16px] rounded-t-none py-3 px-6 md:flex md:items-center md:justify-between md:py-0 mx-2 lg:mx-auto ${
+          className={`hidden transition-all duration-500 overflow-hidden relative w-full text-white rounded-[16px] rounded-t-none py-3 px-6 lg:flex lg:items-center lg:justify-between lg:py-0 mx-2 lg:mx-auto ${
             isExpanded ? " max-h-[500px]" : "max-h-0 "
           }`}
         >
           {" "}
-          {isExpanded ? <JoinTheWaitlist /> : ""}
+          {isExpanded ? <JoinTheWaitlist onFocus={handleInputFocus} onBlur={handleInputBlur}/> : ""}
         </nav>
       </header>
     </div>

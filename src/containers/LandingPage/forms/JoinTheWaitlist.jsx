@@ -4,7 +4,7 @@ import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { MdArrowOutward } from "react-icons/md";
 import '../styles/JoinTheWaitList.css'
-const JoinTheWaitlist = () => {
+const JoinTheWaitlist = ({onFocus, onBlur}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
@@ -39,6 +39,28 @@ const JoinTheWaitlist = () => {
       setScreen(1);
     }
   }, [isOrg]);
+
+  const handleKeyDownEmail = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      if(isValidEmail(email))
+      setScreen(screen + 1);
+    }
+  };
+  const handleKeyDownName = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      if(fullName != "")
+      setScreen(screen + 1);
+    }
+  };
+  const handleKeyDownOrgName = (event) => {
+    if (event.key === 'Enter') {
+      // event.preventDefault();
+      if(orgName != "")
+      setScreen(screen + 1);
+    }
+  };
 
   function isValidEmail(email) {
     // Define the regular expression pattern for a valid email
@@ -84,7 +106,7 @@ const JoinTheWaitlist = () => {
         Be the first to know when we launch!
       </h3>
       <p className={`flex justify-between text-[14px] font-thin text-gray-300 my-2 transition-all duration-300 ${screen == 0? " px-[2%]":""} ${screen > 3 ? "hidden": ""}`}>
-        <span>Help us tailor your needs better, in just 3 steps</span> <span className="text-[16px] text-slate-50">{screen == 0 ? "1": screen}/3</span>
+        <span>Help us tailor your needs better, in just 4 steps</span> <span className="text-[16px] text-slate-50">{screen + 1}/4</span>
       </p>
       <div className={`flex gap-3 w-full my-8  `}>
         <form onSubmit={(e) => handleSubmit(e)} className="w-full min-h-[150px] flex flex-col justify-center" ref={formRef}>
@@ -128,7 +150,7 @@ const JoinTheWaitlist = () => {
                 />
 
                 <div className="flex -space-x-2">
-                  <img src="/images/Group_indiv.png"/>
+                  <img src="/images/Group_indiv.png" className="h-10"/>
                 </div>
                 <p className="text-[12px] md:text-[16px] mt-3 font-medium">I'm an individual</p>
               </div>
@@ -165,7 +187,7 @@ const JoinTheWaitlist = () => {
                   } `}
                 />
                 <div className="flex -space-x-2">
-                  <img src="/images/Group_org.png" alt="" />
+                  <img src="/images/Group_org.png" alt="" className="h-10"/>
                 </div>
                 <p className="text-[12px] md:text-[16px] mt-3 font-medium">
                   I'm an Organization
@@ -183,10 +205,13 @@ const JoinTheWaitlist = () => {
                 id="fullName"
                 placeholder="Full Name "
                 className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
-                required
+                required={isIndividual}
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
+                onKeyDown={handleKeyDownName}
                 autoComplete="off"
+                onFocus={onFocus}
+                onBlur={onBlur}
               />
 
               <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-400 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
@@ -212,10 +237,12 @@ const JoinTheWaitlist = () => {
                 id="fullName1"
                 placeholder="Full Name "
                 className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
-                required
+                required={isOrg}
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 autoComplete="off"
+                onFocus={onFocus}
+                onBlur={onBlur}
               />
 
               <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-400 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
@@ -234,6 +261,9 @@ const JoinTheWaitlist = () => {
                 required={isOrg}
                 value={orgName}
                 onChange={(e) => setOrgName(e.target.value)}
+                onKeyDown={handleKeyDownOrgName}
+                onFocus={onFocus}
+                onBlur={onBlur}
                 autoComplete="off"
               />
 
@@ -245,7 +275,7 @@ const JoinTheWaitlist = () => {
               className={cn("hover:border-white hover:bg-primary/75 border-2 border-primary bg-primary h-[48px] w-[140px] text-[16px] disabled:bg-[#d2dbfe] disabled:border-0 disabled:text-[#8c8f98] rounded-[8px]")}
               onClick={() => setScreen(2)}
               disabled={fullName == "" || orgName == ""}
-              type="button"
+              type="submit"
             >
               Next
             </button>
@@ -267,6 +297,9 @@ const JoinTheWaitlist = () => {
                   triggerFormValidation();
 
                 }}
+                onKeyDown={handleKeyDownEmail}
+                onFocus={onFocus}
+                onBlur={onBlur}
                 autoComplete="off"
               />
 
@@ -295,6 +328,8 @@ const JoinTheWaitlist = () => {
                 className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
+                onFocus={onFocus}
+                onBlur={onBlur}
                 autoComplete="off"
               />
 

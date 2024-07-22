@@ -10,7 +10,7 @@ const FAQ = () => {
       <div className="space-y-4 mx-auto py-10 md:mt-5">
         <details className="group [&_summary::-webkit-details-marker]:hidden">
           <summary className="flex cursor-pointer items-center justify-between gap-1.5 rounded-lg md:p-4 text-gray-900 ">
-            <h2 className="font-bold tracking-tight text-[16px] pr-20">
+            <h2 className="md:font-bold font-medium tracking-tight text-[14px] md:text-[16px] pr-20">
               What services does VisionDoctors offer?
             </h2>
 
@@ -40,7 +40,7 @@ const FAQ = () => {
         </details>
         <details className="group [&_summary::-webkit-details-marker]:hidden">
           <summary className="flex cursor-pointer items-center justify-between gap-1.5 rounded-lg md:p-4 text-gray-900 ">
-            <h2 className="font-bold tracking-tight text-[16px] pr-20">
+            <h2 className="md:font-bold font-medium tracking-tight text-[14px] md:text-[16px] pr-20">
               When will the Webapp go Live?
             </h2>
 
@@ -70,7 +70,7 @@ const FAQ = () => {
         </details>
         <details className="group [&_summary::-webkit-details-marker]:hidden">
           <summary className="flex cursor-pointer items-center justify-between gap-1.5 rounded-lg md:p-4 text-gray-900 ">
-            <h2 className="font-bold tracking-tight text-[16px] pr-20">
+            <h2 className="md:font-bold font-medium tracking-tight text-[14px] md:text-[16px] pr-20">
               How will I be able to book an online advisory session?
             </h2>
 
@@ -99,7 +99,7 @@ const FAQ = () => {
         </details>
         <details className="group [&_summary::-webkit-details-marker]:hidden">
           <summary className="flex cursor-pointer items-center justify-between gap-1.5 rounded-lg md:p-4 text-gray-900 ">
-            <h2 className="font-bold tracking-tight text-[16px] pr-20">
+            <h2 className="md:font-bold font-medium tracking-tight text-[14px] md:text-[16px] pr-20">
               What type of eye health education resources will be available?
             </h2>
 
@@ -129,7 +129,7 @@ const FAQ = () => {
         </details>
         <details className="group [&_summary::-webkit-details-marker]:hidden">
           <summary className="flex cursor-pointer items-center justify-between gap-1.5 rounded-lg md:p-4 text-gray-900 ">
-            <h2 className="font-bold tracking-tight text-[16px] pr-20">
+            <h2 className="md:font-bold font-medium tracking-tight text-[14px] md:text-[16px] pr-20">
               Is this platform open to individuals only?
             </h2>
 
@@ -157,7 +157,7 @@ const FAQ = () => {
         </details>
         <details className="group [&_summary::-webkit-details-marker]:hidden">
           <summary className="flex cursor-pointer items-center justify-between gap-1.5 rounded-lg md:p-4 text-gray-900 ">
-            <h2 className="font-bold tracking-tight text-[16px] pr-20">
+            <h2 className="md:font-bold font-medium tracking-tight text-[14px] md:text-[16px] pr-20">
               Why should I choose VisionDoctors for my eye care?
             </h2>
 

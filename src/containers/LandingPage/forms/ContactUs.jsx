@@ -150,9 +150,9 @@ const ContactUs = () => {
             />
 
             <div className="flex -space-x-2">
-              <img src="/images/Group_indiv.png" alt="" />
+              <img src="/images/Group_indiv.png" alt="" className="h-10"/>
             </div>
-            <p className="text-[12px] md:text-[16px]mt-3 font-medium">I'm an individual</p>
+            <p className="text-[12px] md:text-[16px] mt-3 font-medium">I'm an individual</p>
           </div>
           <div
             className={` relative h-36 w-full border-2 rounded-md flex justify-center items-center flex-col party cursor-pointer ${
@@ -181,7 +181,7 @@ const ContactUs = () => {
               className={`absolute bottom-5 right-8 ${isOrg ? "" : "hidden"} `}
             />
             <div className="flex -space-x-2">
-              <img src="/images/Group_org.png" alt="" />
+              <img src="/images/Group_org.png" alt="" className="h-10"/>
             </div>
             <p className="text-[12px] md:text-[16px] mt-3 font-medium">I'm an Organization</p>
           </div>

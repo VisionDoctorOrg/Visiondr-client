@@ -6,27 +6,20 @@ const SlideshowBackground = ({ images }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 2000); 
+    }, 2000);
 
     return () => clearInterval(interval);
   }, [images.length]);
 
   return (
     <div className="relative h-[256px] overflow-hidden rounded-[8px]">
-      {images.map((src, index) => (
-        <div
-          key={src}
-          className={`absolute inset-0 bg-cover bg-center transition-opacity ease-in ${
-            index === currentIndex ? 'opacity-100' : 'opacity-0'
-          }`}
-          style={{ backgroundImage: `url(${src})` }}
-        />
-      ))}
-      
+      <img
+        src={images[currentIndex]}
+        alt={`slide-${currentIndex}`}
+        className="w-full h-full object-cover"
+      />
     </div>
   );
 };
-
-
 
 export default SlideshowBackground;

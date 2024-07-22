@@ -1,6 +1,43 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../styles/Sponsors.css";
 const Sponsors = () => {
+  const [currentImage, setCurrentImage] = useState('');
+  const box1Ref = useRef(null);
+  const box2Ref = useRef(null);
+  const box3Ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (entry.target === box1Ref.current) {
+              setCurrentImage('/images/item-b-1.png'); // Replace with the actual image URL
+            } else if (entry.target === box2Ref.current) {
+              setCurrentImage('/images/item-b-2.png'); // Replace with the actual image URL
+            } else if (entry.target === box3Ref.current) {
+              setCurrentImage('/images/item-b-3.png'); // Replace with the actual image URL
+            }
+          }
+        });
+      },
+      {
+        root: null, // Use the viewport as the root
+        rootMargin: '0px',
+        threshold: 0.8, // Trigger when at least 50% of the target is visible
+      }
+    );
+
+    if (box1Ref.current) observer.observe(box1Ref.current);
+    if (box2Ref.current) observer.observe(box2Ref.current);
+    if (box3Ref.current) observer.observe(box3Ref.current);
+
+    return () => {
+      if (box1Ref.current) observer.unobserve(box1Ref.current);
+      if (box2Ref.current) observer.unobserve(box2Ref.current);
+      if (box3Ref.current) observer.unobserve(box3Ref.current);
+    };
+  }, []);
   return (
     <div
       className="md:py-16 pt-16 pb-8 w-[100vw] md:w-full mx-auto overflow-hidden"
@@ -28,7 +65,7 @@ const Sponsors = () => {
         </p>
       </section>
       <section className="md:hidden flex flex-row space-x-10 overflow-x-auto overflow-y-hidden px-10">
-        <div className="py-5">
+        <div className="py-5" ref={box1Ref}>
           <div className=" flex-shrink-0 p-5 custom-shadow transition-all ease-in-out duration-500 px-6 ">
             <div className="border-l border-l-black px-3 md:w-[275px] md:h-[236px] w-[264px] h-[196px]  flex flex-col justify-between">
               <p className="font-medium text-gray-400 md:text-[16px]">01</p>
@@ -42,23 +79,8 @@ const Sponsors = () => {
               </p>
             </div>
           </div>
-
-          <div className="flex items-center justify-center">
-            <svg
-              width="40"
-              height="8"
-              viewBox="0 0 40 8"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="mt-8 h-2"
-            >
-              <circle cx="4" cy="4" r="4" fill="#010D37" />
-              <circle cx="20" cy="4" r="3.5" stroke="#010D37" />
-              <circle cx="36" cy="4" r="3.5" stroke="#010D37" />
-            </svg>
-          </div>
         </div>
-        <div className="py-5">
+        <div className="py-5" ref={box2Ref}>
           <div className="flex-shrink-0 p-5 custom-shadow transition-all ease-in-out duration-500 px-6 ">
             <div className="border-l border-l-black px-3 md:w-[275px] md:h-[236px] w-[264px] h-[196px] flex flex-col justify-between">
               <p className="font-medium text-gray-400 md:text-[16px]">02</p>
@@ -72,23 +94,8 @@ const Sponsors = () => {
               </p>
             </div>
           </div>
-
-          <div className="flex items-center justify-center">
-            <svg
-              width="40"
-              height="8"
-              viewBox="0 0 40 8"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="mt-8 h-2"
-            >
-              <circle cx="4" cy="4" r="3.5" stroke="#010D37" />
-              <circle cx="20" cy="4" r="3.5" fill="#010D37" stroke="#010D37" />
-              <circle cx="36" cy="4" r="3.5" stroke="#010D37" />
-            </svg>
-          </div>
         </div>
-        <div className="py-5">
+        <div className="py-5" ref={box3Ref}>
           <div className="flex-shrink-0 p-5 custom-shadow transition-all ease-in-out duration-500 px-6 ">
             <div className="border-l border-l-black px-3 md:w-[275px] md:h-[236px] w-[264px] h-[196px] flex flex-col justify-between">
               <p className="font-medium text-gray-400 md:text-[16px]">03</p>
@@ -102,22 +109,11 @@ const Sponsors = () => {
               </p>
             </div>
           </div>
-          <div className="flex items-center justify-center">
-            <svg
-              width="40"
-              height="8"
-              viewBox="0 0 40 8"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="mt-8 h-2"
-            >
-              <circle cx="4" cy="4" r="3.5" stroke="#010D37" />
-              <circle cx="20" cy="4" r="3.5" stroke="#010D37" />
-              <circle cx="36" cy="4" r="3.5" fill="#010D37" stroke="#010D37" />
-            </svg>
-          </div>
         </div>
       </section>
+      <div className="md:hidden flex items-center justify-center">
+          <img src={currentImage} alt="" className="h-2 text-white mt-8" />
+        </div>
       <section className="hidden md:mx-32 md:grid md:grid-cols-3 md:justify-between md:gap-20 gap-5 md:mt-16 mt-4 md:flex-nowrap">
         <div className="p-5 custom-shadow transition-all ease-in-out duration-500 px-6 h-full">
           <div className="border-l border-l-black px-3 md:w-[275px] md:h-[236px] w-[264px] h-[196px] flex flex-col justify-between">

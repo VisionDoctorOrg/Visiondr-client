@@ -1,7 +1,44 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../styles/Reviews.css";
 import { GoLocation } from "react-icons/go";
 const Reviews = () => {
+  const [currentImage, setCurrentImage] = useState('');
+  const box1Ref = useRef(null);
+  const box2Ref = useRef(null);
+  const box3Ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (entry.target === box1Ref.current) {
+              setCurrentImage('/images/item-b-1.png'); // Replace with the actual image URL
+            } else if (entry.target === box2Ref.current) {
+              setCurrentImage('/images/item-b-2.png'); // Replace with the actual image URL
+            } else if (entry.target === box3Ref.current) {
+              setCurrentImage('/images/item-b-3.png'); // Replace with the actual image URL
+            }
+          }
+        });
+      },
+      {
+        root: null, // Use the viewport as the root
+        rootMargin: '0px',
+        threshold: 0.8, // Trigger when at least 50% of the target is visible
+      }
+    );
+
+    if (box1Ref.current) observer.observe(box1Ref.current);
+    if (box2Ref.current) observer.observe(box2Ref.current);
+    if (box3Ref.current) observer.observe(box3Ref.current);
+
+    return () => {
+      if (box1Ref.current) observer.unobserve(box1Ref.current);
+      if (box2Ref.current) observer.unobserve(box2Ref.current);
+      if (box3Ref.current) observer.unobserve(box3Ref.current);
+    };
+  }, []);
   return (
     <div>
       <section className="md:py-20 py-4 w-[100vw]">
@@ -9,7 +46,7 @@ const Reviews = () => {
           <h1 className="font-semibold md:text-4xl text-[22px]">Reviews</h1>
         </div>
         <div className="md:hidden flex flex-row space-x-10 overflow-x-auto overflow-y-hidden px-10 mt-8">
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0" ref={box1Ref}>
             <div className="group relative block h-[300px] w-[300px] md:w-full md:h-[400px] rounded-lg">
               <span className="absolute inset-0 border-2 border-primary rounded-lg"></span>
               <div className="relative flex h-full transform items-end bg-white transition-transform rounded-lg">
@@ -26,7 +63,7 @@ const Reviews = () => {
                   </div>
                 </div>
 
-                <div className="absolute p-6 sm:p-6 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 rounded-lg border-2 border-primary h-full w-full flex items-center justify-center flex-col md:tracking-tight md:leading-tight">
+                <div className="absolute py-6 px-2 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 rounded-lg border-2 border-primary h-full w-full flex items-center justify-center flex-col md:tracking-tight md:leading-tight">
                   <h3 className="md:mt-4 mt-2 font-medium text-[16px] text-center">
                     How i feel about VisionDR Newsletter ?
                   </h3>
@@ -48,22 +85,8 @@ const Reviews = () => {
                 </div>
               </div>
             </div>
-            <div className="flex items-center justify-center">
-              <svg
-                width="40"
-                height="8"
-                viewBox="0 0 40 8"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="mt-8 h-2"
-              >
-                <circle cx="4" cy="4" r="4" fill="#010D37" />
-                <circle cx="20" cy="4" r="3.5" stroke="#010D37" />
-                <circle cx="36" cy="4" r="3.5" stroke="#010D37" />
-              </svg>
-            </div>
           </div>
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0" ref={box2Ref}>
             <div className="group relative block h-[300px] w-[300px] md:w-full md:h-[400px] rounded-lg">
               <span className="absolute inset-0 border-2 border-primary rounded-lg"></span>
 
@@ -81,8 +104,8 @@ const Reviews = () => {
                   </div>
                 </div>
 
-                <div className="absolute p-6 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 sm:p-6 md:tracking-tight md:leading-tight rounded-lg border-2 h-full w-full flex items-center justify-center flex-col ">
-                  <h3 className="md:mt-4 mt-2 font-medium text-[16px] text-center">
+                <div className="absolute py-6 px-3 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 sm:p-6 md:tracking-tight md:leading-tight rounded-lg border-2 h-full w-full flex items-center justify-center flex-col ">
+                  <h3 className="md:mt-4 mt-2 font-medium text-[16px] text-center px-2">
                     How i feel about VisionDR Session ?
                   </h3>
 
@@ -101,28 +124,8 @@ const Reviews = () => {
                 </div>
               </div>
             </div>
-            <div className="flex items-center justify-center">
-              <svg
-                width="40"
-                height="8"
-                viewBox="0 0 40 8"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="mt-8 h-2"
-              >
-                <circle cx="4" cy="4" r="3.5" stroke="#010D37" />
-                <circle
-                  cx="20"
-                  cy="4"
-                  r="3.5"
-                  fill="#010D37"
-                  stroke="#010D37"
-                />
-                <circle cx="36" cy="4" r="3.5" stroke="#010D37" />
-              </svg>
-            </div>
           </div>
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0" ref={box3Ref}>
             <div className="group relative block h-[300px] w-[300px] md:w-full md:h-[400px] rounded-lg">
               <span className="absolute inset-0 border-2 border-primary rounded-lg"></span>
 
@@ -142,7 +145,7 @@ const Reviews = () => {
                   </div>
                 </div>
 
-                <div className="absolute p-6 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 sm:p-6  md:tracking-tight md:leading-tight rounded-lg border-2 border-primary h-full w-full flex items-center justify-center flex-col ">
+                <div className="absolute py-6 px-2 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 sm:p-6  md:tracking-tight md:leading-tight rounded-lg border-2 border-primary h-full w-full flex items-center justify-center flex-col ">
                   <h3 className="md:mt-4 mt-2 font-medium text-[16px] text-center">
                     How VisionDR is helpful/useful to you?
                   </h3>
@@ -155,27 +158,10 @@ const Reviews = () => {
                 </div>
               </div>
             </div>
-            <div className="flex items-center justify-center">
-              <svg
-                width="40"
-                height="8"
-                viewBox="0 0 40 8"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="mt-8 h-2"
-              >
-                <circle cx="4" cy="4" r="3.5" stroke="#010D37" />
-                <circle cx="20" cy="4" r="3.5" stroke="#010D37" />
-                <circle
-                  cx="36"
-                  cy="4"
-                  r="3.5"
-                  fill="#010D37"
-                  stroke="#010D37"
-                />
-              </svg>
-            </div>
           </div>
+        </div>
+        <div className="md:hidden flex items-center justify-center">
+          <img src={currentImage} alt="" className="h-2 text-white mt-8" />
         </div>
         <div className="hidden md:grid grid-cols-3 gap-5 md:mt-16 mt-6 mx-auto md:w-[85%] justify-between overflow-auto">
           <div className="">
