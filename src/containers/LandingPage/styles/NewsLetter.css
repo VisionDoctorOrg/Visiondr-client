@@ -11,3 +11,9 @@
   }
 }
 
+.bg-gif {
+  background-image: url("/images/Finished successfully.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+

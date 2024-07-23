@@ -1,0 +1,21 @@
+/* Remove outline and box-shadow for all browsers */
+textarea:focus {
+    outline: none; /* Removes the default outline */
+    box-shadow: none; /* Removes any box-shadow */
+}
+
+/* Specific fix for Safari */
+@media not all and (min-resolution: 0.001dpcm) {
+    @supports (-webkit-appearance: none) {
+        textarea:focus {
+            outline: none; /* Removes the default outline */
+            box-shadow: none; /* Removes any box-shadow */
+        }
+    }
+}
+
+/* Specific fix for Firefox */
+textarea:focus {
+    outline: none; /* Removes the default outline */
+    box-shadow: none; /* Removes any box-shadow */
+}

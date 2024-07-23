@@ -117,7 +117,7 @@ const Footer = () => {
             >
               <FaLinkedin className="md:h-[40px] md:w-[40px] h-[24px] w-[24px] hover:text-gray-300 transition-all duration-300 mx-auto" />
             </a>
-            <a href="#">
+            <a href="https://youtube.com/@visiondr9732?si=6bS0q8bcWekaZcnQ">
               <FaYoutube className="md:h-[40px] md:w-[40px] h-[24px] w-[24px] hover:text-gray-300 transition-all duration-300 mx-auto" />
             </a>
             <a

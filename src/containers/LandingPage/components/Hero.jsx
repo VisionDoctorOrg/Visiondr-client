@@ -53,7 +53,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className=" relative text-white overflow-hidden ">
+    <div className=" relative text-white overflow-hidden bg-[#010D37]">
       {/* Current Image */}
       <div
         className="absolute inset-0 bg-cover bg-center"

@@ -6,6 +6,9 @@
 html{
   font-family: "Plus Jakarta Sans", sans-serif;
   scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow: -moz-scrollbars-none;
 }
 
 @layer base {
@@ -82,3 +85,19 @@ html{
 }
 
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body{
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
