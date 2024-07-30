@@ -1,4 +1,4 @@
-# VisionDR Landing page
+# VisionDR Frontend
 
 ## Installation
 ### Prerequisites
