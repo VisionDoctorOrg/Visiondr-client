@@ -42,18 +42,14 @@ const NewsLetter = () => {
         "Content-Type": "application/json",
       },
     };
-
     const body = JSON.stringify({email});
-    console.log(body);
-
     try {
       const res = await axios.post(`${API_URL}waitlist/newsletter/`, body, config);
-      console.log(res);
       setSuccess(true);
       setMessage("Thankyou for subscribing to our newsletter!");
     } catch (err) {
-      console.log(err);
-      if(err.response && err.reponse.status == 409){
+      setSuccess(false);
+      if(err.response && err.response.status == 409){
         setMessage("You have already subscribed to our newsletter");
       }else{
         setMessage("An error occured please try again.");
