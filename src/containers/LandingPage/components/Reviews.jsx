@@ -45,9 +45,9 @@ const Reviews = () => {
         <div className="flex flex-col gap-4 items-center justify-center md:w-[50%] w-[80%] mx-auto">
           <h1 className="font-semibold md:text-4xl text-[22px]">Reviews</h1>
         </div>
-        <div className="md:hidden flex flex-row space-x-10 overflow-x-auto overflow-y-hidden px-10 mt-8">
+        <div className="lg:hidden flex flex-row space-x-10 overflow-x-auto overflow-y-hidden px-10 mt-8">
           <div className="flex-shrink-0" ref={box1Ref}>
-            <div className="group relative block h-[300px] w-[300px] md:w-full md:h-[400px] rounded-lg">
+            <div className="group relative block h-[300px] w-[300px] lg:w-full lg:h-[400px] rounded-lg">
               <span className="absolute inset-0 border-2 border-primary rounded-lg"></span>
               <div className="relative flex h-full transform items-end bg-white transition-transform rounded-lg">
                 <div className="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 reviews-bg h-full w-full text-slate-100 rounded-lg">
@@ -87,7 +87,7 @@ const Reviews = () => {
             </div>
           </div>
           <div className="flex-shrink-0" ref={box2Ref}>
-            <div className="group relative block h-[300px] w-[300px] md:w-full md:h-[400px] rounded-lg">
+            <div className="group relative block h-[300px] w-[300px] lg:w-full lg:h-[400px] rounded-lg">
               <span className="absolute inset-0 border-2 border-primary rounded-lg"></span>
 
               <div className="relative flex h-full transform items-end bg-white transition-transform rounded-lg ">
@@ -126,7 +126,7 @@ const Reviews = () => {
             </div>
           </div>
           <div className="flex-shrink-0" ref={box3Ref}>
-            <div className="group relative block h-[300px] w-[300px] md:w-full md:h-[400px] rounded-lg">
+            <div className="group relative block h-[300px] w-[300px] lg:w-full lg:h-[400px] rounded-lg">
               <span className="absolute inset-0 border-2 border-primary rounded-lg"></span>
 
               <div className="relative flex h-full transform items-end bg-white transition-transform rounded-lg">
@@ -160,10 +160,10 @@ const Reviews = () => {
             </div>
           </div>
         </div>
-        <div className="md:hidden flex items-center justify-center">
+        <div className="lg:hidden flex items-center justify-center">
           <img src={currentImage} alt="" className="h-2 text-white mt-8" />
         </div>
-        <div className="hidden md:grid grid-cols-3 gap-5 md:mt-16 mt-6 mx-auto md:w-[85%] justify-between overflow-auto">
+        <div className="hidden lg:grid grid-cols-3 gap-5 md:mt-16 mt-6 mx-auto md:w-[85%] justify-between overflow-auto">
           <div className="">
             <div className="group relative block h-[300px] w-[300px] md:w-full md:h-[400px] rounded-lg">
               <span className="absolute inset-0 border-2 border-primary rounded-lg"></span>

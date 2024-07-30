@@ -3,6 +3,9 @@ import { cn } from "@/lib/utils";
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { MdArrowOutward } from "react-icons/md";
+import { Loader2 } from "lucide-react"
+import { isValidNumber } from 'libphonenumber-js';
+import axiosInstance from './axiosInstance';
 import '../styles/JoinTheWaitList.css'
 const JoinTheWaitlist = ({onFocus, onBlur}) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -71,6 +74,8 @@ const JoinTheWaitlist = ({onFocus, onBlur}) => {
   }
 
   const formRef = useRef(null);
+  
+
 
   const triggerFormValidation = () => {
     if (formRef.current) {
@@ -78,30 +83,45 @@ const JoinTheWaitlist = ({onFocus, onBlur}) => {
     }
   };
 
+  const formPost = async () => {
+    setIsLoading(true);
+    const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+      const phone = phoneNumber;
+      const organizationName = orgName;
+      const type = isIndividual? "Individual": "Organization";
+  
+      const body = JSON.stringify({ fullName, email, phone, organizationName, type });
+  
+      try {
+        const res = await axiosInstance.post(`waitlist/create/`, body, config);
+        setScreen(4);
+      } catch (err) {
+        if(err.response && err.response.status == 409){
+          setScreen(5);
+        }
+        else{
+          setScreen(6);
+        }
+      
+      } finally{
+        setIsLoading(false);
+      }
+  }
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setScreen(4);
-    // setIsLoading(true);
-    // const config = {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // };
-
-    // const body = JSON.stringify({ email });
-    // console.log(body);
-
-    // try {
-    //   const res = await axios.post(``, body, config);
-    //   console.log(res);
-    // } catch (err) {
-    //   console.log(err);
-    //   setIsLoading(false);
-      //   setErrorMessage(err.response.data.error);
-    // }
+    await formPost();
+    
   };
   return (
-    <div className={`px-4 w-[72%] mx-auto ${screen > 3 ? "bg-gif": ""} `}>
+    <div className={`px-4 w-[72%] mx-auto ${screen == 4 ? "bg-gif": ""} `}>
       <h3 className={`text-[22px] mt-5 transition-all duration-300 ${screen == 0? " px-[2%]":""} ${screen > 3 ? "hidden": ""}`}>
         Be the first to know when we launch!
       </h3>
@@ -339,14 +359,20 @@ const JoinTheWaitlist = ({onFocus, onBlur}) => {
             </label>
             <Button
               type="submit"
+              disabled={isLoading}
               className={cn("hover:border-white border-2 border-primary h-[48px] w-[140px] px-2 text-[16px] disabled:bg-white disabled:border-0 disabled:text-gray-500")}
             >
-              Finish <MdArrowOutward className="ml-2 h-4 w-4" />
+              Finish <MdArrowOutward className={` ${isLoading? "hidden": ""} ml-2 h-4 w-4 `} /><Loader2 className={` ${isLoading? "": "hidden"}  ml-2 h-4 w-4 animate-spin`} />
             </Button>
           </div>
           <div className={`flex gap-3 w-full mb-8 h-full justify-center items-center min-h-[200px] ${screen == 4 ? "" : "hidden"} `}>
               <h1 className="text-[28px] font-medium">Thank you for joining our waitlist!</h1>
-              {/* <img src="/images/Finished successfully.jpg"/> */}
+          </div>
+          <div className={`flex gap-3 w-full mb-8 h-full justify-center items-center min-h-[200px] ${screen == 5 ? "" : "hidden"} `}>
+              <h1 className="text-[28px] font-medium">You have already joined our waitlist</h1>
+          </div>
+          <div className={`flex gap-3 w-full mb-8 h-full justify-center items-center min-h-[200px] ${screen == 6 ? "" : "hidden"} `}>
+              <h1 className="text-[28px] font-medium">An error occured please try again.</h1>
           </div>
 
         </form>

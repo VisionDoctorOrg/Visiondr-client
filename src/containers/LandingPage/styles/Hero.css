@@ -25,4 +25,11 @@
     background-repeat: repeat;
     background-position: center;
   }
+  .hero-bg{
+    background-image: 
+         url("/images/Union.png");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 100%;
+}
 }

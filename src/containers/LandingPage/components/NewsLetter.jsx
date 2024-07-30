@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import "../styles/NewsLetter.css";
 import { Button } from "@/components/ui/button";
 import { MdArrowOutward } from "react-icons/md";
+import { Loader2 } from "lucide-react";
+import axios from "axios";
+import API_URL from './../../../urls';
 import {
   Dialog,
   DialogClose,
@@ -13,6 +16,11 @@ import {
 } from "@/components/ui/dialog";
 const NewsLetter = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [message, setMessage] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const openDialog = () => {
     setIsDialogOpen(true);
@@ -24,9 +32,37 @@ const NewsLetter = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submitted");
-    openDialog();
+    submitForm();
   };
+
+  const submitForm = async () => {
+    setIsLoading(true);
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify({email});
+    console.log(body);
+
+    try {
+      const res = await axios.post(`${API_URL}waitlist/newsletter/`, body, config);
+      console.log(res);
+      setSuccess(true);
+      setMessage("Thankyou for subscribing to our newsletter!");
+    } catch (err) {
+      console.log(err);
+      if(err.response && err.reponse.status == 409){
+        setMessage("You have already subscribed to our newsletter");
+      }else{
+        setMessage("An error occured please try again.");
+      }
+    }finally{
+      setIsLoading(false);
+      openDialog();
+    }
+  }
   return (
     <div className="newsletter-bg pt-16" id="newsletter">
       <section className="md:w-[53%] w-[80%] mx-auto flex flex-col justify-center">
@@ -51,6 +87,8 @@ const NewsLetter = () => {
               type="email"
               id="UserEmail2"
               placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
               required
             />
@@ -61,9 +99,10 @@ const NewsLetter = () => {
           </label>
           <Button
             className="w-[140px] text-[16px] font-normal p-6"
+            disabled={isLoading}
             type="submit"
           >
-            Submit <MdArrowOutward className="ml-2 h-4 w-4" />
+            Submit <MdArrowOutward className={` ${isLoading? "hidden": ""} ml-2 h-4 w-4 `} /><Loader2 className={` ${isLoading? "": "hidden"}  ml-2 h-4 w-4 animate-spin`} />
           </Button>
         </form>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
@@ -87,12 +126,12 @@ const NewsLetter = () => {
               </svg>
             </DialogClose>
             <div
-              className={`flex items-center justify-center mx-auto w-[80%] h-[60vh] bg-gif`}
+              className={`flex items-center justify-center mx-auto w-[80%] h-[60vh] ${success? "bg-gif": ""}`}
             >
               <p
                 className={`text-[20px] font-medium md:text-[28px] text-center`}
               >
-                Thankyou for subscribing to our newsletter!
+                {message}
               </p>
             </div>
           </DialogContent>

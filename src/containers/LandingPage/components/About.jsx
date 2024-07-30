@@ -42,7 +42,7 @@ const About = () => {
         <div className="md:hidden">
           <SlideshowBackground images={images} />
         </div>
-        <div className=" text-[16px] md:text-[22px] md:tracking-tight md:rounded-[25px] rounded-[8px] bg-[#f0f2fe] md:px-10 px-6 font-medium md:pt-20 pt-10 pb-10 md:pb-0 overflow-hidden ">
+        <div className=" text-[16px] lg:text-[22px] md:tracking-tight md:rounded-[25px] rounded-[8px] bg-[#f0f2fe] md:px-10 px-6 font-medium md:pt-20 pt-10 pb-10 md:pb-0 overflow-hidden ">
           <div
             className={`flex flex-col gap-5 md:h-full mb-3 overflow-hidden transition-all duration-300 ${
               readMore ? "" : "h-52"

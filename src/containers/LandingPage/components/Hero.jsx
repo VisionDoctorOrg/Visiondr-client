@@ -88,7 +88,7 @@ const Hero = () => {
                 <DialogTrigger className="w-full md:w-fit">
                   <Button
                     className={cn(
-                      "hidden md:flex w-full py-6 border-2 border-white bg-transparent hover:bg-primary hover:text-white text-white hover:border-primary duration-300 transition-all text-[16px] h-[60px] md:w-[374px] tracking-tight"
+                      "hidden md:flex w-full py-6 border-2 border-primary bg-primary hover:bg-primary hover:text-white text-white hover:border-primary duration-300 transition-all text-[16px] h-[60px] md:w-[374px] tracking-tight"
                     )}
                   >
                     Join the waitlist
@@ -132,7 +132,7 @@ const Hero = () => {
                 <DialogTrigger className="md:hidden w-full md:w-fit">
                   <Button
                     className={cn(
-                      "md:hidden w-full py-6 border-2 border-white bg-transparent hover:bg-primary hover:text-white text-white hover:border-primary duration-300 transition-all text-[16px] h-[60px] md:w-[374px] tracking-tight"
+                      "md:hidden w-full py-6 border-2 border-primary bg-primary hover:bg-primary hover:text-white text-white hover:border-primary duration-300 transition-all text-[16px] h-[60px] md:w-[374px] tracking-tight"
                     )}
                   >
                     Join the waitlist

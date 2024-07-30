@@ -40,7 +40,7 @@ const Sponsors = () => {
   }, []);
   return (
     <div
-      className="md:py-16 pt-16 pb-8 w-[100vw] md:w-full mx-auto overflow-hidden"
+      className="md:py-16 pt-16 pb-8 w-[100vw] lg:w-full mx-auto overflow-hidden"
       id="partners"
     >
       <section className="md:mx-32 w-[80%] mx-auto">
@@ -64,7 +64,7 @@ const Sponsors = () => {
           Mauritus.
         </p>
       </section>
-      <section className="md:hidden flex flex-row space-x-10 overflow-x-auto overflow-y-hidden px-10">
+      <section className="lg:hidden flex flex-row space-x-10 overflow-x-auto overflow-y-hidden px-10">
         <div className="py-5" ref={box1Ref}>
           <div className=" flex-shrink-0 p-5 custom-shadow transition-all ease-in-out duration-500 px-6 ">
             <div className="border-l border-l-black px-3 md:w-[275px] md:h-[236px] w-[264px] h-[196px]  flex flex-col justify-between">
@@ -111,10 +111,10 @@ const Sponsors = () => {
           </div>
         </div>
       </section>
-      <div className="md:hidden flex items-center justify-center">
+      <div className="lg:hidden flex items-center justify-center">
           <img src={currentImage} alt="" className="h-2 text-white mt-8" />
         </div>
-      <section className="hidden md:mx-32 md:grid md:grid-cols-3 md:justify-between md:gap-20 gap-5 md:mt-16 mt-4 md:flex-nowrap">
+      <section className="hidden md:mx-32 lg:grid md:grid-cols-3 md:justify-between md:gap-20 gap-5 md:mt-16 mt-4 md:flex-nowrap">
         <div className="p-5 custom-shadow transition-all ease-in-out duration-500 px-6 h-full">
           <div className="border-l border-l-black px-3 md:w-[275px] md:h-[236px] w-[264px] h-[196px] flex flex-col justify-between">
             <p className="font-medium text-gray-400 md:text-[16px]">03</p>

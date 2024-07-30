@@ -197,7 +197,7 @@ const Navbar = () => {
                   >
                     <Dialog>
                       <DialogTrigger>Contact us</DialogTrigger>
-                      <DialogContent className="lg:max-w-[60%] max-w-[80%] max-h-full py-5 px-0">
+                      <DialogContent className="lg:max-w-[60%] max-w-[80%] max-h-full md:py-0 py-5 xl:py-5 px-0">
                         <DialogClose className="absolute top-4 right-4">
                           <svg
                             className={` flex-shrink-0 size-6 `}
