@@ -11,6 +11,11 @@ html{
   overflow: -moz-scrollbars-none;
 }
 
+body{
+  margin: 0;
+  box-sizing: border-box;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

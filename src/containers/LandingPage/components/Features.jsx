@@ -43,7 +43,7 @@ const Features = () => {
     };
   }, []);
   return (
-    <div>
+    <div className="body">
       <section
         className="features-bg lg:py-20 py-10 text-white lg:min-h-[100vh] w-[100vw]"
         id="feature"
