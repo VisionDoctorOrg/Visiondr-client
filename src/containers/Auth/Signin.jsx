@@ -1,15 +1,79 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AuthPage from "./AuthPage";
 import { MdArrowOutward } from "react-icons/md";
 import { NavLink, useParams } from "react-router-dom";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { connect } from "react-redux";
+import { login, refresh } from "../../actions/auth";
+import API_URL from "@/urls";
+import { cn } from "@/lib/utils";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import SigninSuccess from "./SigninSuccess";
 
-const Signin = () => {
+const schema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8, { message: "Password must be at least 8 characters long" }),
+});
+
+const Signin = ({login, refresh, user, error}) => {
+  refresh();
   const { type } = useParams();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const openDialog = () => {
+    setIsDialogOpen(true);
+  };
+
+  const closeDialog = () => {
+    setIsDialogOpen(false);
+  };
+
 
   function togglePasswordVisibility() {
     setIsPasswordVisible((prevState) => !prevState);
   }
+
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors, isSubmitting },
+  } = useForm({ resolver: zodResolver(schema)});
+
+  const onSubmit = async (data) => {
+    try {
+      console.log(data);
+      await login(data.email, data.password);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (error) {
+      setError("root", {
+        message: error,
+      });
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (user) {
+      openDialog();
+    }
+  }, [user]);
+
   return (
     <AuthPage>
       <div class="md:w-[410px] md:h-[791px] flex-col justify-start items-start gap-[72px] inline-flex">
@@ -32,8 +96,11 @@ const Signin = () => {
             VisionDR
           </div>
         </div>
-        <div class="self-stretch h-[559px] flex-col justify-start items-center gap-6 flex">
-          <div class="h-[79px] flex-col justify-start items-start gap-3 flex">
+        <form
+          class="self-stretch h-[559px] flex-col justify-start items-center gap-6 flex"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <div class="h-[79px] flex-col justify-start items-start gap-3 flex w-full">
             <div class="self-stretch text-gray-950 text-4xl font-semibold leading-[43.20px]">
               Welcome Back!
             </div>
@@ -54,6 +121,7 @@ const Signin = () => {
                   id="email"
                   placeholder="Email"
                   className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                  {...register("email")}
                   required
                 />
 
@@ -62,6 +130,9 @@ const Signin = () => {
                 </span>
               </label>
             </div>
+            {errors.email && (
+              <div className="text-red-500">{errors.email.message}</div>
+            )}
             <div class="flex-col justify-start items-end gap-6 flex relative w-full">
               <div class="w-full">
                 <label
@@ -73,54 +144,59 @@ const Signin = () => {
                     id="password"
                     placeholder="Password"
                     className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                    {...register("password")}
                     required
                   />
 
                   <span className="absolute start-0 top-1 text-base  -translate-y-3/4 text-[#8c8f98] font-medium transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
                     Enter your password
                   </span>
-                <button
-                  className="absolute inset-y-0 right-0 flex items-center px-4 text-gray-600"
-                  onClick={togglePasswordVisibility}
-                >
-                  {isPasswordVisible ? (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-5 h-5"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88"
-                      />
-                    </svg>
-                  ) : (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-5 h-5"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                    </svg>
-                  )}
-                </button>
+                  <button
+                    className="absolute inset-y-0 right-0 flex items-center px-4 text-gray-600"
+                    onClick={togglePasswordVisibility}
+                    type="button"
+                  >
+                    {isPasswordVisible ? (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-5 h-5"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88"
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-5 h-5"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                      </svg>
+                    )}
+                  </button>
                 </label>
+                {errors.password && (
+                  <div className="text-red-500">{errors.password.message}</div>
+                )}
               </div>
               <NavLink
                 to={`/auth/forgot-password/${type}`}
@@ -130,14 +206,15 @@ const Signin = () => {
               </NavLink>
             </div>
           </div>
-          <button class="md:w-[400px] w-full p-3 bg-[#1749fc] border-[1px] border-[#1749fc] hover:border-gray-50 rounded-lg justify-center items-center gap-3 inline-flex transition-all duration-300">
+          <button class="md:w-[400px] w-full p-3 bg-[#1749fc] border-[1px] border-[#1749fc] hover:border-gray-50 rounded-lg justify-center items-center gap-3 inline-flex transition-all duration-300" disabled={isSubmitting} type="submit">
             <div class="text-center text-white text-base leading-normal">
-              Sign In
+            {isSubmitting ? "Loading..." : "Sign In"}
             </div>
             <div class="w-6 h-6 justify-center items-center flex text-white">
               <MdArrowOutward className="w-6 h-6 relative" />
             </div>
           </button>
+          {errors.root && <div className="text-red-500">{errors.root.message}</div>}
           <div class="justify-start items-center gap-3 inline-flex">
             <div class="md:w-[135px] w-[100px] h-[0px] bg-[#8c8f98] border-t border-[#8c8f98]"></div>
             <div class="text-[#8c8f98] text-base font-medium  leading-normal">
@@ -147,7 +224,7 @@ const Signin = () => {
           </div>
           <div class="flex-col justify-center items-center gap-6 flex">
             <div class="justify-start items-start gap-3 inline-flex">
-              <button class="md:w-[194px] h-12 px-5 py-2 rounded-md border-2 border-[#d2dbfe] hover:border-primary duration-300 transition-all justify-center items-center gap-2 flex">
+              <a href={`${API_URL}auth/google`} class="md:w-[194px] h-12 px-5 py-2 rounded-md border-2 border-[#d2dbfe] hover:border-primary duration-300 transition-all justify-center items-center gap-2 flex">
                 <div class="w-6 h-6 relative">
                   <svg
                     width="25"
@@ -183,7 +260,7 @@ const Signin = () => {
                 <div class="text-gray-950 text-base font-medium  leading-normal">
                   Google
                 </div>
-              </button>
+              </a>
               <button class="md:w-[194px] h-12 px-5 py-2 rounded-md border-2 border-[#d2dbfe] hover:border-primary duration-300 transition-all justify-center items-center gap-2 flex">
                 <div class="w-6 h-6 relative">
                   {type == "individual" ? (
@@ -255,14 +332,14 @@ const Signin = () => {
                 Don’t have an account?{" "}
               </span>
               <NavLink
-                to="/reg"
+                to={`/reg/signup/${type}`}
                 className="text-[#1749fc] text-base font-medium  leading-normal"
               >
                 Sign Up
               </NavLink>
             </div>
           </div>
-        </div>
+        </form>
         <div class="self-stretch">
           <span className="text-[#8c8f98] text-base font-medium  leading-normal">
             By signing in, you agree to our{" "}
@@ -282,8 +359,37 @@ const Signin = () => {
           </span>
         </div>
       </div>
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+          <DialogTrigger />
+          <DialogContent className={cn("max-w-fit p-0 bg-transparent border-0")}>
+            <DialogClose className="absolute top-4 right-4">
+              <svg
+                className={` flex-shrink-0 size-6 text-white`}
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </DialogClose>
+            <SigninSuccess />
+          </DialogContent>
+        </Dialog>
     </AuthPage>
   );
 };
 
-export default Signin;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  error: state.auth.error,
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps, { login, refresh })(Signin);

@@ -1,10 +1,74 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AuthPage from "./AuthPage";
 import { MdArrowOutward } from "react-icons/md";
 import { NavLink, useParams } from "react-router-dom";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { connect } from "react-redux";
+import { reset_password, refresh } from "../../actions/auth";
+import API_URL from "@/urls";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { cn } from "@/lib/utils";
+import PasswordResetLinkSent from "./PasswordResetLinkSent";
 
-const ForgetPassword = () => {
+
+const schema = z.object({
+  email: z.string().email(),
+});
+
+const ForgetPassword = ({reset_password, refresh, user, error, message}) => {
+  refresh();
   const { type } = useParams();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const openDialog = () => {
+    setIsDialogOpen(true);
+  };
+
+  const closeDialog = () => {
+    setIsDialogOpen(false);
+  };
+
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors, isSubmitting },
+  } = useForm({ resolver: zodResolver(schema)});
+
+  const onSubmit = async (data) => {
+    try {
+      console.log(data);
+      await reset_password(data.email);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (error) {
+      setError("root", {
+        message: error,
+      });
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (message) {
+     openDialog();
+    }
+  }, [message]);
+
+
   return (
     <AuthPage>
       <div class="md:w-[400px] h-[671px] flex-col justify-start items-start gap-[72px] inline-flex">
@@ -27,7 +91,7 @@ const ForgetPassword = () => {
             VisionDR
           </div>
         </div>
-        <div class="self-stretch h-[439px] flex-col justify-start items-center gap-6 flex">
+        <form class="self-stretch h-[439px] flex-col justify-start items-center gap-6 flex" onSubmit={handleSubmit(onSubmit)}>
           <div class="h-[103px] flex-col justify-start items-start gap-3 flex">
             <div class="self-stretch text-gray-950 text-4xl font-semibold font-['Plus Jakarta Sans'] leading-[43.20px]">
               Forgot password
@@ -47,6 +111,7 @@ const ForgetPassword = () => {
                   id="email"
                   placeholder="Email"
                   className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                  {...register("email")}
                   required
                 />
 
@@ -56,14 +121,15 @@ const ForgetPassword = () => {
               </label>
             </div>
           </div>
-          <button class="md:w-[400px] w-full p-3 bg-[#1749fc] border-[1px] border-[#1749fc] hover:border-gray-50 rounded-lg justify-center items-center gap-3 inline-flex transition-all duration-300">
+          <button class="md:w-[400px] w-full p-3 bg-[#1749fc] border-[1px] border-[#1749fc] hover:border-gray-50 rounded-lg justify-center items-center gap-3 inline-flex transition-all duration-300" disabled={isSubmitting} type="submit">
             <div class="text-center text-white text-base leading-normal">
-              Send
+            {isSubmitting ? "Loading..." : "Send"}
             </div>
             <div class="w-6 h-6 justify-center items-center flex text-white">
               <MdArrowOutward className="w-6 h-6 relative" />
             </div>
           </button>
+          {errors.root && <div className="text-red-500">{errors.root.message}</div>}
           <div class="justify-start items-center gap-3 inline-flex">
             <div class="md:w-[135px] w-[100px] h-[0px] bg-[#8c8f98] border-t border-[#8c8f98]"></div>
             <div class="text-[#8c8f98] text-base font-medium font-['Plus Jakarta Sans'] leading-normal">
@@ -73,7 +139,7 @@ const ForgetPassword = () => {
           </div>
           <div class="flex-col justify-center items-center gap-6 flex">
             <div class="justify-start items-start gap-3 inline-flex">
-              <button class="md:w-[194px] h-12 px-5 py-2 rounded-md border-2 border-[#d2dbfe] hover:border-primary duration-300 transition-all justify-center items-center gap-2 flex">
+              <a href={`${API_URL}auth/google`} class="md:w-[194px] h-12 px-5 py-2 rounded-md border-2 border-[#d2dbfe] hover:border-primary duration-300 transition-all justify-center items-center gap-2 flex">
                 <div class="w-6 h-6 relative">
                   <svg
                     width="25"
@@ -109,7 +175,7 @@ const ForgetPassword = () => {
                 <div class="text-gray-950 text-base font-medium  leading-normal">
                   Google
                 </div>
-              </button>
+              </a>
               <button class="md:w-[194px] h-12 px-5 py-2 rounded-md border-2 border-[#d2dbfe] hover:border-primary duration-300 transition-all justify-center items-center gap-2 flex">
                 <div class="w-6 h-6 relative">
                   {type == "individual" ? (
@@ -180,12 +246,12 @@ const ForgetPassword = () => {
               <span className="text-[#8c8f98] text-base font-medium font-['Plus Jakarta Sans'] leading-normal">
                 Don’t have an account?{" "}
               </span>
-              <NavLink to='/reg' className="text-[#1749fc] text-base font-medium font-['Plus Jakarta Sans'] leading-normal">
+              <NavLink to={`/reg/signup/${type}`} className="text-[#1749fc] text-base font-medium font-['Plus Jakarta Sans'] leading-normal">
                 Sign Up
               </NavLink>
             </div>
           </div>
-        </div>
+        </form>
         <div class="self-stretch">
           <span className="text-[#8c8f98] text-base font-medium font-['Plus Jakarta Sans'] leading-normal">
             By signing in, you agree to our{" "}
@@ -205,8 +271,38 @@ const ForgetPassword = () => {
           </span>
         </div>
       </div>
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+          <DialogTrigger />
+          <DialogContent className={cn("max-w-fit p-0 bg-transparent border-0")}>
+            <DialogClose className="absolute top-4 right-4">
+              <svg
+                className={` flex-shrink-0 size-6 text-white`}
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </DialogClose>
+            <PasswordResetLinkSent />
+          </DialogContent>
+        </Dialog>
     </AuthPage>
   );
 };
 
-export default ForgetPassword;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  error: state.auth.error,
+  user: state.auth.user,
+  message: state.auth.message,
+});
+
+export default connect(mapStateToProps, { reset_password, refresh })(ForgetPassword);

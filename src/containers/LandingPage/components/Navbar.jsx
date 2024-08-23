@@ -4,6 +4,7 @@ import "../styles/Navbar.css";
 import { Button } from "@/components/ui/button";
 import { MdArrowOutward } from "react-icons/md";
 import { cn } from "@/lib/utils";
+import { PiSignInBold } from "react-icons/pi";
 import {
   Dialog,
   DialogClose,
@@ -16,6 +17,7 @@ import {
 import JoinTheWaitlist from "../forms/JoinTheWaitlist";
 import ContactUs from "../forms/ContactUs";
 import JoinTheWaitlistMobile from "../forms/JoinTheWaitlistMobile";
+import UserSelection from "@/containers/Auth/UserSelection";
 
 const Navbar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -230,19 +232,8 @@ const Navbar = () => {
                   href="#"
                   onMouseEnter={handleMouseEnter}
                 >
-                  Join the waitlist
-                  <svg
-                    width="20"
-                    height="18"
-                    viewBox="0 0 20 18"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M1 7H0V1.003C0 0.449002 0.455 2.19659e-06 0.992 2.19659e-06H19.008C19.1393 -0.000274335 19.2693 0.0255614 19.3905 0.076006C19.5117 0.126451 19.6217 0.200497 19.714 0.293835C19.8063 0.387173 19.8791 0.497939 19.9282 0.619688C19.9773 0.741436 20.0017 0.871735 20 1.003V7H19V17.001C19.0004 17.1318 18.975 17.2614 18.9253 17.3824C18.8756 17.5034 18.8026 17.6134 18.7104 17.7062C18.6182 17.7989 18.5086 17.8726 18.3879 17.923C18.2672 17.9735 18.1378 17.9996 18.007 18H1.993C1.8622 17.9996 1.73276 17.9735 1.61207 17.923C1.49139 17.8726 1.38181 17.7989 1.2896 17.7062C1.19739 17.6134 1.12436 17.5034 1.07467 17.3824C1.02498 17.2614 0.999605 17.1318 1 17.001V7ZM17 7H3V16H17V7ZM2 2V5H18V2H2ZM7 9H13V11H7V9Z"
-                      fill="white"
-                    />
-                  </svg>
+                  Sign In
+                  <PiSignInBold/>
                 </a>
                 <Dialog>
                   <DialogTrigger className="w-full">
@@ -250,23 +241,12 @@ const Navbar = () => {
                       className={`w-full group mt-20 lg:mt-0 lg:hidden inline-flex justify-center items-center text-lg gap-x-2 py-2 px-3 bg-primary rounded-lg focus:outline-none border-2 border-primary transition-all duration-300 text-[16px] tracking-tight`}
                       href="#"
                     >
-                      Join the waitlist
-                      <svg
-                        width="20"
-                        height="18"
-                        viewBox="0 0 20 18"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M1 7H0V1.003C0 0.449002 0.455 2.19659e-06 0.992 2.19659e-06H19.008C19.1393 -0.000274335 19.2693 0.0255614 19.3905 0.076006C19.5117 0.126451 19.6217 0.200497 19.714 0.293835C19.8063 0.387173 19.8791 0.497939 19.9282 0.619688C19.9773 0.741436 20.0017 0.871735 20 1.003V7H19V17.001C19.0004 17.1318 18.975 17.2614 18.9253 17.3824C18.8756 17.5034 18.8026 17.6134 18.7104 17.7062C18.6182 17.7989 18.5086 17.8726 18.3879 17.923C18.2672 17.9735 18.1378 17.9996 18.007 18H1.993C1.8622 17.9996 1.73276 17.9735 1.61207 17.923C1.49139 17.8726 1.38181 17.7989 1.2896 17.7062C1.19739 17.6134 1.12436 17.5034 1.07467 17.3824C1.02498 17.2614 0.999605 17.1318 1 17.001V7ZM17 7H3V16H17V7ZM2 2V5H18V2H2ZM7 9H13V11H7V9Z"
-                          fill="white"
-                        />
-                      </svg>
+                      Sign In
+                      <PiSignInBold/>
                     </a>
                   </DialogTrigger>
                   <DialogContent className="z-50 lg:max-w-[60%] lg:h-[60%] h-screen p-0 flex items-center justify-center bg-[#010D37] text-white border-none">
-                    <JoinTheWaitlistMobile>
+                    <UserSelection type="auth">
                       <DialogClose className="absolute top-0 right-4">
                         <svg
                           className={` flex-shrink-0 size-6 `}
@@ -284,7 +264,7 @@ const Navbar = () => {
                           <path d="m6 6 12 12" />
                         </svg>
                       </DialogClose>
-                    </JoinTheWaitlistMobile>
+                    </UserSelection>
                   </DialogContent>
                 </Dialog>
               </div>
@@ -293,11 +273,11 @@ const Navbar = () => {
         </nav>
         <nav
           className={`hidden transition-all duration-500 overflow-hidden relative w-full text-white rounded-[16px] rounded-t-none py-3 px-6 lg:flex lg:items-center lg:justify-between lg:py-0 mx-2 lg:mx-auto ${
-            isExpanded ? " max-h-[500px]" : "max-h-0 "
+            isExpanded ? " max-h-[400px]" : "max-h-0 "
           }`}
         >
           {" "}
-          {isExpanded ? <JoinTheWaitlist onFocus={handleInputFocus} onBlur={handleInputBlur}/> : ""}
+          {isExpanded ? <UserSelection type="auth"/> : ""}
         </nav>
       </header>
     </div>

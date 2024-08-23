@@ -10,17 +10,16 @@ import Footer from "./components/Footer";
 import SlideshowBackground from "./components/SlideshowBackground";
 
 const LandingPage = () => {
-  
   return (
     <div className="w-[100%]">
       <Hero />
-       <Features />
+      <Features />
       <About />
       <FAQ />
       <Reviews />
       <Sponsors />
       <NewsLetter />
-     <Footer />
+      <Footer />
     </div>
   );
 };

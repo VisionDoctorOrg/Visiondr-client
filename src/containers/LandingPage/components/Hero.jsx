@@ -18,6 +18,7 @@ import {
 import { MdArrowOutward } from "react-icons/md";
 import JoinTheWaitlist from "../forms/JoinTheWaitlist";
 import JoinTheWaitlistMobile from "../forms/JoinTheWaitlistMobile";
+import UserSelection from "@/containers/Auth/UserSelection";
 
 const images = [
   "/images/Default.png",
@@ -91,7 +92,7 @@ const Hero = () => {
                       "hidden md:flex w-full py-6 border-2 border-primary bg-primary hover:bg-primary hover:text-white text-white hover:border-primary duration-300 transition-all text-[16px] h-[60px] md:w-[374px] tracking-tight"
                     )}
                   >
-                    Join the waitlist
+                    Create Account
                     <svg
                       width="20"
                       height="18"
@@ -125,7 +126,7 @@ const Hero = () => {
                       <path d="m6 6 12 12" />
                     </svg>
                   </DialogClose>
-                  <JoinTheWaitlist />
+                  <UserSelection type="reg" />
                 </DialogContent>
               </Dialog>
               <Dialog className="md:hidden">
@@ -135,7 +136,7 @@ const Hero = () => {
                       "md:hidden w-full py-6 border-2 border-primary bg-primary hover:bg-primary hover:text-white text-white hover:border-primary duration-300 transition-all text-[16px] h-[60px] md:w-[374px] tracking-tight"
                     )}
                   >
-                    Join the waitlist
+                    Create Account
                     <svg
                       width="20"
                       height="18"
@@ -152,7 +153,7 @@ const Hero = () => {
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="md:hidden z-50 md:max-w-[60%] md:h-[60%] h-screen p-0 flex items-center justify-center bg-[#010D37] text-white border-none">
-                  <JoinTheWaitlistMobile>
+                  <UserSelection type="reg" >
                     <DialogClose className="absolute top-0 right-4">
                       <svg
                         className={` flex-shrink-0 size-6 `}
@@ -170,7 +171,8 @@ const Hero = () => {
                         <path d="m6 6 12 12" />
                       </svg>
                     </DialogClose>
-                  </JoinTheWaitlistMobile>
+
+                  </UserSelection>
                 </DialogContent>
               </Dialog>
               <a href="#newsletter" className="w-full md:w-fit">

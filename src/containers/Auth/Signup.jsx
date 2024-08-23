@@ -1,10 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RegPage from "./RegPage";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { MdArrowOutward } from "react-icons/md";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { connect } from "react-redux";
+import { signup, refresh } from "../../actions/auth";
+import { Loader2 } from "lucide-react";
+import API_URL from "@/urls";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import SignupSuccess from "./SignupSuccess";
+import { cn } from "@/lib/utils";
 
-const Signup = () => {
+const schema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8, { message: "Password must be at least 8 characters long" }),
+  confirmPassword: z.string(),
+  fullName: z.string(),
+  organizationName: z.string().optional(),
+}).refine(data => data.password === data.confirmPassword, {
+  message: "Passwords do not match",
+  path: ["confirmPassword"], // Set the error on the confirmPassword field
+});
+
+const Signup = ({signup, refresh, user, error}) => {
+  refresh();
   const { type } = useParams();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfrimPasswordVisible] = useState(false);
   const navigate = useNavigate();
@@ -16,13 +47,47 @@ const Signup = () => {
     setIsConfrimPasswordVisible((prevState) => !prevState);
   }
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    navigate("/reg/signup-success");
-  }
+  const openDialog = () => {
+    setIsDialogOpen(true);
+  };
+
+  const closeDialog = () => {
+    setIsDialogOpen(false);
+  };
+
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors, isSubmitting },
+  } = useForm({ resolver: zodResolver(schema)});
+
+  const onSubmit = async (data) => {
+    try {
+      console.log(data);
+      const capitalizedType = type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
+      await signup(data.fullName, data.email, data.password, data.confirmPassword, data.organizationName, capitalizedType);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (error) {
+      setError("root", {
+        message: error,
+      });
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (user) {
+      openDialog();
+    }
+  }, [user]);
   return (
     <RegPage>
-      <div class="md:w-[400px] md:h-[1026px] w-full flex-col justify-start items-start gap-[72px] inline-flex">
+      <div class="md:w-[400px] md:min-h-[1026px] w-full flex-col justify-start items-start gap-[72px] inline-flex">
         <div class="h-10 p-1 justify-center items-center gap-2 inline-flex">
           <svg
             width="31"
@@ -38,10 +103,10 @@ const Signup = () => {
             />
           </svg>
           <div class="text-center text-gray-950 text-base font-semibold  leading-tight">
-            Vision DR
+            VisionDR
           </div>
         </div>
-        <form onSubmit={onSubmit} class="self-stretch h-[770px] flex-col justify-start items-center gap-6 flex">
+        <form onSubmit={handleSubmit(onSubmit)} class="self-stretch h-[770px] flex-col justify-start items-center gap-6 flex">
           <div class="self-stretch h-[146px] flex-col justify-start items-start gap-3 flex">
             <div class="self-stretch text-gray-950 text-4xl font-semibold  leading-[43.20px]">
               Join Our Eye Care Community!
@@ -61,7 +126,8 @@ const Signup = () => {
                   id="organizationName"
                   placeholder="Organization Name"
                   className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
-                  required
+                  {...register("organizationName")}
+                  required={type == "organization"}
                 />
 
                 <span className="absolute start-0 top-1 text-base  -translate-y-3/4 text-[#8c8f98] font-medium transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
@@ -79,6 +145,7 @@ const Signup = () => {
                   id="fullName"
                   placeholder="Full Name"
                   className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                  {...register("fullName")}
                   required
                 />
 
@@ -97,6 +164,7 @@ const Signup = () => {
                   id="email"
                   placeholder="Email"
                   className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                  {...register("email")}
                   required
                 />
 
@@ -115,6 +183,7 @@ const Signup = () => {
                   id="password"
                   placeholder="Password"
                   className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                  {...register("password")}
                   required
                 />
 
@@ -123,6 +192,7 @@ const Signup = () => {
                 </span>
                 <button
                   className="absolute inset-y-0 right-0 flex items-center px-4 text-gray-600"
+                  type="button"
                   onClick={togglePasswordVisibility}
                 >
                   {isPasswordVisible ? (
@@ -163,6 +233,9 @@ const Signup = () => {
                   )}
                 </button>
               </label>
+              {errors.password && (
+                  <div className="text-red-500">{errors.password.message}</div>
+                )}
             </div>
             <div class="w-full mt-3">
               <label
@@ -174,6 +247,7 @@ const Signup = () => {
                   id="confirm-password"
                   placeholder="Confirm Password"
                   className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                  {...register("confirmPassword")}
                   required
                 />
 
@@ -183,6 +257,7 @@ const Signup = () => {
                 <button
                   className="absolute inset-y-0 right-0 flex items-center px-4 text-gray-600"
                   onClick={toggleConfirmPasswordVisibility}
+                  type="button"
                 >
                   {isConfirmPasswordVisible ? (
                     <svg
@@ -222,16 +297,20 @@ const Signup = () => {
                   )}
                 </button>
               </label>
+              {errors.confirmPassword && (
+                  <div className="text-red-500">{errors.confirmPassword.message}</div>
+                )}
             </div>
           </div>
-          <button type="submit" class="md:w-[400px] w-full p-3 bg-[#1749fc] border-[1px] border-[#1749fc] hover:border-gray-50 rounded-lg justify-center items-center gap-3 inline-flex transition-all duration-300">
+          <button type="submit" disabled={isSubmitting} class="md:w-[400px] w-full p-3 bg-[#1749fc] border-[1px] border-[#1749fc] hover:border-gray-50 rounded-lg justify-center items-center gap-3 inline-flex transition-all duration-300">
             <div class="text-center text-white text-base leading-normal">
-              Create Account
+            {isSubmitting ? "Loading..." : "Create Account"}
             </div>
             <div class="w-6 h-6 justify-center items-center flex text-white">
-              <MdArrowOutward className="w-6 h-6 relative" />
+              {isSubmitting ? <Loader2 className="w-6 h-6 relative animate-spin" /> : <MdArrowOutward className="w-6 h-6 relative" />}
             </div>
           </button>
+          {errors.root && <div className="text-red-500">{errors.root.message}</div>}
           <div class="justify-start items-center gap-3 inline-flex">
             <div class="md:w-[130px] w-[100px] h-[0px] border-t border-[#8c8f98]"></div>
             <div class="text-[#8c8f98] text-base leading-normal">
@@ -241,7 +320,7 @@ const Signup = () => {
           </div>
           <div class="flex-col justify-center items-center gap-6 flex">
           <div class="justify-start items-start gap-3 inline-flex">
-              <button class="md:w-[194px] h-12 px-5 py-2 rounded-md border-2 border-[#d2dbfe] hover:border-primary duration-300 transition-all justify-center items-center gap-2 flex">
+              <a href={`${API_URL}auth/google`} class="md:w-[194px] h-12 px-5 py-2 rounded-md border-2 border-[#d2dbfe] hover:border-primary duration-300 transition-all justify-center items-center gap-2 flex">
                 <div class="w-6 h-6 relative">
                   <svg
                     width="25"
@@ -277,7 +356,7 @@ const Signup = () => {
                 <div class="text-gray-950 text-base font-medium  leading-normal">
                   Google
                 </div>
-              </button>
+              </a>
               <button class="md:w-[194px] h-12 px-5 py-2 rounded-md border-2 border-[#d2dbfe] hover:border-primary duration-300 transition-all justify-center items-center gap-2 flex">
                 <div class="w-6 h-6 relative">
                   {type == "individual" ? (
@@ -348,7 +427,7 @@ const Signup = () => {
               <span className="text-[#8c8f98] text-base font-medium  leading-normal">
                 Already have an account?{" "}
               </span>
-              <NavLink to='/auth' className="text-[#0331d9] text-base font-medium  leading-normal">
+              <NavLink to={`/auth/signin/${type}`} className="text-[#0331d9] text-base font-medium  leading-normal">
                 Sign In
               </NavLink>
             </div>
@@ -379,8 +458,46 @@ const Signup = () => {
           </span>
         </div>
       </div>
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+          <DialogTrigger />
+          <DialogContent className={cn("max-w-fit p-0 bg-transparent border-0")}>
+            <DialogClose className="absolute top-4 right-4">
+              <svg
+                className={` flex-shrink-0 size-6 text-white`}
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </DialogClose>
+            {/* <div
+              className={`flex items-center justify-center mx-auto w-[80%] h-[60vh]`}
+            >
+              <p
+                className={`text-[20px] font-medium md:text-[28px] text-center`}
+              >
+              
+              </p>
+            </div> */}
+            <SignupSuccess />
+          </DialogContent>
+        </Dialog>
     </RegPage>
   );
 };
 
-export default Signup;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  error: state.auth.error,
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps, {signup, refresh })(Signup);

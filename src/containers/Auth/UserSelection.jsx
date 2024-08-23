@@ -1,10 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const UserSelection = ({ type }) => {
+const UserSelection = ({ type, children}) => {
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div class="lg:w-[880px] w-full lg:h-[435px] p-20 bg-gradient-to-t from-[#010d37] via-[#010d37]  to-[#010d3780] lg:rounded-[28px] justify-center items-center inline-flex">
+    <div className="flex items-center justify-center min-h-screen mx-auto">
+      <div class="relative w-full py-20 bg-gradient-to-t justify-center items-center inline-flex">
+      {children}
         <div class="self-stretch flex-col justify-start items-center gap-14 inline-flex">
           <div class="lg:h-[79px] flex-col justify-start items-center gap-3 flex">
             <div class="self-stretch text-center text-white text-4xl font-semibold leading-[43.20px]">

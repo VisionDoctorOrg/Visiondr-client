@@ -1,10 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AuthPage from "./AuthPage";
 import { MdArrowOutward } from "react-icons/md";
+import { refresh, reset_password_confirm } from "@/actions/auth";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { connect } from "react-redux";
 
-const ChangePassword = () => {
+const schema = z
+  .object({
+    password: z
+      .string()
+      .min(8, { message: "Password must be at least 8 characters long" }),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"], // Set the error on the confirmPassword field
+  });
+
+const ChangePassword = ({reset_password_confirm, refresh, user, error}) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [isConfirmPasswordVisible, setIsConfrimPasswordVisible] = useState(false);
+  const [isConfirmPasswordVisible, setIsConfrimPasswordVisible] =
+    useState(false);
 
   function togglePasswordVisibility() {
     setIsPasswordVisible((prevState) => !prevState);
@@ -12,11 +30,35 @@ const ChangePassword = () => {
   function toggleConfirmPasswordVisibility() {
     setIsConfrimPasswordVisible((prevState) => !prevState);
   }
+
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors, isSubmitting },
+  } = useForm({ resolver: zodResolver(schema)});
+
+  const onSubmit = async (data) => {
+    try {
+      console.log(data);
+      await reset_password_confirm(localStorage.getItem("access"), data.password, data.confirmPassword);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (error) {
+      setError("root", {
+        message: error,
+      });
+    }
+  }, [error]);
   return (
     <AuthPage>
       <div class="md:w-[400px] w-full h-[419px] flex-col justify-start items-start gap-[72px] inline-flex">
         <div class="h-10 p-1 justify-center items-center gap-2 inline-flex">
-        <svg
+          <svg
             width="31"
             height="36"
             viewBox="0 0 31 36"
@@ -30,35 +72,37 @@ const ChangePassword = () => {
             />
           </svg>
           <div class="text-center text-gray-950 text-base font-semibold font-['Plus Jakarta Sans'] leading-tight">
-            Vision DR
+            VisionDR
           </div>
         </div>
-        <div class="self-stretch h-[307px] flex-col justify-start items-center gap-6 flex">
+        <form class="self-stretch h-[307px] flex-col justify-start items-center gap-6 flex" onSubmit={handleSubmit(onSubmit)} >
           <div class="self-stretch h-[43px] flex-col justify-start items-start gap-3 flex">
             <div class="self-stretch text-gray-950 text-4xl font-semibold font-['Plus Jakarta Sans'] leading-[43.20px]">
               New password
             </div>
           </div>
           <div class="flex-col justify-start items-end gap-6 flex w-full">
-          <div class="w-full">
-                <label
-                  htmlFor="password"
-                  className=" relative block border-b-2 border-[#d2dbfe] bg-transparent pt-3 focus-within:border-blue-600 w-full"
-                >
-                  <input
-                    type={isPasswordVisible ? "text" : "password"}
-                    id="password"
-                    placeholder="Password"
-                    className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
-                    required
-                  />
+            <div class="w-full">
+              <label
+                htmlFor="password"
+                className=" relative block border-b-2 border-[#d2dbfe] bg-transparent pt-3 focus-within:border-blue-600 w-full"
+              >
+                <input
+                  type={isPasswordVisible ? "text" : "password"}
+                  id="password"
+                  placeholder="Password"
+                  className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                  {...register("password")}
+                  required
+                />
 
-                  <span className="absolute start-0 top-1 text-base  -translate-y-3/4 text-[#8c8f98] font-medium transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
-                    Enter new password
-                  </span>
-                  <button
+                <span className="absolute start-0 top-1 text-base  -translate-y-3/4 text-[#8c8f98] font-medium transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                  Enter new password
+                </span>
+                <button
                   className="absolute inset-y-0 right-0 flex items-center px-4 text-gray-600"
                   onClick={togglePasswordVisibility}
+                  type="button"
                 >
                   {isPasswordVisible ? (
                     <svg
@@ -97,27 +141,29 @@ const ChangePassword = () => {
                     </svg>
                   )}
                 </button>
-                </label>
-              </div>
-              <div class="w-full">
-                <label
-                  htmlFor="confirm-password"
-                  className=" relative block border-b-2 border-[#d2dbfe] bg-transparent pt-3 focus-within:border-blue-600 w-full"
-                >
-                  <input
-                    type={isConfirmPasswordVisible ? "text" : "password"}
-                    id="confirm-password"
-                    placeholder="Confirm Password"
-                    className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
-                    required
-                  />
+              </label>
+            </div>
+            <div class="w-full">
+              <label
+                htmlFor="confirm-password"
+                className=" relative block border-b-2 border-[#d2dbfe] bg-transparent pt-3 focus-within:border-blue-600 w-full"
+              >
+                <input
+                  type={isConfirmPasswordVisible ? "text" : "password"}
+                  id="confirm-password"
+                  placeholder="Confirm Password"
+                  className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                  {...register("confirmPassword")}
+                  required
+                />
 
-                  <span className="absolute start-0 top-1 text-base  -translate-y-3/4 text-[#8c8f98] font-medium transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
-                    Confirm password
-                  </span>
-                  <button
+                <span className="absolute start-0 top-1 text-base  -translate-y-3/4 text-[#8c8f98] font-medium transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                  Confirm password
+                </span>
+                <button
                   className="absolute inset-y-0 right-0 flex items-center px-4 text-gray-600"
                   onClick={toggleConfirmPasswordVisibility}
+                  type="button"
                 >
                   {isConfirmPasswordVisible ? (
                     <svg
@@ -156,21 +202,30 @@ const ChangePassword = () => {
                     </svg>
                   )}
                 </button>
-                </label>
-              </div>
+              </label>
+            </div>
           </div>
-          <button class="md:w-[400px] w-full p-3 bg-[#1749fc] border-[1px] border-[#1749fc] hover:border-gray-50 rounded-lg justify-center items-center gap-3 inline-flex transition-all duration-300">
+          <button class="md:w-[400px] w-full p-3 bg-[#1749fc] border-[1px] border-[#1749fc] hover:border-gray-50 rounded-lg justify-center items-center gap-3 inline-flex transition-all duration-300" disabled={isSubmitting} type="submit">
             <div class="text-center text-white text-base leading-normal">
-              Sign In
+            {isSubmitting ? "Loading..." : "Sign In"}
             </div>
             <div class="w-6 h-6 justify-center items-center flex text-white">
               <MdArrowOutward className="w-6 h-6 relative" />
             </div>
           </button>
-        </div>
+          {errors.root && <div className="text-red-500">{errors.root.message}</div>}
+        </form>
       </div>
     </AuthPage>
   );
 };
 
-export default ChangePassword;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  error: state.auth.error,
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps, { reset_password_confirm, refresh })(
+  ChangePassword
+);
