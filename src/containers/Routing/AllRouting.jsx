@@ -7,6 +7,7 @@ import ChangePassword from "../Auth/ChangePassword";
 import Signup from "../Auth/Signup";
 import SignupSuccess from "../Auth/SignupSuccess";
 import LandingPage from "../LandingPage/LandingPage";
+import Layout from "../B2CAPP/Layout";
 
 const AllRouting = () => {
   return (
@@ -15,10 +16,9 @@ const AllRouting = () => {
       <Route path="/auth/signin/:type" element={<Signin />} />
       <Route path="/auth/forgot-password/:type" element={<ForgetPassword />} />
       <Route path="/auth/reset-password" element={<ChangePassword />} />
-      {/* <Route path="/auth" element={<UserSelection type="auth" />} /> */}
       <Route path="/reg/signup/:type" element={<Signup/>}/>
-      {/* <Route path="/reg" element={<UserSelection type="reg" />} /> */}
       <Route path="/reg/signup-success" element={<SignupSuccess/>} />
+      <Route path="/app/*" element={<Layout />} />
     </Routes>
   );
 };
