@@ -37,7 +37,7 @@ const Forms = () => {
       <NavigationComponent
         className="mt-12 mb-6"
         context={useContext(StepContext)}
-        successActionPath="/app/refracive-error/refractiveErrorReport"
+        successActionPath="/app/refractive-error/refractiveErrorReport"
         maxStep={7}
       />
     </div>

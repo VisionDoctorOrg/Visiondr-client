@@ -11,8 +11,8 @@ const Routing = () => {
 
       <Routes>
         <Route path="/"  element={<Navigate to="/app/dashboard" />} />
-        <Route path="/refracive-error" element={<RefractiveErrorChecker />} />
-        <Route path="/refracive-error/refractiveErrorReport" element={<RefractiveErrorReport />} />
+        <Route path="/refractive-error" element={<RefractiveErrorChecker />} />
+        <Route path="/refractive-error/refractiveErrorReport" element={<RefractiveErrorReport />} />
         <Route path="/glaucoma" element={<GlaucomaChecker />} />
         <Route path="/glaucoma/glaucomaReport" element={<GlaucomaReport />} />
       </Routes>
