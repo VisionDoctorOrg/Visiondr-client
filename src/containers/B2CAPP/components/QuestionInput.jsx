@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function QuestionInput({ question, id, tag, dataContext }) {
+function QuestionInput({ question, id, tag, dataContext, className }) {
   const [inputValue, setInputValue] = useState("");
 
   const setInputValueIfExists = (id, tag) => {
@@ -60,10 +60,10 @@ function QuestionInput({ question, id, tag, dataContext }) {
   };
   
   return (
-    <section className="flex flex-col justify-center py-6 md:px-4 tracking-tight mt-3 w-full border border-violet-200 border-solid max-md:px-5 max-md:max-w-full">
+  <section className={`flex flex-col justify-center py-6 md:px-4 tracking-tight mt-3 w-full border border-violet-200 border-solid max-md:px-5 max-md:max-w-full ${className}`}>
       <label
         htmlFor={id}
-        className=" text-gray-950 max-md:max-w-full w-full text-base"
+        className=" text-gray-950 max-md:max-w-full w-full text-base font-medium"
       >
         {question}
       </label>

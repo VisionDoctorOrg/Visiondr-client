@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import Success from "../components/Success";
 
-function NavigationComponent({ className, context, maxStep, successActionPath }) {
+function NavigationComponent({ className, context, maxStep, successActionPath, submitCallback }) {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -28,7 +28,8 @@ function NavigationComponent({ className, context, maxStep, successActionPath })
 
   const handleNext = () => {
     if (context.step === maxStep) {
-      openDialog();
+      // openDialog();
+      submitCallback();
     } else {
       context.setStep((prev) => prev + 1);
       console.log("next");

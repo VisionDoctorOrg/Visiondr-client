@@ -1,0 +1,14 @@
+.greeting-bg {
+  background-image: linear-gradient(to bottom, #010d37e8, #000000bb),
+    url("/images/Speckles.png");
+  background-repeat: repeat;
+  background-position: center;
+  /* background-size: cover; */
+}
+.reminder-bg {
+  background-image: linear-gradient(to bottom, #0000008F, #000000CF),
+    url("/images/reminder_img.jpeg");
+  background-repeat: repeat;
+  background-position: center;
+  background-size: cover;
+}

@@ -39,7 +39,7 @@ export default function (state = initialState, action) {
         isAuthenticated: true,
       };
     case LOGIN_SUCCESS:
-      localStorage.setItem("access", payload.accessToken);
+      localStorage.setItem("access", payload.data.accessToken);
       return {
         ...state,
         isAuthenticated: true,

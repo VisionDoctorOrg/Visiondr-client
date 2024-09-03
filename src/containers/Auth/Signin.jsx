@@ -70,6 +70,7 @@ const Signin = ({login, refresh, user, error}) => {
 
   useEffect(() => {
     if (user) {
+      console.log(localStorage.getItem("access"))
       openDialog();
     }
   }, [user]);

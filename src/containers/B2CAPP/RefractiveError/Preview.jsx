@@ -40,7 +40,7 @@ const Preview = ({ dataContext }) => {
       />
       <PreviewItem
         dataContext={dataContext}
-        tag="lifestyleAndVisualDemands"
+        tag="lifestyleVisualDemands"
         title="Lifestyle and Visual Demands"
       />
       <PreviewItem
