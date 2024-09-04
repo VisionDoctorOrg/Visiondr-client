@@ -18,7 +18,7 @@ const GlaucomaChecker = () => {
     <StepProvider>
       <DataProvider>
         <div className="px-2 md:pr-6">
-          <h1 className="text-[16px] font-medium text-gray-900 fixed bg-white w-full py-5 md:py-0">
+          <h1 className="text-[16px] font-medium text-gray-900 fixed bg-white w-full md:w-fit py-5 md:py-0">
             Glaucoma Checker
           </h1>
           <div className="flex gap-5 py-4 flex-col md:flex-row md:pt-10 pt-20">

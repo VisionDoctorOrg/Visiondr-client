@@ -25,7 +25,7 @@ const Preview = ({ dataContext }) => {
       </div>
       <PreviewItem
         dataContext={dataContext}
-        tag="medicalHistory"
+        tag="eyeHealthHistory"
         title="Eye Health History"
       />
       <PreviewItem
@@ -35,7 +35,7 @@ const Preview = ({ dataContext }) => {
       />
       <PreviewItem
         dataContext={dataContext}
-        tag="lifestyleAndVisualDemands"
+        tag="lifestyleVisualDemands"
         title="Lifestyle and Visual Demands"
       />
       <PreviewItem

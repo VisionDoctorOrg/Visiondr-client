@@ -166,8 +166,9 @@ const DataProvider = ({ children }) => {
     lifestyleVisualDemands: lifestyleVisualDemands,
     additionalInformation: additionalInformation,
   });
+  const [isLoading, setIsLoading] = useState(false);
   return (
-    <DataContext.Provider value={{ data, setData }}>
+    <DataContext.Provider value={{ data, setData, isLoading, setIsLoading }}>
       {children}
     </DataContext.Provider>
   );
