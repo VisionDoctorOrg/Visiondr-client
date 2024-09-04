@@ -7,7 +7,7 @@ function HistorySection({dataContext}) {
   const items = dataContext.data;
 
   return (
-    <div>
+    <div className="flex flex-col items-center md:items-start">
     <SelectPage placeholder="History"/>
         <div class="text-gray-950 text-base font-medium mt-10 leading-normal">Today</div>
     <CardLayout>
@@ -25,7 +25,7 @@ function HistorySection({dataContext}) {
           />
         ))}
     </CardLayout>
-        <div class="text-gray-950 text-base font-medium mt-10 leading-normal">Yesturday</div>
+        <div class="text-gray-950 text-base font-medium mt-10 leading-normal">Yesterday</div>
     <CardLayout>
       {items.map((item, index) => (
         <ImageCard

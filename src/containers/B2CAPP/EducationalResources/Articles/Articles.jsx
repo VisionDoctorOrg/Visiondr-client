@@ -5,7 +5,7 @@ import DataProvider from "./DataContext";
 const Articles = () => {
   return (
     <div>
-      <section className="flex flex-col md:pl-2">
+      <section className="flex flex-col md:pl-2 mt-16 md:mt-8">
         <DataProvider>
           <Routing />
         </DataProvider>

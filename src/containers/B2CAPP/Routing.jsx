@@ -7,6 +7,7 @@ import GlaucomaChecker from './Glaucoma/GlaucomaChecker'
 import CaseFile from './CaseFiles/CaseFile'
 import Dashboard from './Dashboard/Dashboard'
 import Articles from './EducationalResources/Articles/Articles'
+import Logout from './Logout'
 
 const Routing = () => {
   return (
@@ -20,6 +21,7 @@ const Routing = () => {
         <Route path="/glaucoma" element={<GlaucomaChecker />} />
         <Route path="/glaucoma/glaucomaReport" element={<GlaucomaReport />} />
         <Route path="/add-new" element={<CaseFile/>} />
+        <Route path="/logout" element={<Logout/>} />
         <Route path="/articles/*" element={<Articles/>} />
       </Routes>
 

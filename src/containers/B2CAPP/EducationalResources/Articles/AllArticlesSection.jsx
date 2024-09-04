@@ -2,12 +2,12 @@ import * as React from "react";
 import ImageCard from "./ImageCard";
 import CardLayout from "./CardLayout";
 import SelectPage from "./SelectPage";
-function AllArticlesSection({dataContext}) {
+function AllArticlesSection({ dataContext }) {
   const items = dataContext.data;
 
   return (
-    <div>
-        <SelectPage placeholder="All Articles"/>
+    <div className="flex flex-col items-center md:items-start">
+      <SelectPage placeholder="All Articles" />
       <CardLayout>
         {items.map((item, index) => (
           <ImageCard

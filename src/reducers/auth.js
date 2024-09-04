@@ -80,7 +80,8 @@ export default function (state = initialState, action) {
     case FACEBOOK_AUTH_FAIL:
     case LOGIN_FAIL:
     case SIGNUP_FAIL:
-        localStorage.removeItem("access");
+      localStorage.removeItem("access");
+      localStorage.removeItem("user");
       return {
         ...state,
         access: null,

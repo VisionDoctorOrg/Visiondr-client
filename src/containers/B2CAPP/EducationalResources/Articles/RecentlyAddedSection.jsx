@@ -7,7 +7,7 @@ function RecentlyAddedSection({dataContext}) {
   const items = dataContext.data;
 
   return (
-    <div>
+    <div className="flex flex-col items-center md:items-start">
       <SelectPage placeholder="Recently Added"/>
     <CardLayout>
       {items.map((item, index) => (
