@@ -9,7 +9,7 @@ import Dashboard from './Dashboard/Dashboard'
 
 const Routing = () => {
   return (
-    <div className='mt-8 ml-1'>
+    <div className='mt-8 md:ml-1'>
 
       <Routes>
         <Route path="/"  element={<Navigate to="/app/dashboard" />} />

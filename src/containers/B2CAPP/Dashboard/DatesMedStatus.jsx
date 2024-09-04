@@ -2,7 +2,7 @@ import React from "react";
 
 const DatesMedStatus = () => {
   return (
-    <div class=" w-full h-11 py-2 justify-between items-center inline-flex my-4">
+    <div class=" w-full h-11 py-2 justify-between items-center inline-flex my-4 px-5 md:px-2">
       <div class="w-6 h-6 relative">
         <div class="w-6 h-6 left-0 top-0 absolute bg-[#8c8f98]/10 rounded-full"></div>
         <div class="w-[14.40px] h-[14.40px] left-[4.50px] top-[4.50px] absolute justify-center items-center inline-flex">

@@ -10,7 +10,7 @@ const Dashboard = () => {
         <GreetingCard/>
         <EyeHealthSummary/>
       </div>
-      <div className=" rounded-lg lg:col-span-2">
+      <div className=" md:rounded-lg lg:col-span-2">
         <MedicationReminder/>
       </div>
     </div>

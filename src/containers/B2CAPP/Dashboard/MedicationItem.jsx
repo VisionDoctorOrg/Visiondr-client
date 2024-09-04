@@ -1,85 +1,106 @@
-import React from 'react';
+import React, { useState } from "react";
+import * as Slider from "@radix-ui/react-slider";
 
-const MedicationItem = ({ name, dosage, time, completionPercentage }) => {
+const MedicationItem = ({ name, dosage, time, completionPercentage, checked, imgPath }) => {
+  const [isChecked, setIsChecked] = useState(checked);
+
+  const toggleChecked = () => {
+    setIsChecked(!isChecked);
+  };
   return (
     <>
-    {/* <div className="flex gap-2 items-center p-2 h-full">
-      <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/874740f8b2dc806f464994af903bb31a4a9aec902276c3fb7d580d4157f1682b?placeholderIfAbsent=true&apiKey=06e54cbb0c8d4ebdbfa1852341f08638" alt="" className="object-contain shrink-0 self-stretch my-auto rounded-lg aspect-square w-[54px]" />
-      <div className="flex flex-col justify-center self-stretch my-auto">
-        <div className="flex flex-col w-full">
-          <h3 className="text-xs font-medium opacity-[var(--sds-size-stroke-border)] text-gray-950">{name}</h3>
-          <div className="flex gap-1 items-start mt-1 text-xs text-gray-700">
-            <div className="flex gap-0.5 items-center w-[53px]">
-              <span className="self-stretch my-auto opacity-[var(--sds-size-stroke-border)] w-[53px]">{dosage}</span>
+      <div class="h-20 justify-between items-center inline-flex w-full px-5 md:px-2">
+        <div class="self-stretch p-2 justify-start items-center gap-2 flex">
+          <div class="w-[54px] h-[54px] bg-black/20 rounded-lg">
+            <img src={imgPath} alt="medication" class="w-full h-full object-cover rounded-lg" />
+          </div>
+          <div class="flex-col justify-center items-start gap-3 inline-flex">
+            <div class="self-stretch h-[30px] flex-col justify-start items-start gap-1 flex">
+              <div class="text-gray-950 text-xs font-medium font-['Plus Jakarta Sans'] leading-[14.40px]">
+                {name}
+              </div>
+              <div class="justify-start items-start gap-1 inline-flex">
+                <div class="justify-start items-center gap-0.5 flex">
+                  <div class="w-[53px] text-[#404453] text-[10px] font-normal font-['Plus Jakarta Sans'] leading-3">
+                    {dosage}
+                  </div>
+                </div>
+                <div class="justify-start items-center gap-0.5 flex">
+                  <div class="text-[#404453] text-[10px] font-normal font-['Plus Jakarta Sans'] leading-3">
+                    {time}
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="flex gap-0.5 items-center whitespace-nowrap">
-              <time className="self-stretch my-auto opacity-[var(--sds-size-stroke-border)]">{time}</time>
+            <div class="flex-col justify-start items-start gap-0.5 flex">
+              <div class="w-[83px] h-2 relative">
+                <Slider.Root
+                  className="relative flex items-center select-none touch-none w-[83px] h-2"
+                  defaultValue={[completionPercentage]}
+                  max={100}
+                  step={1}
+                  disabled
+                >
+                  <Slider.Track className="bg-[#8c8f98]/20 relative grow rounded-full h-[3px]">
+                    <Slider.Range className="absolute bg-gray-950 rounded-sm h-full" />
+                  </Slider.Track>
+                  <Slider.Thumb
+                    className="block w-2 h-2 bg-gray-950 rounded-full "
+                    aria-label="Volume"
+                  />
+                </Slider.Root>
+              </div>
+              <div class="justify-start items-start gap-1 inline-flex">
+                <div class="text-[#404453] text-[10px] font-normal font-['Plus Jakarta Sans'] leading-3">
+                  {completionPercentage} %
+                </div>
+                <div class="justify-start items-center gap-0.5 flex">
+                  <div class="text-[#404453] text-[10px] font-normal font-['Plus Jakarta Sans'] leading-3">
+                    Complete
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div className="flex flex-col mt-3 w-full text-xs text-gray-700 whitespace-nowrap max-w-[83px]">
-          <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/7c5588f5fc5a23c1a7af8dfe99bde02d64c516e519502266800fda34ec1f452c?placeholderIfAbsent=true&apiKey=06e54cbb0c8d4ebdbfa1852341f08638" alt="Progress bar" className="object-contain w-full rounded-none aspect-[10.42]" />
-          <div className="flex gap-1 items-start">
-            <span className="opacity-[var(--sds-size-stroke-border)]">{completionPercentage}%</span>
-            <span className="self-stretch my-auto opacity-[var(--sds-size-stroke-border)]">Complete</span>
+        <div class="w-6 h-6 justify-center items-center flex">
+          <div class="w-6 h-6 justify-center items-center inline-flex">
+            <div
+              class={`w-5 h-5 relative cursor-pointer items-center justify-center flex `}
+              onClick={toggleChecked}
+            >
+              {isChecked ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-5 h-5 bg-white"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    d="M4 3H20C20.2652 3 20.5196 3.10536 20.7071 3.29289C20.8946 3.48043 21 3.73478 21 4V20C21 20.2652 20.8946 20.5196 20.7071 20.7071C20.5196 20.8946 20.2652 21 20 21H4C3.73478 21 3.48043 20.8946 3.29289 20.7071C3.10536 20.5196 3 20.2652 3 20V4C3 3.73478 3.10536 3.48043 3.29289 3.29289C3.48043 3.10536 3.73478 3 4 3ZM11.003 16L18.073 8.929L16.659 7.515L11.003 13.172L8.174 10.343L6.76 11.757L11.003 16Z"
+                    fill="#1749FC"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    d="M4 3H20C20.2652 3 20.5196 3.10536 20.7071 3.29289C20.8946 3.48043 21 3.73478 21 4V20C21 20.2652 20.8946 20.5196 20.7071 20.7071C20.5196 20.8946 20.2652 21 20 21H4C3.73478 21 3.48043 20.8946 3.29289 20.7071C3.10536 20.5196 3 20.2652 3 20V4C3 3.73478 3.10536 3.48043 3.29289 3.29289C3.48043 3.10536 3.73478 3 4 3ZM5 5V19H19V5H5Z"
+                    fill="#1749FC"
+                  />
+                </svg>
+              )}
+            </div>
           </div>
         </div>
       </div>
-    </div> */}
-    <div class="h-20 justify-between items-center inline-flex w-full">
-    <div class="self-stretch p-2 justify-start items-center gap-2 flex">
-      <div class="w-[54px] h-[54px] bg-black/20 rounded-lg"></div>
-      <div class="flex-col justify-center items-start gap-3 inline-flex">
-        <div class="self-stretch h-[30px] flex-col justify-start items-start gap-1 flex">
-          <div class="text-gray-950 text-xs font-medium font-['Plus Jakarta Sans'] leading-[14.40px]">Yeast Eye drop</div>
-          <div class="justify-start items-start gap-1 inline-flex">
-            <div class="justify-start items-center gap-0.5 flex">
-              <div class="w-[53px] text-[#404453] text-[10px] font-normal font-['Plus Jakarta Sans'] leading-3">2 Drops</div>
-            </div>
-            <div class="justify-start items-center gap-0.5 flex">
-              <div class="text-[#404453] text-[10px] font-normal font-['Plus Jakarta Sans'] leading-3">10:00</div>
-              <div class="text-[#404453] text-[10px] font-normal font-['Plus Jakarta Sans'] leading-3">AM</div>
-            </div>
-          </div>
-        </div>
-        <div class="flex-col justify-start items-start gap-0.5 flex">
-          <div class="w-[83px] h-2 relative">
-            <div class="w-[83px] h-1 left-0 top-[2px] absolute bg-[#8c8f98]/20 rounded-sm"></div>
-            <div class="w-[46px] h-1 left-0 top-[2px] absolute bg-gray-950 rounded-sm"></div>
-            <div class="w-2 h-2 left-[42px] top-0 absolute bg-gray-950 rounded-full"></div>
-          </div>
-          <div class="justify-start items-start gap-1 inline-flex">
-            <div class="text-[#404453] text-[10px] font-normal font-['Plus Jakarta Sans'] leading-3">58%</div>
-            <div class="justify-start items-center gap-0.5 flex">
-              <div class="text-[#404453] text-[10px] font-normal font-['Plus Jakarta Sans'] leading-3">Complete</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="w-6 h-6 justify-center items-center flex">
-      <div class="w-6 h-6 justify-center items-center inline-flex">
-        <div class="w-6 h-6 relative">
-        <input type="checkbox" className="hidden peer" />
-      <span className="w-6 h-6 bg-gray-200 border-2 border-gray-300 rounded-sm flex items-center justify-center peer-checked:bg-primary peer-checked:border-primary">
-        {/* Optional checkmark icon */}
-        <svg
-          className="hidden w-4 h-4 text-white peer-checked:block"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fillRule="evenodd"
-            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-            clipRule="evenodd"
-          />
-        </svg>
-      </span>
-        </div>
-      </div>
-    </div>
-  </div>
     </>
   );
 };

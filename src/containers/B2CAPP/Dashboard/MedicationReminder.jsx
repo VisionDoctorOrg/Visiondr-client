@@ -1,18 +1,78 @@
 import React from "react";
 import MedicationItem from "./MedicationItem";
 import DatesMedStatus from "./DatesMedStatus";
-import './Dashboard.css'
+import "./Dashboard.css";
 
 const MedicationReminder = () => {
-  const medicationData = {
-    name: "Yeast Eye drop",
-    dosage: "2 Drops",
-    time: "10:00 AM",
-    completionPercentage: 58,
-  };
+  const medicationData = [
+    {
+      name: "Yeast Eye drop",
+      dosage: "2 Drops",
+      time: "10:00 AM",
+      completionPercentage: 58,
+      checked: true,
+      imgPath: "/images/yeast_eye_drop_img.png",
+    },
+    {
+      name: "Karate Capsule",
+      dosage: "2 Capsules",
+      time: "10:00 AM",
+      completionPercentage: 58,
+      checked: true,
+      imgPath: "/images/karate_capsule_img.png",
+    },
+    {
+      name: "Yeast Eye Tablets",
+      dosage: "2 Tablets",
+      time: "10:00 AM",
+      completionPercentage: 58,
+      checked: true,
+      imgPath: "/images/yeast_eye_tablets_img.png",
+    },
+    {
+      name: "Omega 3 Capsule",
+      dosage: "1 Capsule",
+      time: "10:00 AM",
+      completionPercentage: 58,
+      checked: true,
+      imgPath: "/images/omega3_capsule_img.png",
+    },
+    {
+      name: "Yeast Eye drop",
+      dosage: "2 Drops",
+      time: "10:00 AM",
+      completionPercentage: 58,
+      checked: false,
+      imgPath: "/images/yeast_eye_drop_img.png",
+    },
+    {
+      name: "Karate Capsule",
+      dosage: "2 Capsules",
+      time: "10:00 AM",
+      completionPercentage: 58,
+      checked: false,
+      imgPath: "/images/karate_capsule_img.png",
+    },
+    {
+      name: "Yeast Eye Tablets",
+      dosage: "2 Tablets",
+      time: "10:00 AM",
+      completionPercentage: 58,
+      checked: false,
+      imgPath: "/images/yeast_eye_tablets_img.png",
+    },
+    {
+      name: "Omega 3 Capsule",
+      dosage: "1 Capsule",
+      time: "10:00 AM",
+      completionPercentage: 58,
+      checked: false,
+      imgPath: "/images/omega3_capsule_img.png",
+    },
+  ];
 
   return (
-    <div>
+    <div className="bg-[#d2dbfe]/20">
       <div class="w-full h-[158px] px-[30px] py-[50px] reminder-bg rounded-tl-lg rounded-tr-lg shadow-inner justify-center items-center inline-flex">
         <div class="grow shrink basis-0 self-stretch flex-col justify-start items-center gap-2 inline-flex">
           <div class="w-6 h-6 justify-center items-center inline-flex">
@@ -40,8 +100,10 @@ const MedicationReminder = () => {
         </div>
       </div>
       <DatesMedStatus />
-      <section className="flex gap-10 justify-between leading-tight w-full">
-        <MedicationItem {...medicationData} />
+      <section className="flex flex-col gap-2 justify-between leading-tight w-full">
+        {medicationData.map((medicationData) => (
+          <MedicationItem {...medicationData} />
+        ))}
       </section>
     </div>
   );

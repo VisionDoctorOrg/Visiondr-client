@@ -4,7 +4,7 @@ import EyeHealthSummaryCard from "./EyeHealthSummaryCard";
 const EyeHealthSummary = () => {
   return (
     <div>
-      <div class="text-gray-950 text-base font-medium leading-normal my-4 mt-6">
+      <div class="text-gray-950 text-base font-medium leading-normal my-4 mt-6 pl-4 md:pl-0">
         Eye health summary
       </div>
       <div className="flex flex-col gap-4 lg:gap-6">
