@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Layout.css";
-import { NavLink, useLocation, useParams } from "react-router-dom";
+import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
 import { IoSettingsOutline } from "react-icons/io5";
 import Routing from "./Routing";
 import SidebarItem from "./SidebarItem";
@@ -99,6 +99,16 @@ const Layout = () => {
 
   const location = useLocation();
   const [path, setPath] = useState('');
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if(!localStorage.getItem('user')) {
+      navigate('/auth/signin/individual')
+    }else{
+      setUser(JSON.parse(localStorage.getItem('user')));
+    }
+  }, [])
 
   useEffect(() => {
     // Split the pathname into parts by '/'

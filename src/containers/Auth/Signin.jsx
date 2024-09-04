@@ -22,10 +22,12 @@ import SigninSuccess from "./SigninSuccess";
 
 const schema = z.object({
   email: z.string().email(),
-  password: z.string().min(8, { message: "Password must be at least 8 characters long" }),
+  password: z
+    .string()
+    .min(8, { message: "Password must be at least 8 characters long" }),
 });
 
-const Signin = ({login, refresh, user, error}) => {
+const Signin = ({ login, refresh, user, error }) => {
   refresh();
   const { type } = useParams();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -39,7 +41,6 @@ const Signin = ({login, refresh, user, error}) => {
     setIsDialogOpen(false);
   };
 
-
   function togglePasswordVisibility() {
     setIsPasswordVisible((prevState) => !prevState);
   }
@@ -49,7 +50,7 @@ const Signin = ({login, refresh, user, error}) => {
     handleSubmit,
     setError,
     formState: { errors, isSubmitting },
-  } = useForm({ resolver: zodResolver(schema)});
+  } = useForm({ resolver: zodResolver(schema) });
 
   const onSubmit = async (data) => {
     try {
@@ -70,7 +71,7 @@ const Signin = ({login, refresh, user, error}) => {
 
   useEffect(() => {
     if (user) {
-      console.log(localStorage.getItem("access"))
+      console.log(localStorage.getItem("access"));
       openDialog();
     }
   }, [user]);
@@ -207,15 +208,21 @@ const Signin = ({login, refresh, user, error}) => {
               </NavLink>
             </div>
           </div>
-          <button class="md:w-[400px] w-full p-3 bg-[#1749fc] border-[1px] border-[#1749fc] hover:border-gray-50 rounded-lg justify-center items-center gap-3 inline-flex transition-all duration-300" disabled={isSubmitting} type="submit">
+          <button
+            class="md:w-[400px] w-full p-3 bg-[#1749fc] border-[1px] border-[#1749fc] hover:border-gray-50 rounded-lg justify-center items-center gap-3 inline-flex transition-all duration-300"
+            disabled={isSubmitting}
+            type="submit"
+          >
             <div class="text-center text-white text-base leading-normal">
-            {isSubmitting ? "Loading..." : "Sign In"}
+              {isSubmitting ? "Loading..." : "Sign In"}
             </div>
             <div class="w-6 h-6 justify-center items-center flex text-white">
               <MdArrowOutward className="w-6 h-6 relative" />
             </div>
           </button>
-          {errors.root && <div className="text-red-500">{errors.root.message}</div>}
+          {errors.root && (
+            <div className="text-red-500">{errors.root.message}</div>
+          )}
           <div class="justify-start items-center gap-3 inline-flex">
             <div class="md:w-[135px] w-[100px] h-[0px] bg-[#8c8f98] border-t border-[#8c8f98]"></div>
             <div class="text-[#8c8f98] text-base font-medium  leading-normal">
@@ -225,7 +232,10 @@ const Signin = ({login, refresh, user, error}) => {
           </div>
           <div class="flex-col justify-center items-center gap-6 flex">
             <div class="justify-start items-start gap-3 inline-flex">
-              <a href={`${API_URL}auth/google`} class="md:w-[194px] h-12 px-5 py-2 rounded-md border-2 border-[#d2dbfe] hover:border-primary duration-300 transition-all justify-center items-center gap-2 flex">
+              <a
+                href={`${API_URL}auth/google`}
+                class="md:w-[194px] h-12 px-5 py-2 rounded-md border-2 border-[#d2dbfe] hover:border-primary duration-300 transition-all justify-center items-center gap-2 flex"
+              >
                 <div class="w-6 h-6 relative">
                   <svg
                     width="25"
@@ -361,28 +371,30 @@ const Signin = ({login, refresh, user, error}) => {
         </div>
       </div>
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogTrigger />
-          <DialogContent className={cn("max-w-fit p-0 bg-transparent border-0")}>
-            <DialogClose className="absolute top-4 right-4">
-              <svg
-                className={` flex-shrink-0 size-6 text-white`}
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M18 6 6 18" />
-                <path d="m6 6 12 12" />
-              </svg>
-            </DialogClose>
-            <SigninSuccess />
-          </DialogContent>
-        </Dialog>
+        <DialogTrigger />
+        <DialogContent
+          className={cn("md:max-w-fit max-w-full p-0 bg-transparent border-0")}
+        >
+          <DialogClose className="absolute top-4 right-4">
+            <svg
+              className={` flex-shrink-0 size-6 text-white`}
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </DialogClose>
+          <SigninSuccess />
+        </DialogContent>
+      </Dialog>
     </AuthPage>
   );
 };

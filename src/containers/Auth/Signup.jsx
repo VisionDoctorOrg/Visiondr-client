@@ -460,7 +460,7 @@ const Signup = ({signup, refresh, user, error}) => {
       </div>
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger />
-          <DialogContent className={cn("max-w-fit p-0 bg-transparent border-0")}>
+          <DialogContent className={cn("md:max-w-fit max-w-full p-0 bg-transparent border-0")}>
             <DialogClose className="absolute top-4 right-4">
               <svg
                 className={` flex-shrink-0 size-6 text-white`}
@@ -487,7 +487,7 @@ const Signup = ({signup, refresh, user, error}) => {
               
               </p>
             </div> */}
-            <SignupSuccess />
+            <SignupSuccess actionPath={`/auth/signin/${type}`}/>
           </DialogContent>
         </Dialog>
     </RegPage>

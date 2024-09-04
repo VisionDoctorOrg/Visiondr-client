@@ -1,7 +1,8 @@
 import React from "react";
 import { MdArrowOutward } from "react-icons/md";
+import { NavLink } from "react-router-dom";
 
-const SignupSuccess = () => {
+const SignupSuccess = ({actionPath}) => {
   return (
     <div className="flex items-center justify-center w-full">
       <div class="lg:w-[880px] w-full h-[435px] lg:p-20 p-5 py-10 bg-gradient-to-t from-[#010d37] via-[#010d37]  to-[#010d3780] lg:rounded-[28px] justify-center items-center inline-flex">
@@ -16,14 +17,14 @@ const SignupSuccess = () => {
             </div>
           </div>
           <div class="justify-start items-center gap-20 inline-flex">
-            <button class="lg:w-[374px] w-full h-[60px] p-3 rounded-lg border-2 border-[#d2dbfe] justify-center items-center gap-2.5 inline-flex hover:bg-primary duration-300 transition-all hover:border-primary">
+            <NavLink to={actionPath} className="lg:w-[374px] w-full h-[60px] p-3 rounded-lg border-2 border-[#d2dbfe] justify-center items-center gap-2.5 inline-flex hover:bg-primary duration-300 transition-all hover:border-primary">
               <div class="text-center text-white text-[22px] font-medium font-['Plus Jakarta Sans'] leading-relaxed">
-                Proceed to dashboard
+                Proceed to login
               </div>
               <div class="w-6 h-6 justify-center items-center flex text-white">
                 <MdArrowOutward className="w-6 h-6 relative" />
               </div>
-            </button>
+            </NavLink>
           </div>
         </div>
       </div>

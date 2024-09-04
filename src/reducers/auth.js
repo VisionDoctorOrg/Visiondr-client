@@ -24,7 +24,7 @@ import {
 const initialState = {
   access: localStorage.getItem("access"),
   isAuthenticated: null,
-  user: null,
+  user: JSON.parse(localStorage.getItem("user")),
   error: null,
   message: null,
 };
@@ -40,6 +40,7 @@ export default function (state = initialState, action) {
       };
     case LOGIN_SUCCESS:
       localStorage.setItem("access", payload.data.accessToken);
+      localStorage.setItem("user", JSON.stringify(payload.data));
       return {
         ...state,
         isAuthenticated: true,
@@ -89,6 +90,7 @@ export default function (state = initialState, action) {
       };
     case LOGOUT:
       localStorage.removeItem("access");
+      localStorage.removeItem("user");
       return {
         ...state,
         access: null,

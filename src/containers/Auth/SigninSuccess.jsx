@@ -1,5 +1,6 @@
 import React from "react";
 import { MdArrowOutward } from "react-icons/md";
+import { NavLink } from "react-router-dom";
 
 const SigninSuccess = () => {
   return (
@@ -15,14 +16,14 @@ const SigninSuccess = () => {
             </div>
           </div>
           <div class="justify-start items-center gap-20 inline-flex">
-            <button class="lg:w-[374px] w-full h-[60px] p-3 rounded-lg border-2 border-[#d2dbfe] justify-center items-center gap-2.5 inline-flex hover:bg-primary duration-300 transition-all hover:border-primary">
+            <NavLink  to="/app" className="lg:w-[374px] w-full h-[60px] p-3 rounded-lg border-2 border-[#d2dbfe] justify-center items-center gap-2.5 inline-flex hover:bg-primary duration-300 transition-all hover:border-primary">
               <div class="text-center text-white text-[22px] font-medium font-['Plus Jakarta Sans'] leading-relaxed">
                 Proceed to dashboard
               </div>
               <div class="w-6 h-6 justify-center items-center flex text-white">
                 <MdArrowOutward className="w-6 h-6 relative" />
               </div>
-            </button>
+            </NavLink>
           </div>
         </div>
       </div>
