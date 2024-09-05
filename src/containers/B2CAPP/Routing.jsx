@@ -8,6 +8,7 @@ import CaseFile from './CaseFiles/CaseFile'
 import Dashboard from './Dashboard/Dashboard'
 import Articles from './EducationalResources/Articles/Articles'
 import Logout from './Logout'
+import Recommendation from './CaseFiles/Recommendation'
 
 const Routing = () => {
   return (
@@ -21,6 +22,7 @@ const Routing = () => {
         <Route path="/glaucoma" element={<GlaucomaChecker />} />
         <Route path="/glaucoma/glaucomaReport" element={<GlaucomaReport />} />
         <Route path="/add-new" element={<CaseFile/>} />
+        <Route path="recommendation" element={<Recommendation/>} />
         <Route path="/logout" element={<Logout/>} />
         <Route path="/articles/*" element={<Articles/>} />
       </Routes>
