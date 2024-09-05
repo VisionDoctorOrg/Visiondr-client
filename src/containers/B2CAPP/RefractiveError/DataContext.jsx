@@ -11,14 +11,12 @@ const DataProvider = ({ children }) => {
     {
       question: "Occupation:",
       answer: "Software developer",
-      editable: true,
       id: "occupation",
     },
     { question: "Email:", answer: userInfo ? userInfo.email : "example@gmail.com", id: "email" },
     {
       question: "Phone number:",
       answer: "+234 1234567890",
-      editable: true,
       id: "phoneNumber",
     },
   ];

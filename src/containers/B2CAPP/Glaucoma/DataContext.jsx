@@ -12,7 +12,6 @@ const DataProvider = ({ children }) => {
     {
       question: "Phone number:",
       answer: "+234 1234567890",
-      editable: true,
       id: "phoneNumber",
     },
   ];
