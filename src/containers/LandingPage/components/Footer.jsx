@@ -17,6 +17,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import ContactUs from "../forms/ContactUs";
+import { NavLink } from "react-router-dom";
 const Footer = () => {
   const [isIndividual, setIsIndividual] = useState(false);
   const [isOrg, setIsOrg] = useState(false);
@@ -38,39 +39,22 @@ const Footer = () => {
             <div className="flex items-center md:justify-center md:py-4 ps-px sm:px-3 ">
               <a
                 class=" text-gray-200 hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all"
+                href="#ourservices"
+                aria-current="page"
+              >
+                Our Services
+              </a>
+            </div>
+            <div className="flex items-center md:justify-center md:py-4 ps-px sm:px-3">
+              <a
+                class=" text-gray-200 hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all"
                 href="#about"
                 aria-current="page"
               >
                 About us
               </a>
             </div>
-            <div className="flex items-center md:justify-center md:py-4 ps-px sm:px-3">
-              <a
-                class=" text-gray-200 hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all"
-                href="#feature"
-                aria-current="page"
-              >
-                Features
-              </a>
-            </div>
-            <div className="flex items-center md:justify-center md:py-4 ps-px sm:px-3 ">
-              <a
-                class=" text-gray-200 hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all"
-                href="#faq"
-                aria-current="page"
-              >
-                FAQ
-              </a>
-            </div>
-            <div className="flex items-center md:justify-center md:py-4 ps-px sm:px-3 ">
-              <a
-                class=" text-gray-200 hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all"
-                href="#partners"
-                aria-current="page"
-              >
-                Partners
-              </a>
-            </div>
+            
             <div className="flex items-center md:justify-center md:py-4 ps-px sm:px-3 ">
               <div
                 class="cursor-pointer text-gray-200 hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all"
@@ -100,6 +84,15 @@ const Footer = () => {
                   </DialogContent>
                 </Dialog>
               </div>
+            </div>
+            <div className="flex items-center md:justify-center md:py-4 ps-px sm:px-3 ">
+              <NavLink
+                className=" text-gray-200 hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all"
+                to="/pricing"
+                aria-current="page"
+              >
+                Pricing
+              </NavLink>
             </div>
           </div>
         </section>

@@ -79,7 +79,7 @@ const Signin = ({ login, refresh, user, error }) => {
   return (
     <AuthPage>
       <div class="md:w-[410px] md:h-[791px] flex-col justify-start items-start gap-[72px] inline-flex">
-        <div class="h-10 p-1 justify-center items-center gap-2 inline-flex">
+        <NavLink to="/" className="h-10 p-1 justify-center items-center gap-2 inline-flex">
           <svg
             width="31"
             height="36"
@@ -97,7 +97,7 @@ const Signin = ({ login, refresh, user, error }) => {
             {" "}
             VisionDR
           </div>
-        </div>
+        </NavLink>
         <form
           class="self-stretch h-[559px] flex-col justify-start items-center gap-6 flex"
           onSubmit={handleSubmit(onSubmit)}

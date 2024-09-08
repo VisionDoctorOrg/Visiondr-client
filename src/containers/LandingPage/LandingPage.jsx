@@ -9,6 +9,7 @@ import NewsLetter from "./components/NewsLetter";
 import Footer from "./components/Footer";
 import SlideshowBackground from "./components/SlideshowBackground";
 import Services from "./components/Services";
+import HowItWorks from "./components/HowItWorks";
 
 const LandingPage = () => {
   return (
@@ -16,6 +17,7 @@ const LandingPage = () => {
       <Hero />
       <Features />
       <Services />
+      <HowItWorks />
       <About />
       <FAQ />
       <Reviews />

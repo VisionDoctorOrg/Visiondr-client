@@ -88,7 +88,7 @@ const Signup = ({signup, refresh, user, error}) => {
   return (
     <RegPage>
       <div class="md:w-[400px] md:min-h-[1026px] w-full flex-col justify-start items-start gap-[72px] inline-flex">
-        <div class="h-10 p-1 justify-center items-center gap-2 inline-flex">
+        <NavLink to="/" className="h-10 p-1 justify-center items-center gap-2 inline-flex">
           <svg
             width="31"
             height="36"
@@ -105,7 +105,7 @@ const Signup = ({signup, refresh, user, error}) => {
           <div class="text-center text-gray-950 text-base font-semibold  leading-tight">
             VisionDR
           </div>
-        </div>
+        </NavLink>
         <form onSubmit={handleSubmit(onSubmit)} class="self-stretch h-[770px] flex-col justify-start items-center gap-6 flex">
           <div class="self-stretch h-[146px] flex-col justify-start items-start gap-3 flex">
             <div class="self-stretch text-gray-950 text-4xl font-semibold  leading-[43.20px]">

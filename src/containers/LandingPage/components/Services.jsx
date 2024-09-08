@@ -9,7 +9,7 @@ const Services = () => {
   return (
     <div>
       <section
-        className=" lg:py-20 lg:px-[140px] px-8 py-10 lg:min-h-[100vh] w-[100vw] bg-[#F1F3FF] flex items-center"
+        className=" lg:py-20 lg:px-[140px] px-8 py-10 lg:min-h-[100vh] w-[100vw] bg-gradient-to-b from-[#F1F3FF] to-[#fff]  flex items-center"
         id="ourservices"
       >
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-7 lg:gap-12">

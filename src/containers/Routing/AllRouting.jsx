@@ -8,11 +8,13 @@ import Signup from "../Auth/Signup";
 import SignupSuccess from "../Auth/SignupSuccess";
 import LandingPage from "../LandingPage/LandingPage";
 import Layout from "../B2CAPP/Layout";
+import Pricing from "../LandingPage/components/Pricing";
 
 const AllRouting = () => {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} /> 
+      <Route path="/pricing" element={<Pricing />} />
       <Route path="/auth/signin/:type" element={<Signin />} />
       <Route path="/auth/forgot-password/:type" element={<ForgetPassword />} />
       <Route path="/auth/reset-password" element={<ChangePassword />} />

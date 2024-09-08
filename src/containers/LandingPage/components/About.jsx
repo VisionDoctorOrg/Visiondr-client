@@ -5,9 +5,9 @@ import { MdArrowOutward } from "react-icons/md";
 
 const About = () => {
   const images = [
-    "/images/meds-m.png",
-    "/images/eyediagnosis-m.png",
-    "/images/eyediagnosis1.png",
+    "/images/about_img.png",
+    "/images/about2_img.png",
+    "/images/about3_img.png",
   ];
   const [readMore, setReadMore] = useState(false);
 
@@ -24,17 +24,17 @@ const About = () => {
       <section className="grid md:grid-cols-2 grid-cols-1 gap-10 md:w-[82%] w-[80%] mx-auto md:py-10 py-5">
         <div className="hidden md:flex flex-col">
           <img
-            src="/images/meds-m.png"
+            src="/images/about_img.png"
             alt=""
             className="hidden md:inline-block md:rounded-2xl rounded-[8px] w-[370px] hover:rotate-3 duration-300 custom-shadow transform origin-center transition-transform"
           />
           <img
-            src="/images/eyediagnosis-m.png"
+            src="/images/about2_img.png"
             alt=""
             className="md:rounded-2xl rounded-[8px] w-[370px] ml-auto mr-0 relative md:mt-[-80px] hover:rotate-3 duration-300 custom-shadow transform origin-center transition-transform"
           />
           <img
-            src="/images/eyediagnosis1.png"
+            src="/images/about3_img.png"
             alt=""
             className="hidden md:inline-block md:rounded-2xl rounded-[8px] w-[370px] relative mt-[-100px] hover:rotate-3 duration-300 custom-shadow transform origin-center transition-transform"
           />

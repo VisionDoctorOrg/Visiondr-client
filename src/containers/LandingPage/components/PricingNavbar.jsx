@@ -20,7 +20,7 @@ import JoinTheWaitlistMobile from "../forms/JoinTheWaitlistMobile";
 import UserSelection from "@/containers/Auth/UserSelection";
 import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
+const PricingNavbar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleMouseEnter = () => {
@@ -60,7 +60,7 @@ const Navbar = () => {
       className={`w-full ${isExpanded ? " absolute" : ""} `}
     >
       <header
-        className={`absolute lg:max-w-[80%] mx-auto lg:rounded-[28px] waitlist-bg inset-x-0 flex flex-wrap lg:justify-start lg:flex-nowrap z-50 w-full flex-col ${
+        className={`absolute lg:max-w-[80%] mx-auto lg:rounded-[28px] bg-[#010D37] inset-x-0 flex flex-wrap lg:justify-start lg:flex-nowrap z-50 w-full flex-col ${
           isNavExpanded ? "" : "max-w-[80%]"
         }`}
       >
@@ -157,31 +157,31 @@ const Navbar = () => {
               {/* ... (rest of the navbar content remains the same) */}
               <div className="flex lg:justify-center grow gap-4 lg:flex-row flex-col lg:w-[500px]">
                 <div className="mt-10 lg:mt-0 flex items-center py-3 lg:py-4 ps-px sm:px-3 ">
-                  <a
+                  <NavLink
                     className=" text-white hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all lg:text-[16px]"
-                    href="#ourservices"
+                    to="/#ourservices"
                     aria-current="page"
                   >
                     Our Services
-                  </a>
-                </div>
-                <div className="flex items-center py-3 lg:py-4 ps-px sm:px-3 ">
-                  <a
-                    className=" text-white hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all lg:text-[16px]"
-                    href="#about"
-                    aria-current="page"
-                  >
-                    About us
-                  </a>
+                  </NavLink>
                 </div>
                 <div className="flex items-center py-3 lg:py-4 ps-px sm:px-3 ">
                   <NavLink
                     className=" text-white hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all lg:text-[16px]"
-                    to="/pricing"
+                    to="/#about"
+                    aria-current="page"
+                  >
+                    About us
+                  </NavLink>
+                </div>
+                <div className="flex items-center py-3 lg:py-4 ps-px sm:px-3 ">
+                  <a
+                    className=" text-white hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all lg:text-[16px]"
+                    href="#pricing"
                     aria-current="page"
                   >
                     Pricing
-                  </NavLink>
+                  </a>
                 </div>
                
                 <div className="flex items-center py-3 lg:py-4 ps-px sm:px-3 ">
@@ -277,4 +277,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default PricingNavbar;

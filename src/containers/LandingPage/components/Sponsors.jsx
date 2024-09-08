@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../styles/Sponsors.css";
 const Sponsors = () => {
-  const [currentImage, setCurrentImage] = useState('');
+  const [currentImage, setCurrentImage] = useState("");
   const box1Ref = useRef(null);
   const box2Ref = useRef(null);
   const box3Ref = useRef(null);
@@ -12,18 +12,18 @@ const Sponsors = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             if (entry.target === box1Ref.current) {
-              setCurrentImage('/images/item-b-1.png'); // Replace with the actual image URL
+              setCurrentImage("/images/item-b-1.png"); // Replace with the actual image URL
             } else if (entry.target === box2Ref.current) {
-              setCurrentImage('/images/item-b-2.png'); // Replace with the actual image URL
+              setCurrentImage("/images/item-b-2.png"); // Replace with the actual image URL
             } else if (entry.target === box3Ref.current) {
-              setCurrentImage('/images/item-b-3.png'); // Replace with the actual image URL
+              setCurrentImage("/images/item-b-3.png"); // Replace with the actual image URL
             }
           }
         });
       },
       {
         root: null, // Use the viewport as the root
-        rootMargin: '0px',
+        rootMargin: "0px",
         threshold: 0.8, // Trigger when at least 50% of the target is visible
       }
     );
@@ -58,102 +58,62 @@ const Sponsors = () => {
         <h1 className="font-medium md:text-[28px] text-[22px]">
           We have amazing sponsors
         </h1>
-        <p className="font-medium md:w-1/2 my-3 text-[16px] tracking-tight md:pr-16">
+        <p className="font-medium md:w-2/3 my-3 text-[16px] tracking-tight md:pr-16">
           Over time VisionDR has received technical, specialized and innovative
           support and partnerships from top organizations in Nigeria, Rwanda and
           Mauritus.
         </p>
       </section>
       <section className="lg:hidden flex flex-row space-x-10 overflow-x-auto overflow-y-hidden px-10">
-        <div className="py-5" ref={box1Ref}>
-          <div className=" flex-shrink-0 p-5 custom-shadow transition-all ease-in-out duration-500 px-6 ">
-            <div className="border-l border-l-black px-3 md:w-[275px] md:h-[236px] w-[264px] h-[196px]  flex flex-col justify-between">
-              <p className="font-medium text-gray-400 md:text-[16px]">01</p>
-              <p className="md:text-[28px] text-[22px] font-medium leading-tight md:pt-16">
-                MTN Foundation
-              </p>
-              <p className="text-[14px] font-medium  tracking-tight leading-[1.1]">
-                MTN Foundation has offered support to VisionDR to improve eye
-                health in our society. Providing support in visibility and
-                digital enhancement
-              </p>
+        <div className="pt-5" ref={box1Ref}>
+          <div className=" flex-shrink-0 transition-all ease-in-out duration-500 ">
+            <div className=" md:w-[275px] w-[264px] h-[130px]">
+              <img
+                src="/images/sponsor_img.png"
+                alt="UNDP"
+                className="h-[120px]"
+              />
             </div>
           </div>
         </div>
-        <div className="py-5" ref={box2Ref}>
-          <div className="flex-shrink-0 p-5 custom-shadow transition-all ease-in-out duration-500 px-6 ">
-            <div className="border-l border-l-black px-3 md:w-[275px] md:h-[236px] w-[264px] h-[196px] flex flex-col justify-between">
-              <p className="font-medium text-gray-400 md:text-[16px]">02</p>
-              <p className="md:text-[28px] text-[22px] font-medium leading-tight md:pt-16">
-                Sands Technologies{" "}
-              </p>
-              <p className="text-[14px] font-medium  tracking-tight leading-[1.1]">
-                VisionDR has gained technical support and training for our
-                digital platforms to offer our best to our users. From mid 2023,
-                Sands have provided support to improve our systems.
-              </p>
+        <div className="pt-5" ref={box2Ref}>
+          <div className=" flex-shrink-0 transition-all ease-in-out duration-500 ">
+            <div className=" md:w-[275px] w-[264px] h-[130px]">
+              <img
+                src="/images/sponsor2_img.png"
+                alt="MTN Foundation"
+                className="h-[120px]"
+              />
             </div>
           </div>
         </div>
-        <div className="py-5" ref={box3Ref}>
-          <div className="flex-shrink-0 p-5 custom-shadow transition-all ease-in-out duration-500 px-6 ">
-            <div className="border-l border-l-black px-3 md:w-[275px] md:h-[236px] w-[264px] h-[196px] flex flex-col justify-between">
-              <p className="font-medium text-gray-400 md:text-[16px]">03</p>
-              <p className="md:text-[28px] text-[22px] font-medium leading-tight">
-                United Nations Development Programme (UNDP)
-              </p>
-              <p className="text-[14px] font-medium  tracking-tight leading-[1.1]">
-                Supports sustainable development goals and provides strategic
-                guidance. For VisionDR, UNDP offers strategic support to improve
-                visual outcomes
-              </p>
+        <div className="pt-5" ref={box3Ref}>
+          <div className=" flex-shrink-0 transition-all ease-in-out duration-500 ">
+            <div className=" md:w-[275px] w-[264px] h-[130px]">
+              <img
+                src="/images/sponsor3_img.png"
+                alt="Sand Technologies"
+                className="h-[120px]"
+              />
             </div>
           </div>
         </div>
       </section>
       <div className="lg:hidden flex items-center justify-center">
-          <img src={currentImage} alt="" className="h-2 text-white mt-8" />
-        </div>
-      <section className="hidden md:mx-32 lg:grid md:grid-cols-3 md:justify-between md:gap-20 gap-5 md:mt-16 mt-4 md:flex-nowrap">
-        <div className="p-5 custom-shadow transition-all ease-in-out duration-500 px-6 h-full">
-          <div className="border-l border-l-black px-3 md:w-[275px] md:h-[236px] w-[264px] h-[196px] flex flex-col justify-between">
-            <p className="font-medium text-gray-400 md:text-[16px]">03</p>
-            <p className="md:text-[28px] text-[22px] font-medium leading-tight">
-              United Nations Development Programme (UNDP)
-            </p>
-            <p className="text-[14px] font-medium  tracking-tight leading-[1.1]">
-              Supports sustainable development goals and provides strategic
-              guidance. For VisionDR, UNDP offers strategic support to improve
-              visual outcomes
-            </p>
-          </div>
-        </div>
-        <div className="p-5 custom-shadow transition-all ease-in-out duration-500 px-6 ">
-          <div className="border-l border-l-black px-3 md:w-[275px] md:h-[236px] w-[264px] h-[196px]  flex flex-col justify-between">
-            <p className="font-medium text-gray-400 md:text-[16px]">01</p>
-            <p className="md:text-[28px] text-[22px] font-medium leading-tight md:pt-16">
-              MTN Foundation
-            </p>
-            <p className="text-[14px] font-medium  tracking-tight leading-[1.1]">
-              MTN Foundation has offered support to VisionDR to improve eye
-              health in our society. Providing support in visibility and digital
-              enhancement
-            </p>
-          </div>
-        </div>
-        <div className="p-5 custom-shadow transition-all ease-in-out duration-500 px-6 ">
-          <div className="border-l border-l-black px-3 md:w-[275px] md:h-[236px] w-[264px] h-[196px] flex flex-col justify-between">
-            <p className="font-medium text-gray-400 md:text-[16px]">02</p>
-            <p className="md:text-[28px] text-[22px] font-medium leading-tight md:pt-12">
-              Sands Technologies{" "}
-            </p>
-            <p className="text-[14px] font-medium  tracking-tight leading-[1.1]">
-              VisionDR has gained technical support and training for our digital
-              platforms to offer our best to our users. From mid 2023, Sands
-              have provided support to improve our systems.
-            </p>
-          </div>
-        </div>
+        <img src={currentImage} alt="" className="h-2 text-white mt-8" />
+      </div>
+      <section className="hidden justify-center items-center md:gap-20 lg:px-10 lg:flex gap-5 md:my-20  mt-4">
+        <img src="/images/sponsor_img.png" alt="UNDP" className="h-[120px]" />
+        <img
+          src="/images/sponsor2_img.png"
+          alt="MTN Foundation"
+          className="h-[120px]"
+        />
+        <img
+          src="/images/sponsor3_img.png"
+          alt="Sand Technologies"
+          className="h-[120px]"
+        />
       </section>
     </div>
   );

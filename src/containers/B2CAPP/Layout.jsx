@@ -137,7 +137,7 @@ const Layout = () => {
           aria-label="Global"
         >
           <div class="me-5 lg:me-0 lg:hidden ml-4">
-            <div class="h-10 p-1 justify-center items-center gap-2 inline-flex">
+            <NavLink to="/" className="h-10 p-1 justify-center items-center gap-2 inline-flex">
               <svg
                 width="31"
                 height="36"
@@ -155,7 +155,7 @@ const Layout = () => {
                 {" "}
                 VisionDR
               </div>
-            </div>
+            </NavLink>
           </div>
 
           <div class="w-full flex items-center justify-end ms-auto sm:justify-between sm:gap-x-3 sm:order-3">
@@ -252,7 +252,7 @@ const Layout = () => {
       >
         <div className="flex flex-col px-3 pb-10 w-full">
           <header className="flex flex-col w-full text-center">
-            <div class="flex gap-2 justify-center items-center self-start px-1 py-1 text-base font-semibold min-h-[40px] text-gray-950">
+            <NavLink to="/" className="flex gap-2 justify-center items-center self-start px-1 py-1 text-base font-semibold min-h-[40px] text-gray-950">
               <svg
                 width="31"
                 height="36"
@@ -270,7 +270,7 @@ const Layout = () => {
                 {" "}
                 VisionDR
               </div>
-            </div>
+            </NavLink>
             <SidebarItem
               icon="M13 21V11H21V21H13ZM3 13V3H11V13H3ZM9 11V5H5V11H9ZM3 21V15H11V21H3ZM5 19H9V17H5V19ZM15 19H19V13H15V19ZM13 3H21V9H13V3ZM15 5V7H19V5H15Z"
               label="Dashboard"
