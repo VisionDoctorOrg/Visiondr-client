@@ -19,6 +19,7 @@ import { MdArrowOutward } from "react-icons/md";
 import JoinTheWaitlist from "../forms/JoinTheWaitlist";
 import JoinTheWaitlistMobile from "../forms/JoinTheWaitlistMobile";
 import UserSelection from "@/containers/Auth/UserSelection";
+import { useNavigate } from "react-router-dom";
 
 const images = [
   "/images/Default.png",
@@ -37,6 +38,7 @@ const Hero = () => {
   const [nextIndex, setNextIndex] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const intervalRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     intervalRef.current = setInterval(() => {
@@ -52,6 +54,15 @@ const Hero = () => {
 
     return () => clearInterval(intervalRef.current);
   }, []);
+
+  const handleAskVisionDR = () => {
+    if(localStorage.getItem("user")) {
+      navigate("/app/profile/billing");
+    }
+    else{
+      navigate("/auth/signin/individual");
+    }
+  }
 
   return (
     <div className=" relative text-white overflow-hidden bg-[#010D37]">
@@ -92,7 +103,7 @@ const Hero = () => {
                       "hidden md:flex w-full py-6 border-2 border-primary bg-primary hover:bg-primary hover:text-white text-white hover:border-primary duration-300 transition-all text-[16px] h-[60px] md:w-[374px] tracking-tight"
                     )}
                   >
-                    Create Account
+                    Get Care Now
                     <svg
                       width="20"
                       height="18"
@@ -136,7 +147,7 @@ const Hero = () => {
                       "md:hidden w-full py-6 border-2 border-primary bg-primary hover:bg-primary hover:text-white text-white hover:border-primary duration-300 transition-all text-[16px] h-[60px] md:w-[374px] tracking-tight"
                     )}
                   >
-                    Create Account
+                    Get Care Now
                     <svg
                       width="20"
                       height="18"
@@ -153,7 +164,7 @@ const Hero = () => {
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="md:hidden z-50 md:max-w-[60%] md:h-[60%] h-screen p-0 flex items-center justify-center bg-[#010D37] text-white border-none">
-                  <UserSelection type="reg" >
+                  <UserSelection type="reg">
                     <DialogClose className="absolute top-0 right-4">
                       <svg
                         className={` flex-shrink-0 size-6 `}
@@ -171,20 +182,31 @@ const Hero = () => {
                         <path d="m6 6 12 12" />
                       </svg>
                     </DialogClose>
-
                   </UserSelection>
                 </DialogContent>
               </Dialog>
-              <a href="#newsletter" className="w-full md:w-fit">
+              <button className="w-full md:w-fit" onClick={handleAskVisionDR}>
                 <Button
                   className={cn(
                     "md:w-[374px] w-full py-6 border-2 border-white bg-transparent hover:bg-primary hover:text-white text-white hover:border-primary duration-300 transition-all  text-[16px] h-[60px] tracking-tight"
                   )}
                 >
-                  Get Eye Care Tips
-                  <RiMailUnreadLine className="ml-2 h-5 w-5" />
+                  Ask a VisionDR
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="25"
+                    height="24"
+                    viewBox="0 0 25 24"
+                    fill="none"
+                    className="ml-2 h-5 w-5"
+                  >
+                    <path
+                      d="M4.5 22C4.5 19.8783 5.34285 17.8434 6.84315 16.3431C8.34344 14.8429 10.3783 14 12.5 14C14.6217 14 16.6566 14.8429 18.1569 16.3431C19.6571 17.8434 20.5 19.8783 20.5 22H18.5C18.5 20.4087 17.8679 18.8826 16.7426 17.7574C15.6174 16.6321 14.0913 16 12.5 16C10.9087 16 9.38258 16.6321 8.25736 17.7574C7.13214 18.8826 6.5 20.4087 6.5 22H4.5ZM12.5 13C9.185 13 6.5 10.315 6.5 7C6.5 3.685 9.185 1 12.5 1C15.815 1 18.5 3.685 18.5 7C18.5 10.315 15.815 13 12.5 13ZM12.5 11C14.71 11 16.5 9.21 16.5 7C16.5 4.79 14.71 3 12.5 3C10.29 3 8.5 4.79 8.5 7C8.5 9.21 10.29 11 12.5 11Z"
+                      fill="white"
+                    />
+                  </svg>
                 </Button>
-              </a>
+              </button>
             </div>
           </div>
         </section>

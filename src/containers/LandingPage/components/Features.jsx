@@ -3,9 +3,11 @@ import "../styles/Features.css";
 import { RiBookOpenFill } from "react-icons/ri";
 import { RiUploadCloud2Fill } from "react-icons/ri";
 import { RiFolder4Fill } from "react-icons/ri";
+import { NavLink } from "react-router-dom";
+import FeaturesCard from "./FeaturesCard";
 
 const Features = () => {
-  const [currentImage, setCurrentImage] = useState('');
+  const [currentImage, setCurrentImage] = useState("");
   const box1Ref = useRef(null);
   const box2Ref = useRef(null);
   const box3Ref = useRef(null);
@@ -16,18 +18,18 @@ const Features = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             if (entry.target === box1Ref.current) {
-              setCurrentImage('/images/item-1.png'); // Replace with the actual image URL
+              setCurrentImage("/images/item-1.png"); // Replace with the actual image URL
             } else if (entry.target === box2Ref.current) {
-              setCurrentImage('/images/item-2.png'); // Replace with the actual image URL
+              setCurrentImage("/images/item-2.png"); // Replace with the actual image URL
             } else if (entry.target === box3Ref.current) {
-              setCurrentImage('/images/item-3.png'); // Replace with the actual image URL
+              setCurrentImage("/images/item-3.png"); // Replace with the actual image URL
             }
           }
         });
       },
       {
         root: null, // Use the viewport as the root
-        rootMargin: '0px',
+        rootMargin: "0px",
         threshold: 0.8, // Trigger when at least 50% of the target is visible
       }
     );
@@ -45,134 +47,66 @@ const Features = () => {
   return (
     <div>
       <section
-        className="features-bg lg:py-20 py-10 text-white lg:min-h-[100vh] w-[100vw]"
+        className="features-bg lg:py-20 lg:px-[140px] px-4 py-10 text-white lg:min-h-[100vh] w-[100vw]"
         id="feature"
       >
-        <div className="flex flex-col gap-4 items-center justify-center lg:w-[55%] w-[80%] mx-auto ">
-          <span className="inline-flex items-center justify-center rounded-full bg-white lg:px-6 px-3 lg:py-1 text-slate-900">
-            <svg
-              className="h-5 w-5 text-primary"
-              viewBox="0 0 100 100"
-              xmlns="http://www.w3.org/2000/svg"
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-7 lg:gap-8">
+          <div className="lg:col-span-3 flex items-center justify-center">
+            <div class=" flex-col justify-center items-start lg:gap-14 gap-7 inline-flex">
+              <div class="flex-col justify-start items-start gap-6 flex">
+                <div class="flex-col justify-start items-start gap-3 flex">
+                  <div class="max-w-[450px] w-full text-white lg:text-5xl text-3xl font-semibold font-['Plus Jakarta Sans'] lg:leading-[57.60px]">
+                    Enjoy personalized eye care services made just for you
+                  </div>
+                  <div class="max-w-[433px] w-full text-[#d2dbfe] lg:text-[22px] text-[18px] font-medium font-['Plus Jakarta Sans'] lg:leading-relaxed">
+                    Our unique eye health offerings have features for anyone and
+                    everyone with an eye care needs.
+                  </div>
+                </div>
+              </div>
+              <NavLink
+                to="/reg/signup/individual"
+                className="w-full lg:w-fit px-6 py-3 rounded-lg border-2 border-[#d2dbfe] justify-center items-center gap-2.5 inline-flex hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
+              >
+                <div class="text-center text-white text-base font-medium font-['Plus Jakarta Sans'] leading-normal">
+                  Get Started
+                </div>
+              </NavLink>
+            </div>
+          </div>
+          <div className="lg:col-span-4 flex flex-col gap-10 mt-5 lg:mt-0">
+            <FeaturesCard
+              title="Educational Resources"
+              discription="Empower yourself with comprehensive eye health resources.
+                  Explore our library of articles, videos, and infographics that
+                  cover a wide range of topics, from preventive care to managing
+                  specific eye conditions."
             >
-              <circle cx="50" cy="50" r="20" className="fill-current" />
-            </svg>
-
-            <p className="whitespace-nowrap lg:text-[12px] text-[8px] tracking-tight">
-              Features
-            </p>
-          </span>
-          <h1 className="lg:mt-4 font-medium lg:text-[36px] text-[22px] text-center lg:tracking-tight">
-            We Offer A Variety of Services
-          </h1>
-          <p className="text-slate-300 text-center text-[16px] lg:tracking-tight">
-            Our unique eye health offerings have features for anyone and
-            everyone with an eye care needs.
-          </p>
-        </div>
-        <div className="lg:hidden flex flex-col overflow-y-hidden mt-10 justify-center items-center gap-5 text-[#6a6c78]">
-          <div>
-            <div class="card w-[296px] h-[280px] flex-shrink-0 border-[1px] hover:border-[#0231d9] border-[#0231d981] rounded-[8px] hover:text-white " ref={box1Ref}>
-              <div className="icon flex items-center justify-center flex-col w-full mt-20">
-                <RiBookOpenFill className="h-[48px] w-[48px]" />
-                <h2 className="mt-5 lg:text-[28px] text-[22px]">
-                  Educational Resources
-                </h2>
-              </div>
-              <div class="card-container px-8 mt-16">
-                <div className="text-[12px] text-[#d2dafe] lg:text-[16px] tracking-tight ">
-                  Through our platform you learn about eye health, conditions,
-                  and treatments with articles, videos, audios and one on one
-                  sessions.
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="card  w-[296px] h-[280px] flex-shrink-0 border-[1px] hover:border-[#0231d9] border-[#0231d981] rounded-[8px] hover:text-white" ref={box2Ref}>
-              <div className="icon flex items-center justify-center flex-col w-full mt-20">
-                <RiFolder4Fill className="h-[48px] w-[48px]" />
-                <h2 className=" mt-5 lg:text-[28px] text-[22px]">
-                  Eyecare Advisory
-                </h2>
-              </div>
-              <div class="card-container px-8 mt-16 flex flex-col gap-1">
-                <div className="text-[12px] text-[#d2dafe] lg:text-[16px] tracking-tight leading-tight">
-                  Connect with our eye care team online for personalised advice
-                  on vision concerns, pre-appointment questions, and post-care
-                  guidance.
-                </div>
-                <div className="text-[12px] text-[#d2dafe] lg:text-[16px] tracking-tight leading-tight">
-                  Additionally, gain access to a safe space to share your
-                  stories.
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="card w-[296px] h-[280px] flex-shrink-0 border-[1px] hover:border-[#0231d9] border-[#0231d981] rounded-[8px] hover:text-white" ref={box3Ref}>
-              <div className="icon flex items-center justify-center flex-col w-full mt-20">
-                <RiUploadCloud2Fill className="h-[48px] w-[48px]" />
-                <h2 className=" mt-5 lg:text-[28px] text-[22px]">
-                  Online Care
-                </h2>
-              </div>
-              <div class="card-container px-8 mt-16">
-                <div className="text-[12px] text-[#d2dafe] lg:text-[16px] tracking-tight leading-normal">
-                  To eliminate wait time, schedule virtual consultations for
-                  your individual needs. As a business, manage appointments, and
-                  access your eye health records - all in one place.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="hidden  lg:flex gap-20 lg:gap-5 lg:mt-28 mt-12 mx-auto lg:w-[80%] w-[80%] lg:justify-between min-h-44 flex-wrap lg:flex-nowrap justify-center">
-          <div class="card">
-            <div className="icon flex items-center justify-center flex-col w-full">
-              <RiBookOpenFill className="h-[67px] w-[67px]" />
-              <h2 className="mt-5 lg:text-[28px] text-[22px]">
-                Educational Resources
-              </h2>
-            </div>
-            <div class="card-container px-6">
-              <div className="text-sm text-gray-300 lg:text-[16px] tracking-tight leading-normal">
-                Through our platform you learn about eye health, conditions, and
-                treatments with articles, videos, audios and one on one
-                sessions.
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div className="icon flex items-center justify-center flex-col w-full">
-              <RiFolder4Fill className="h-[67px] w-[67px]" />
-              <h2 className=" mt-5 lg:text-[28px] text-[22px]">
-                Eyecare Advisory
-              </h2>
-            </div>
-            <div class="card-container px-6">
-              <div className="text-sm text-gray-300 lg:text-[16px] tracking-tight leading-normal">
-                Connect with our eye care team online for personalised advice on
-                vision concerns, pre-appointment questions, and post-care
-                guidance.
-              </div>
-              <div className="text-sm text-gray-300 lg:text-[16px] tracking-tight leading-normal">
-                Additionally, gain access to a safe space to share your stories.
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div className="icon flex items-center justify-center flex-col w-full">
-              <RiUploadCloud2Fill className="h-[67px] w-[67px]" />
-              <h2 className=" mt-5 lg:text-[28px] text-[22px]">Online Care</h2>
-            </div>
-            <div class="card-container px-6">
-              <div className="text-sm text-gray-300 lg:text-[16px] tracking-tight leading-normal">
-                To eliminate wait time, schedule virtual consultations for your
-                individual needs. As a business, manage appointments, and access
-                your eye health records - all in one place.
-              </div>
-            </div>
+              <RiBookOpenFill className="h-full w-full" />
+            </FeaturesCard>
+            <FeaturesCard
+              title="Eye Health Advisory"
+              discription="Receive personalized eye health advice from certified professionals. Our platform offers tailored recommendations based on your unique needs, ensuring you get the best guidance for maintaining optimal eye health."
+            >
+              <RiFolder4Fill className="h-full w-full" />
+            </FeaturesCard>
+            <FeaturesCard
+              title="Ask a VisionDR"
+              discription="Have questions or concerns about your eye health? Connect instantly with a qualified eye care specialist through our chat service. Get real-time answers and advice without the need for an in-person visit."
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="80"
+                height="80"
+                viewBox="0 0 80 80"
+                fill="none"
+              >
+                <path
+                  d="M21.516 63.3333L6.66602 75V13.3333C6.66602 12.4493 7.0172 11.6014 7.64233 10.9763C8.26745 10.3512 9.11529 10 9.99935 10H69.9994C70.8834 10 71.7313 10.3512 72.3564 10.9763C72.9815 11.6014 73.3327 12.4493 73.3327 13.3333V60C73.3327 60.8841 72.9815 61.7319 72.3564 62.357C71.7313 62.9821 70.8834 63.3333 69.9994 63.3333H21.516ZM23.3327 33.3333C23.3327 37.7536 25.0886 41.9928 28.2142 45.1184C31.3398 48.2441 35.5791 50 39.9994 50C44.4196 50 48.6589 48.2441 51.7845 45.1184C54.9101 41.9928 56.666 37.7536 56.666 33.3333H49.9994C49.9994 35.9855 48.9458 38.529 47.0704 40.4044C45.1951 42.2798 42.6515 43.3333 39.9994 43.3333C37.3472 43.3333 34.8036 42.2798 32.9283 40.4044C31.0529 38.529 29.9994 35.9855 29.9994 33.3333H23.3327Z"
+                  fill="white"
+                />
+              </svg>
+            </FeaturesCard>
           </div>
         </div>
       </section>

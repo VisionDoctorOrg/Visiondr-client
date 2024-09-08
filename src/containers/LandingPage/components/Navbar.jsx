@@ -158,6 +158,15 @@ const Navbar = () => {
                 <div className="mt-10 lg:mt-0 flex items-center py-3 lg:py-4 ps-px sm:px-3 ">
                   <a
                     className=" text-white hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all lg:text-[16px]"
+                    href="#ourservices"
+                    aria-current="page"
+                  >
+                    Our Services
+                  </a>
+                </div>
+                <div className="flex items-center py-3 lg:py-4 ps-px sm:px-3 ">
+                  <a
+                    className=" text-white hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all lg:text-[16px]"
                     href="#about"
                     aria-current="page"
                   >
@@ -167,30 +176,13 @@ const Navbar = () => {
                 <div className="flex items-center py-3 lg:py-4 ps-px sm:px-3 ">
                   <a
                     className=" text-white hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all lg:text-[16px]"
-                    href="#feature"
+                    href="#pricing"
                     aria-current="page"
                   >
-                    Features
+                    Pricing
                   </a>
                 </div>
-                <div className="flex items-center py-3 lg:py-4 ps-px sm:px-3 ">
-                  <a
-                    className=" text-white hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all lg:text-[16px]"
-                    href="#faq"
-                    aria-current="page"
-                  >
-                    FAQ
-                  </a>
-                </div>
-                <div className="flex items-center py-3 lg:py-4 ps-px sm:px-3 ">
-                  <a
-                    className=" text-white hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all lg:text-[16px]"
-                    href="#partners"
-                    aria-current="page"
-                  >
-                    Partners
-                  </a>
-                </div>
+               
                 <div className="flex items-center py-3 lg:py-4 ps-px sm:px-3 ">
                   <a
                     className=" text-white hover:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all lg:text-[16px]"
@@ -226,7 +218,7 @@ const Navbar = () => {
 
               <div>
                 <a
-                  className={`hidden mt-5 group lg:inline-flex items-center text-lg gap-x-2 py-2 px-3 bg-primary rounded-lg focus:outline-none border-2 border-primary transition-all duration-300 lg:text-[16px] tracking-tight ${
+                  className={`hidden mt-5 group lg:inline-flex items-center text-lg gap-x-2 py-2 px-6 bg-primary rounded-lg focus:outline-none border-2 border-primary transition-all duration-300 lg:text-[16px] tracking-tight ${
                     isExpanded ? "border-white text-white bg-transparent" : ""
                   }`}
                   href="#"
