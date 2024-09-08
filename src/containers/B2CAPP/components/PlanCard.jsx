@@ -1,9 +1,9 @@
 import React from "react";
 import { MdArrowOutward } from "react-icons/md";
 
-function PlanCard({ title, price, buttonText, features }) {
+function PlanCard({ title, price, buttonText, features, className }) {
   return (
-    <div class="md:h-[454px] h-fit px-6 py-5 bg-white rounded-lg border border-[#d2dbfe] flex-col justify-start items-center gap-10 inline-flex">
+    <div class={` ${className} md:h-[454px] h-fit px-6 py-5 bg-white rounded-lg border border-[#d2dbfe] flex-col justify-start items-center gap-10 inline-flex `}>
       <div class="flex-col justify-start items-center gap-10 flex px-2">
         <div class="text-[#404453] text-[22px] font-medium  leading-relaxed">
           {title}

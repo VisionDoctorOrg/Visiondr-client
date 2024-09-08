@@ -1,7 +1,7 @@
 import React from 'react';
 import QuestionInput from './QuestionInput';
 
-function FormCard({questions, title, tag, dataContext}) {
+function FormCard({questions, title, tag, dataContext, children}) {
   return (
     <form className="flex flex-col p-6 md:px-5 rounded-lg border border-violet-200 border-solid w-full md:max-w-full text-gray-950 max-md:px-5">
         <header className="flex flex-col w-full max-md:max-w-full">
@@ -15,6 +15,7 @@ function FormCard({questions, title, tag, dataContext}) {
           <QuestionInput key={q.id} question={q.question} id={q.id} tag={tag} dataContext={dataContext}/>
         ))}
       </div>
+      {children}
     </form>
   );
 }

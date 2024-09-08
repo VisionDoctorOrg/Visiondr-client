@@ -125,6 +125,10 @@ const Layout = () => {
     setUserIcon(true);
   }
 
+  const gotoProfile = () => {
+    navigate('/app/profile');
+  }
+
   return (
     <div>
       <header class="sticky top-0 inset-x-0 flex flex-wrap sm:justify-start sm:flex-nowrap z-[48] w-full bg-white text-sm py-2.5 sm:py-4 lg:ps-60">
@@ -167,13 +171,14 @@ const Layout = () => {
                 >
                   <div className="absolute top-2 right-2 p-1 rounded-full bg-red-500 blink-button"></div>
                 </IconButton>
-                <div className="flex gap-2" onMouseLeave={() => setUserIcon(false)}>
+                <div className="flex gap-2 cursor-pointer" onMouseLeave={() => setUserIcon(false)} onClick={gotoProfile}>
                 <IconButton
                   src="/icons/profile_pic.png"
                   alt="Profile"
                   className="w-10"
                   size="10"
                   onMouseEnter={handleOnMouseEnter}
+                  
                 />
                 <div className={`${userIcon? "xl:w-[120px] w-0": "w-0"} transition-all duration-500 overflow-hidden text-neutral-950 text-left`}>
                   <p className="text-base font-medium tracking-tight">Chibundu Israel</p>

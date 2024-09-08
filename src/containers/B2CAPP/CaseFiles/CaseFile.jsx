@@ -1,17 +1,16 @@
 import React from "react";
 import QuestionSection from "./QuestionSection";
 import FileUploadSection from "./FileUploadSection";
-import SubmitButton from "./SubmitButton";
+import SubmitButton from "../components/SubmitButton";
 import DataProvider from "./DataContext";
 import { useNavigate } from "react-router-dom";
-  
 
 function CaseFile() {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
     navigate("/app/recommendation");
-  }
+  };
   return (
     <DataProvider>
       <main className="flex flex-col text-base md:pl-2 mb-8 mt-16 md:mt-8">
@@ -27,9 +26,13 @@ function CaseFile() {
           Please answer the following questions as accurately as possible.
         </p>
         <section className="flex flex-col p-6 mt-3 max-w-full rounded-lg border border-neutral-200 border-solid w-[860px] max-md:px-5">
-          <QuestionSection/>
+          <QuestionSection />
           <FileUploadSection />
-          <SubmitButton className="w-[140px] mt-10" label="Submit" onClick={handleSubmit}/>
+          <SubmitButton
+            className="w-[140px] mt-10"
+            label="Submit"
+            onClick={handleSubmit}
+          />
         </section>
       </main>
     </DataProvider>
