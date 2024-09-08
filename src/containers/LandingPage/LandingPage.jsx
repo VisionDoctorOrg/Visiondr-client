@@ -8,12 +8,14 @@ import Sponsors from "./components/Sponsors";
 import NewsLetter from "./components/NewsLetter";
 import Footer from "./components/Footer";
 import SlideshowBackground from "./components/SlideshowBackground";
+import Services from "./components/Services";
 
 const LandingPage = () => {
   return (
     <div className="w-[100%]">
       <Hero />
       <Features />
+      <Services />
       <About />
       <FAQ />
       <Reviews />

@@ -7,52 +7,15 @@ import { NavLink } from "react-router-dom";
 import FeaturesCard from "./FeaturesCard";
 
 const Features = () => {
-  const [currentImage, setCurrentImage] = useState("");
-  const box1Ref = useRef(null);
-  const box2Ref = useRef(null);
-  const box3Ref = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (entry.target === box1Ref.current) {
-              setCurrentImage("/images/item-1.png"); // Replace with the actual image URL
-            } else if (entry.target === box2Ref.current) {
-              setCurrentImage("/images/item-2.png"); // Replace with the actual image URL
-            } else if (entry.target === box3Ref.current) {
-              setCurrentImage("/images/item-3.png"); // Replace with the actual image URL
-            }
-          }
-        });
-      },
-      {
-        root: null, // Use the viewport as the root
-        rootMargin: "0px",
-        threshold: 0.8, // Trigger when at least 50% of the target is visible
-      }
-    );
-
-    if (box1Ref.current) observer.observe(box1Ref.current);
-    if (box2Ref.current) observer.observe(box2Ref.current);
-    if (box3Ref.current) observer.observe(box3Ref.current);
-
-    return () => {
-      if (box1Ref.current) observer.unobserve(box1Ref.current);
-      if (box2Ref.current) observer.unobserve(box2Ref.current);
-      if (box3Ref.current) observer.unobserve(box3Ref.current);
-    };
-  }, []);
   return (
     <div>
       <section
-        className="features-bg lg:py-20 lg:px-[140px] px-4 py-10 text-white lg:min-h-[100vh] w-[100vw]"
+        className="features-bg lg:py-20 lg:px-[140px] px-8 py-10 text-white lg:min-h-[100vh] w-[100vw] flex items-center"
         id="feature"
       >
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-7 lg:gap-8">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-7 lg:gap-12">
           <div className="lg:col-span-3 flex items-center justify-center">
-            <div class=" flex-col justify-center items-start lg:gap-14 gap-7 inline-flex">
+            <div class=" flex-col justify-center items-start lg:gap-14 gap-7 inline-flex text-center lg:text-left">
               <div class="flex-col justify-start items-start gap-6 flex">
                 <div class="flex-col justify-start items-start gap-3 flex">
                   <div class="max-w-[450px] w-full text-white lg:text-5xl text-3xl font-semibold font-['Plus Jakarta Sans'] lg:leading-[57.60px]">
