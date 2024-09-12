@@ -24,7 +24,7 @@ const CurrentPlanBasic = ({dataContext}) => {
                 ₦ 0 / month
               </div>
             </div>
-            <div class="w-[632px] text-gray-950 text-sm font-normal font-['Plus Jakarta Sans'] leading-[16.80px]">
+            <div class=" text-gray-950 text-sm font-normal font-['Plus Jakarta Sans'] leading-[16.80px]">
               Access to all personalized eye health resources and community.
             </div>
           </div>

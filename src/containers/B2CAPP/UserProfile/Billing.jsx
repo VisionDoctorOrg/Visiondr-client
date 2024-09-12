@@ -28,7 +28,7 @@ const Billing = ({ dataContext }) => {
         </h2>
       </header>
       <div className="flex flex-col mt-5 w-full text-base font-medium max-w-[812px] xl:max-w-full max-md:max-w-full">
-        <div className="flex 2xl:gap-6 xl:gap-4 gap-4 items-start mt-4 leading-tight max-md:max-w-full justify-center md:justify-normal">
+        <div className="flex 2xl:gap-6 xl:gap-4 gap-4 items-start mt-4 leading-tight max-md:max-w-full justify-center md:justify-normal flex-wrap">
           <SubscriptionPlanCard
             title="My Plan"
             discription="View All Information"

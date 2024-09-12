@@ -9,7 +9,7 @@ const Layout = () => {
     <DataProvider>
       <div className="md:pr-6">
         <Header />
-        <div className="flex gap-5 py-4 flex-col md:flex-row md:pt-10 pt-20">
+        <div className="flex gap-5 py-4 flex-col md:flex-row md:pt-10 px-4 md:px-0">
           <Sidebar />
           <Routing />
         </div>

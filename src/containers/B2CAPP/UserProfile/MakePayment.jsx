@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CardInput from "./CardInput";
 import FormInput from "./FormInput";
 import CountrySelect from "./CountrySelect";
@@ -9,7 +9,9 @@ import { useNavigate } from "react-router-dom";
 
 const MakePayment = ({dataContext}) => {
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false)
     const requestBackend = async () => {
+      setIsLoading(true)
         const plan = "PLN_fti42oat316rpp5";
         let amount = "500";
         if(dataContext.billing.chosenPlan === "starter"){
@@ -39,7 +41,7 @@ const MakePayment = ({dataContext}) => {
       };
     
       // Integrating with useMutation
-      const { mutateAsync: submitFormMutation, isLoading } = useMutation({
+      const { mutateAsync: submitFormMutation } = useMutation({
         mutationFn: requestBackend,
         onSuccess: () => {
           console.log("Success")
@@ -51,6 +53,7 @@ const MakePayment = ({dataContext}) => {
     
       // Handle form submission
       const handleSubmit = async () => {
+        setIsLoading(false);
           try {
             const response = await submitFormMutation();
             window.location.href = response.data.authorization_url;
@@ -67,16 +70,16 @@ const MakePayment = ({dataContext}) => {
         Make Payment
       </div>
       <div class="mb-5 flex-col justify-start items-start gap-6 inline-flex">
-        <div class="flex-col justify-start items-start gap-3 flex">
-          <div class="w-[400px] justify-between items-start inline-flex">
+        <div class="flex-col justify-start items-start gap-3 flex w-full">
+          <div class="md:w-[400px] w-full justify-between items-start inline-flex">
             <div class="text-[#404453] text-sm font-normal font-['Plus Jakarta Sans'] leading-[16.80px]">
-              {capitalize(dataContext.billing.chosenPlan)}
+              {capitalize(dataContext.billing.chosenPlan ?? "starter")}
             </div>
             <div class="text-gray-950 text-sm font-normal font-['Plus Jakarta Sans'] leading-[16.80px]">
-              ₦ {dataContext.billing.chosenPlan === "starter"? "2,000": "5,000"}
+              ₦ {dataContext.billing.chosenPlan === "family"? "5,000": "2,000"}
             </div>
           </div>
-          <div class="w-[400px] justify-between items-start inline-flex">
+          <div class="md:w-[400px] w-full justify-between items-start inline-flex">
             <div class="text-[#404453] text-sm font-normal font-['Plus Jakarta Sans'] leading-[16.80px]">
               Discount
             </div>
@@ -85,17 +88,17 @@ const MakePayment = ({dataContext}) => {
             </div>
           </div>
         </div>
-        <div class="flex-col justify-start items-start gap-3 flex">
+        <div class="flex-col justify-start items-start gap-3 flex w-full">
           <div class="self-stretch h-[0px] border border-[#8c8f98]/10"></div>
-          <div class="w-[400px] justify-between items-start inline-flex">
+          <div class="md:w-[400px] w-full justify-between items-start inline-flex">
             <div class="text-gray-950 text-base font-semibold font-['Plus Jakarta Sans'] leading-normal">
               Total
             </div>
             <div class="text-gray-950 text-[22px] font-semibold font-['Plus Jakarta Sans'] leading-relaxed">
-              ₦ {dataContext.billing.chosenPlan === "starter"? "2,000": "5,000"}
+              ₦ {dataContext.billing.chosenPlan === "family"? "5,000": "2,000"}
             </div>
           </div>
-          <div class="w-[182px] text-[#404453] text-sm font-normal font-['Plus Jakarta Sans'] leading-[16.80px]">
+          <div class="md:w-[182px] text-[#404453] text-sm font-normal font-['Plus Jakarta Sans'] leading-[16.80px]">
             Due on 8 September 2024, then every month
           </div>
         </div>
@@ -132,7 +135,7 @@ const MakePayment = ({dataContext}) => {
           imageUrl="https://cdn.builder.io/api/v1/image/assets/TEMP/bb08a07ce30c1ef2247031a4879ae53640ee8be4c70d69df92af0834f664395b?placeholderIfAbsent=true&apiKey=06e54cbb0c8d4ebdbfa1852341f08638"
         />
       </form> */}
-      <SubmitButton label="Make Payment" onClick={handleSubmit} />
+      <SubmitButton label={isLoading? "loading" :"Make Payment"} onClick={handleSubmit} />
     </div>
   );
 };

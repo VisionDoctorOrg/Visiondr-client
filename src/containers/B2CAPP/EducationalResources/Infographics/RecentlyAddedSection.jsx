@@ -5,9 +5,20 @@ import InfographicsCard from "./InfographicsCard";
 
 function RecentlyAddedSection({ dataContext }) {
   const items = dataContext.data;
+  const [selected, setSelected] = React.useState("Cornea");
 
   return (
-    <div className="flex flex-col px-4 md:px-0 md:items-start">
+    <div className="flex flex-col px-4 md:px-0 md:items-start md:pr-4">
+      <div class="h-14 p-4 rounded-lg border border-[#d2dbfe] justify-start items-start gap-10 inline-flex w-full mb-2 md:mb-4">
+        <div className="w-full h-6 text-center justify-between gap-5 items-center flex">
+          
+          {dataContext.categories.map((category, index) => (
+            <div key={index} className={`w-fit  text-sm font-medium leading-[16.80px] pb-1 border-b-2 cursor-pointer ${selected == category? "border-[#1749fc] text-[#1749fc]": "border-b-0 text-gray-950"} ` } onClick={(() => setSelected(category))}>
+              {category}
+            </div>
+          ))}
+        </div>
+      </div>
       <SelectPage placeholder="Recently Added" />
       <CardLayout>
         {items.map((item, index) => (

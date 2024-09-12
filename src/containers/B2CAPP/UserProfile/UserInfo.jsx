@@ -9,7 +9,7 @@ function UserInfo({ imageSrc, name, age, plan }) {
         alt={`Profile picture of ${name}`}
         className="object-contain shrink-0 aspect-square w-[200px]"
       /> */}
-       <img class="w-[200px] h-[200px] rounded-full border-4 border-[#1749fc]" src={imageSrc} />
+       <img class="md:w-[200px] md:h-[200px] w-[100px] rounded-full border-4 border-[#1749fc]" src={imageSrc} />
       <div className="flex flex-col w-[123px]">
         <h2 className="text-2xl font-semibold leading-tight opacity-[var(--sds-size-stroke-border)] text-gray-950">
           {name}

@@ -43,7 +43,7 @@ const ChangePlan = ({ dataContext }) => {
       <div class=" text-gray-950 text-base font-medium font-['Plus Jakarta Sans'] leading-normal">
         Choose Plan
       </div>{" "}
-      <div class="w-full flex-col justify-start items-end gap-4 inline-flex">
+      <div class="w-full flex-col justify-start md:items-end gap-4 inline-flex mt-4 md:mt-0">
         <div class="justify-start items-start gap-6 inline-flex">
           <div class="justify-center items-start gap-3 flex">
             <div class="w-6 h-6 justify-center items-center flex">
@@ -89,7 +89,7 @@ const ChangePlan = ({ dataContext }) => {
           </div>
         </div>
       </div>
-      <div className="flex 2xl:gap-6 xl:gap-4 gap-4 items-start mt-4 leading-tight max-md:max-w-full md:justify-normal">
+      <div className="flex 2xl:gap-6 xl:gap-4 gap-4 items-start mt-4 leading-tight max-md:max-w-full md:justify-normal flex-wrap md:flex-nowrap">
         {plans.map((plan, index) => (
           <PlanCard
             key={index}

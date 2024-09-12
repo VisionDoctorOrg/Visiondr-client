@@ -9,16 +9,16 @@ const Security = () => {
         </h2>
       </header>
       <div className="flex flex-col mt-5 w-full text-base font-medium max-w-[812px] max-md:max-w-full">
-        <div class=" h-[202px] p-6 border border-[#d2dbfe] flex-col justify-start items-start gap-6 inline-flex">
-          <div class="w-full h-[45px] flex-col justify-start items-start gap-1 flex">
+        <div class=" md:h-[202px] p-6 border border-[#d2dbfe] flex-col justify-start items-start gap-6 inline-flex">
+          <div class="w-full md:h-[45px] flex-col justify-start items-start gap-1 flex">
             <div class="text-center text-[#404453] text-sm font-medium font-['Plus Jakarta Sans'] leading-[16.80px]">
               Password
             </div>
-            <div class="self-stretch justify-between items-center inline-flex">
-              <div class="text-center text-[#8c8f98] text-sm font-normal font-['Plus Jakarta Sans'] leading-[16.80px]">
+            <div class="self-stretch justify-between items-center inline-flex gap-2">
+              <div class=" text-[#8c8f98] text-sm font-normal font-['Plus Jakarta Sans'] leading-[16.80px]">
                 Set a unique password to protect your account.
               </div>
-              <div class="text-center text-[#1749fc] text-base font-semibold font-['Plus Jakarta Sans'] leading-normal">
+              <div class=" text-[#1749fc] text-base font-semibold font-['Plus Jakarta Sans'] leading-normal">
                 Change Password
               </div>
             </div>
