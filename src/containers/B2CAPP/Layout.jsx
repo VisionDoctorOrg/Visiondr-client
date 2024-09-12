@@ -278,9 +278,9 @@ const Layout = () => {
               path="/app/dashboard"
             />
           </header>
-          <SidebarSection title="Case files" items={caseFiles} />
-          <SidebarSection title="System checker" items={systemChecker} />
           <SidebarSection title="Resources" items={resources} />
+          <SidebarSection title="System checker" items={systemChecker} />
+          <SidebarSection title="Case files" items={caseFiles} />
         </div>
         <div className="flex flex-col items-start mt-14 w-full text-sm text-center text-gray-700 mb-4">
           {bottomItems.map((item, index) => (

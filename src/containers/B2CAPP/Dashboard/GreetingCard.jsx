@@ -17,7 +17,7 @@ function GreetingCard() {
         </div>
         <div class="md:w-[300px] h-[60px] mt-10 md:mt-0 p-3 rounded-lg border-2 border-[#d2dbfe] justify-center items-center gap-2.5 inline-flex hover:bg-primary duration-300 transition-all hover:border-primary">
           <div class="text-center text-white text-base font-medium  leading-normal">
-            Ask a VisionDr
+            Ask a VisionDR
           </div>
           <div class="w-6 h-6 justify-center items-center flex">
           <MdArrowOutward className="w-6 h-6 relative text-white" />

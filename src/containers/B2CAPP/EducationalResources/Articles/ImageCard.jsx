@@ -18,8 +18,8 @@ function ImageCard({
     });
   };
   return (
-    <div className="w-[271px] h-[209px] pb-3 mb-8 bg-white flex-col justify-start items-start gap-3 inline-flex">
-      <div className="h-20 pl-[201px] relative pr-1 pt-[52px] pb-1 bg-gradient-to-r from-black to-black rounded-bl rounded-br shadow justify-end items-center inline-flex">
+    <div className="md:max-w-[271px] md:w-[250px] h-fit pb-3 mb-8 bg-white flex-col justify-start items-start gap-3 inline-flex">
+      <div className="h-20 w-full relative pr-1 pt-[52px] pb-1 bg-gradient-to-r from-black to-black rounded-bl rounded-br shadow justify-end items-center inline-flex">
         <img
           loading="lazy"
           src={imageSrc}

@@ -1,57 +1,59 @@
 import * as React from "react";
-import ImageCard from "./ImageCard";
 import CardLayout from "../../components/CardLayout";
 import SelectPage from "./SelectPage";
+import VideoCard from "./VideoCard";
 
-function RecentlyAddedSection({ dataContext }) {
+function HistorySection({ dataContext }) {
   const items = dataContext.data;
 
   return (
-    <div className="flex flex-col md:items-start px-4 md:px-0">
-      <SelectPage placeholder="Recently Added" />
+    <div className="flex flex-col px-4 md:px-0 md:items-start">
+      <SelectPage placeholder="History" />
+      <div class="text-gray-950 text-base font-medium mt-10 leading-normal">
+        Today
+      </div>
       <CardLayout>
         {items.map((item, index) => (
-          <ImageCard
+          <VideoCard
             key={index}
             index={index}
             imageSrc={item.imageSrc}
             imageAlt={item.imageAlt}
-            timeSrc={item.timeSrc}
-            timeAlt={item.timeAlt}
-            timeText={item.timeText}
+            date={item.date}
             title={item.title}
-            description={item.description}
+            id={item.id}
           />
         ))}
       </CardLayout>
       <div class="text-gray-950 text-base font-medium mt-10 leading-normal">
-        Recommended for You
+        Yesterday
       </div>
       <CardLayout>
         {items.map((item, index) => (
-          <ImageCard
+          <VideoCard
             key={index}
             index={index}
             imageSrc={item.imageSrc}
             imageAlt={item.imageAlt}
-            timeSrc={item.timeSrc}
-            timeAlt={item.timeAlt}
-            timeText={item.timeText}
+            date={item.date}
             title={item.title}
-            description={item.description}
+            id={item.id}
           />
         ))}
+      </CardLayout>
+      <div class="text-gray-950 text-base font-medium mt-10 leading-normal">
+        September 2
+      </div>
+      <CardLayout>
         {items.map((item, index) => (
-          <ImageCard
+          <VideoCard
             key={index}
             index={index}
             imageSrc={item.imageSrc}
             imageAlt={item.imageAlt}
-            timeSrc={item.timeSrc}
-            timeAlt={item.timeAlt}
-            timeText={item.timeText}
+            date={item.date}
             title={item.title}
-            description={item.description}
+            id={item.id}
           />
         ))}
       </CardLayout>
@@ -59,4 +61,4 @@ function RecentlyAddedSection({ dataContext }) {
   );
 }
 
-export default RecentlyAddedSection;
+export default HistorySection;

@@ -10,6 +10,8 @@ import Articles from "./EducationalResources/Articles/Articles";
 import Logout from "./Logout";
 import Recommendation from "./CaseFiles/Recommendation";
 import Layout from "./UserProfile/Layout";
+import Videos from "./EducationalResources/Videos/Videos";
+import Infographics from "./EducationalResources/Infographics/Infographics";
 
 const Routing = () => {
   return (
@@ -28,6 +30,8 @@ const Routing = () => {
         <Route path="recommendation" element={<Recommendation />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/articles/*" element={<Articles />} />
+        <Route path="/videos/*" element={<Videos />} />
+        <Route path="/infographics/*" element={<Infographics />} />
         <Route path="/profile/*" element={<Layout />} />
       </Routes>
     </div>

@@ -1,22 +1,22 @@
 import React, { useEffect } from "react";
-import CardLayout from "./CardLayout";
+import CardLayout from "../../components/CardLayout";
 import ImageCard from "./ImageCard";
 import { useParams } from "react-router-dom";
 
 const ArticlePage = ({ dataContext }) => {
   const items = dataContext.data;
-  const {index} = useParams();
+  const { index } = useParams();
   const item = items[index];
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth' // For smooth scrolling
+      behavior: "smooth", // For smooth scrolling
     });
   };
 
   useEffect(() => {
     scrollToTop();
-  }, [])
+  }, []);
 
   return (
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-7 lg:gap-6 md:px-2 md:pr-4">

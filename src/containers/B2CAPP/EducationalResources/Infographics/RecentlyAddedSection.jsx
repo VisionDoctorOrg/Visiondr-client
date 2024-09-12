@@ -1,26 +1,22 @@
 import * as React from "react";
-import ImageCard from "./ImageCard";
 import CardLayout from "../../components/CardLayout";
 import SelectPage from "./SelectPage";
+import InfographicsCard from "./InfographicsCard";
 
 function RecentlyAddedSection({ dataContext }) {
   const items = dataContext.data;
 
   return (
-    <div className="flex flex-col md:items-start px-4 md:px-0">
+    <div className="flex flex-col px-4 md:px-0 md:items-start">
       <SelectPage placeholder="Recently Added" />
       <CardLayout>
         {items.map((item, index) => (
-          <ImageCard
+          <InfographicsCard
             key={index}
             index={index}
             imageSrc={item.imageSrc}
             imageAlt={item.imageAlt}
-            timeSrc={item.timeSrc}
-            timeAlt={item.timeAlt}
-            timeText={item.timeText}
             title={item.title}
-            description={item.description}
           />
         ))}
       </CardLayout>
@@ -29,29 +25,12 @@ function RecentlyAddedSection({ dataContext }) {
       </div>
       <CardLayout>
         {items.map((item, index) => (
-          <ImageCard
+          <InfographicsCard
             key={index}
             index={index}
             imageSrc={item.imageSrc}
             imageAlt={item.imageAlt}
-            timeSrc={item.timeSrc}
-            timeAlt={item.timeAlt}
-            timeText={item.timeText}
             title={item.title}
-            description={item.description}
-          />
-        ))}
-        {items.map((item, index) => (
-          <ImageCard
-            key={index}
-            index={index}
-            imageSrc={item.imageSrc}
-            imageAlt={item.imageAlt}
-            timeSrc={item.timeSrc}
-            timeAlt={item.timeAlt}
-            timeText={item.timeText}
-            title={item.title}
-            description={item.description}
           />
         ))}
       </CardLayout>
