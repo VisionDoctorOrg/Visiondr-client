@@ -160,7 +160,7 @@ const Layout = () => {
 
           <div class="w-full flex items-center justify-end ms-auto sm:justify-between sm:gap-x-3 sm:order-3">
             <main className="flex flex-wrap xl:gap-10 lg:justify-between justify-end items-center w-full pl-1">
-              <WelcomeHeader name="Henry" />
+              <WelcomeHeader name="Chibundu Israel" />
               <section className="flex justify-end gap-6 items-center self-stretch py-2 pr-3 pl-3 my-auto text-sm leading-tight text-center whitespace-nowrap bg-[#D2DBFE33] bg-opacity-20 md:min-w-[240px] md:max-w-full rounded-[32px] text-neutral-400  max-md:max-w-full ">
                 <SearchBar />
                 <IconButton
@@ -279,7 +279,7 @@ const Layout = () => {
             />
           </header>
           <SidebarSection title="Resources" items={resources} />
-          <SidebarSection title="System checker" items={systemChecker} />
+          <SidebarSection title="Eye Health checker" items={systemChecker} />
           <SidebarSection title="Case files" items={caseFiles} />
         </div>
         <div className="flex flex-col items-start mt-14 w-full text-sm text-center text-gray-700 mb-4">

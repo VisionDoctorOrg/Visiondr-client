@@ -7,7 +7,7 @@ const Header = () => {
     <main className="flex flex-wrap gap-10 justify-between items-end px-4 md:px-0 mt-20">
       <UserInfo
         imageSrc="/images/profile_img.png"
-        name="John Doe"
+        name="Chibundu Israel"
         age={35}
         plan="Basic"
       />

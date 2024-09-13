@@ -12,7 +12,7 @@ const Billing = ({ dataContext }) => {
         if (dataContext.billing.type === "basic") {
           return <CurrentPlanBasic dataContext={dataContext}/>;
         } else {
-          return <CurrentPlan />;
+          return <CurrentPlan dataContext={dataContext}/>;
         }
       case "changePlan":
         return <ChangePlan dataContext={dataContext}/>;

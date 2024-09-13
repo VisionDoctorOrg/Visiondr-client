@@ -23,7 +23,7 @@ const ChangePlan = ({ dataContext }) => {
         "Access to System Checker for 1",
         "Access to personalized eye health resources",
       ],
-      type: "starter",
+      type: "Starter",
     },
     {
       title: "Family",
@@ -35,7 +35,7 @@ const ChangePlan = ({ dataContext }) => {
         "Access to System Checker for 4",
         "Access to personalized eye health resources",
       ],
-      type: "family",
+      type: "Family",
     },
   ];
   return (

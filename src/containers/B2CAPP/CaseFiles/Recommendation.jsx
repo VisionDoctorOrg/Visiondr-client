@@ -4,7 +4,7 @@ import Report from "./Report";
 
 const Recommendation = () => {
   const userInfo = [
-    { label: "Name:", value: "John Doe" },
+    { label: "Name:", value: "Chibundu Israel" },
     { label: "Age:", value: "35" },
     { label: "Gender:", value: "Male" },
   ];

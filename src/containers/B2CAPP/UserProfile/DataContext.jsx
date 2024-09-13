@@ -55,7 +55,10 @@ const DataProvider = ({ children }) => {
   });
   const [billing, setBilling] = useState({
     tab: "changePlan",
-    type: "basic",
+    type: userInfo.subscriptions.length > 0 ? userInfo.subscriptions[0].plan : "basic",
+    status: userInfo.subscriptions.length > 0 ? userInfo.subscriptions[0].status : "",
+    subscriptionId: userInfo.subscriptions.length > 0 ? userInfo.subscriptions[0].subscriptionCode : "",
+    nextPaymentDate: userInfo.subscriptions.length > 0 ? userInfo.subscriptions[0].nextPaymentDate : "",
     choosenPlan: "starter",
     amount: "200",
   })

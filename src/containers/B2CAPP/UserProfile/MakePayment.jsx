@@ -12,10 +12,12 @@ const MakePayment = ({dataContext}) => {
     const [isLoading, setIsLoading] = useState(false)
     const requestBackend = async () => {
       setIsLoading(true)
-        const plan = "PLN_fti42oat316rpp5";
+        let plan = "PLN_0ektrhm9lf8ap6z";
         let amount = "500";
-        if(dataContext.billing.chosenPlan === "starter"){
+        if(dataContext.billing.chosenPlan === "Starter"){
             amount = "200";
+        }else{
+          plan = "PLN_fti42oat316rpp5";
         }
         const data = JSON.stringify({ plan, amount });
         console.log(data);
@@ -73,10 +75,10 @@ const MakePayment = ({dataContext}) => {
         <div class="flex-col justify-start items-start gap-3 flex w-full">
           <div class="md:w-[400px] w-full justify-between items-start inline-flex">
             <div class="text-[#404453] text-sm font-normal font-['Plus Jakarta Sans'] leading-[16.80px]">
-              {capitalize(dataContext.billing.chosenPlan ?? "starter")}
+              {capitalize(dataContext.billing.chosenPlan ?? "Starter")}
             </div>
             <div class="text-gray-950 text-sm font-normal font-['Plus Jakarta Sans'] leading-[16.80px]">
-              ₦ {dataContext.billing.chosenPlan === "family"? "5,000": "2,000"}
+              ₦ {dataContext.billing.chosenPlan === "Family"? "5,000": "2,000"}
             </div>
           </div>
           <div class="md:w-[400px] w-full justify-between items-start inline-flex">
@@ -95,7 +97,7 @@ const MakePayment = ({dataContext}) => {
               Total
             </div>
             <div class="text-gray-950 text-[22px] font-semibold font-['Plus Jakarta Sans'] leading-relaxed">
-              ₦ {dataContext.billing.chosenPlan === "family"? "5,000": "2,000"}
+              ₦ {dataContext.billing.chosenPlan === "Family"? "5,000": "2,000"}
             </div>
           </div>
           <div class="md:w-[182px] text-[#404453] text-sm font-normal font-['Plus Jakarta Sans'] leading-[16.80px]">

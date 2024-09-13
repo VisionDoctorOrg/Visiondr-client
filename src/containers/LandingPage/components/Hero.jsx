@@ -56,12 +56,7 @@ const Hero = () => {
   }, []);
 
   const handleAskVisionDR = () => {
-    if(localStorage.getItem("user")) {
-      navigate("/app/profile/billing");
-    }
-    else{
-      navigate("/auth/signin/individual");
-    }
+    navigate("/pricing");
   }
 
   return (
