@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import UserInfo from "./UserInfo";
 import LogoutButton from "./Logout";
+import { DataContext } from "./DataContext";
 
 const Header = () => {
+  const dataContext = useContext(DataContext);
   return (
     <main className="flex flex-wrap gap-10 justify-between items-end px-4 md:px-0 mt-20">
       <UserInfo
-        imageSrc="/images/profile_img.png"
+        imageSrc="/icons/profile_pic.png"
         name="Chibundu Israel"
         age={35}
         plan="Basic"
+        dataContext={dataContext}
       />
       <LogoutButton />
     </main>

@@ -52,6 +52,7 @@ const DataProvider = ({ children }) => {
   const [data, setData] = useState({
     personalInformation: personalInfo,
     additionalInformation: additionalInformation,
+    uploadedFile : null,
   });
   const [billing, setBilling] = useState({
     tab: "changePlan",

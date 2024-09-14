@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Layout.css";
 import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
 import { IoSettingsOutline } from "react-icons/io5";
@@ -8,6 +8,7 @@ import SidebarSection from "./SidebarSection";
 import WelcomeHeader from "./WelcomeHeader";
 import SearchBar from "./SearchBar";
 import IconButton from "./IconButton";
+import Onboarding from "./Onboarding";
 
 const Layout = () => {
   const caseFiles = [
@@ -129,6 +130,24 @@ const Layout = () => {
     navigate('/app/profile');
   }
 
+  const sidebarRef = useRef(null);
+  const scrollToBottom = () => {
+    if (sidebarRef.current) {
+      sidebarRef.current.scrollTop = sidebarRef.current.scrollHeight;
+    }
+  };
+
+  const [showOnboarding, setShowOnboarding] = useState(false);
+
+  useEffect(() => {
+    if(window.innerWidth > 768){
+      if(!localStorage.getItem('onboarding')){
+        setShowOnboarding(true);
+      }
+    }
+  }, [])
+
+
   return (
     <div>
       <header class="sticky top-0 inset-x-0 flex flex-wrap sm:justify-start sm:flex-nowrap z-[48] w-full bg-white text-sm py-2.5 sm:py-4 lg:ps-60">
@@ -248,8 +267,10 @@ const Layout = () => {
 
       <div
         id="application-sidebar"
+        ref={sidebarRef}
         class="hs-overlay [--auto-close:lg] hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform hidden fixed overflow-y-auto inset-y-0 start-0 z-[50] pt-10 pl-3 leading-tight bg-white border-r border-neutral-400 border-opacity-20 w-[230px] lg:block lg:translate-x-0 lg:end-auto lg:bottom-0"
       >
+        {showOnboarding && <Onboarding scrollToBottom={scrollToBottom}/>}
         <div className="flex flex-col px-3 pb-10 w-full">
           <header className="flex flex-col w-full text-center">
             <NavLink to="/" className="flex gap-2 justify-center items-center self-start px-1 py-1 text-base font-semibold min-h-[40px] text-gray-950">
@@ -278,9 +299,9 @@ const Layout = () => {
               path="/app/dashboard"
             />
           </header>
-          <SidebarSection title="Resources" items={resources} />
+          <SidebarSection title="Educational Resources" items={resources} />
           <SidebarSection title="Eye Health checker" items={systemChecker} />
-          <SidebarSection title="Case files" items={caseFiles} />
+          <SidebarSection title="Case Files" items={caseFiles} />
         </div>
         <div className="flex flex-col items-start mt-14 w-full text-sm text-center text-gray-700 mb-4">
           {bottomItems.map((item, index) => (
@@ -293,6 +314,7 @@ const Layout = () => {
             />
           ))}
         </div>
+        
       </div>
 
       <div class="w-full lg:ps-60 mt-10 md:mt-0">
