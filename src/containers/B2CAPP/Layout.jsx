@@ -155,25 +155,10 @@ const Layout = () => {
           class="flex basis-full items-center w-full mx-auto pr-4 sm:pr-6 sm:pt-5"
           aria-label="Global"
         >
-          <div class="me-5 lg:me-0 lg:hidden ml-4">
-            <NavLink to="/" className="h-10 p-1 justify-center items-center gap-2 inline-flex">
-              <svg
-                width="31"
-                height="36"
-                viewBox="0 0 31 36"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className=""
-              >
-                <path
-                  d="M24.9298 0.833374L20.2931 5.05504C22.4516 5.70702 24.4383 6.83016 26.1098 8.34337C31.9631 13.6767 31.9631 22.3234 26.1098 27.6567C21.7898 31.59 15.1131 34.0934 6.08314 35.1667L10.7198 30.945C8.56138 30.2931 6.57468 29.1699 4.90313 27.6567C-0.950198 22.3234 -0.985198 13.7084 4.90313 8.34337C9.22313 4.41004 15.9015 1.90671 24.9315 0.833374H24.9298ZM15.5065 8.00004C9.06313 8.00004 3.8398 12.4767 3.8398 18C3.8398 23.5234 9.06313 28 15.5065 28C21.9498 28 27.1731 23.5234 27.1731 18C27.1731 12.4767 21.9498 8.00004 15.5065 8.00004ZM15.5065 11.8334C19.1898 11.8334 22.1731 14.595 22.1731 18C22.1731 21.405 19.1898 24.1667 15.5065 24.1667C11.8231 24.1667 8.8398 21.405 8.8398 18C8.8398 14.595 11.8231 11.8334 15.5065 11.8334ZM15.5065 15.1667C13.6098 15.1667 12.1731 16.495 12.1731 18C12.1731 19.505 13.6098 20.8334 15.5065 20.8334C17.4031 20.8334 18.8398 19.505 18.8398 18C18.8398 16.495 17.4031 15.1667 15.5065 15.1667Z"
-                  fill="black"
-                />
-              </svg>
-              <div class="text-center text-gray-950 text-base font-semibold  leading-tight ">
-                {" "}
-                VisionDR
-              </div>
+          <div class="me-5 lg:me-0 lg:hidden">
+            <NavLink to="/" className="h-10 justify-center items-center gap-2 inline-flex">
+              <img src="/logo_blue_black.svg" alt="logo" className="w-full" />
+              
             </NavLink>
           </div>
 
@@ -273,24 +258,8 @@ const Layout = () => {
         {showOnboarding && <Onboarding scrollToBottom={scrollToBottom}/>}
         <div className="flex flex-col px-3 pb-10 w-full">
           <header className="flex flex-col w-full text-center">
-            <NavLink to="/" className="flex gap-2 justify-center items-center self-start px-1 py-1 text-base font-semibold min-h-[40px] text-gray-950">
-              <svg
-                width="31"
-                height="36"
-                viewBox="0 0 31 36"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className=""
-              >
-                <path
-                  d="M24.9298 0.833374L20.2931 5.05504C22.4516 5.70702 24.4383 6.83016 26.1098 8.34337C31.9631 13.6767 31.9631 22.3234 26.1098 27.6567C21.7898 31.59 15.1131 34.0934 6.08314 35.1667L10.7198 30.945C8.56138 30.2931 6.57468 29.1699 4.90313 27.6567C-0.950198 22.3234 -0.985198 13.7084 4.90313 8.34337C9.22313 4.41004 15.9015 1.90671 24.9315 0.833374H24.9298ZM15.5065 8.00004C9.06313 8.00004 3.8398 12.4767 3.8398 18C3.8398 23.5234 9.06313 28 15.5065 28C21.9498 28 27.1731 23.5234 27.1731 18C27.1731 12.4767 21.9498 8.00004 15.5065 8.00004ZM15.5065 11.8334C19.1898 11.8334 22.1731 14.595 22.1731 18C22.1731 21.405 19.1898 24.1667 15.5065 24.1667C11.8231 24.1667 8.8398 21.405 8.8398 18C8.8398 14.595 11.8231 11.8334 15.5065 11.8334ZM15.5065 15.1667C13.6098 15.1667 12.1731 16.495 12.1731 18C12.1731 19.505 13.6098 20.8334 15.5065 20.8334C17.4031 20.8334 18.8398 19.505 18.8398 18C18.8398 16.495 17.4031 15.1667 15.5065 15.1667Z"
-                  fill="black"
-                />
-              </svg>
-              <div class="text-center text-gray-950 text-base font-semibold  leading-tight ">
-                {" "}
-                VisionDR
-              </div>
+            <NavLink to="/" className="flex gap-2 items-center self-start px-0 py-1 text-base font-semibold min-h-[40px] text-gray-950">
+            <img src="/logo_blue_black.svg" alt="logo" className="h-10" />
             </NavLink>
             <SidebarItem
               icon="M13 21V11H21V21H13ZM3 13V3H11V13H3ZM9 11V5H5V11H9ZM3 21V15H11V21H3ZM5 19H9V17H5V19ZM15 19H19V13H15V19ZM13 3H21V9H13V3ZM15 5V7H19V5H15Z"
