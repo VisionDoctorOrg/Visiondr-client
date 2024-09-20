@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MedicationItem from "./MedicationItem";
 import DatesMedStatus from "./DatesMedStatus";
 import "./Dashboard.css";
+import SubmitButton from "./SubmitButton";
+import AddMedicationReminder from "./AddMedicationReminder";
+import axios from "axios";
 
 const MedicationReminder = () => {
   const medicationData = [
@@ -71,6 +74,39 @@ const MedicationReminder = () => {
     },
   ];
 
+  const [medData, setMedData] = useState(null);
+
+  const getMedicationData = async () => {
+    // Call backend to get medication
+    if (localStorage.getItem("access")) {
+      const date = new Date().toISOString();
+      try {
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}notification/medication-reminders/`,
+          {
+            params: {
+              date: date, // Send the date as a query parameter
+            },
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("access")}`,
+              "Content-Type": "application/json",
+              // Add any other headers your API requires
+            },
+          }
+        );
+
+        console.log(res.data);
+        setMedData(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
+  useEffect(() => {
+    getMedicationData();
+  }, []);
+
   return (
     <div className="bg-[#d2dbfe]/20">
       <div class="w-full h-[158px] px-[30px] py-[50px] reminder-bg rounded-tl-lg rounded-tr-lg shadow-inner justify-center items-center inline-flex">
@@ -99,12 +135,27 @@ const MedicationReminder = () => {
           </div>
         </div>
       </div>
-      <DatesMedStatus />
-      <section className="flex flex-col gap-2 justify-between leading-tight w-full">
-        {medicationData.map((medicationData) => (
-          <MedicationItem {...medicationData} />
-        ))}
-      </section>
+      {medData ? (
+        <>
+          <DatesMedStatus data={medData}/>
+          <section className="flex flex-col gap-2 justify-between leading-tight w-full">
+            {medData.medications.map((medicationData) => (
+              medicationData.reminderTimes.map((time, index) => (
+                <MedicationItem data={medicationData} time={time} key={index}/>
+              ))
+            ))}
+          </section>
+        </>
+      ) : (
+        <div className="w-full h-[500px] flex justify-center items-center flex-col ">
+          <div>
+            <div className="text-center my-3">No medication added</div>
+            <AddMedicationReminder>
+              <SubmitButton label="Add medications" />
+            </AddMedicationReminder>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

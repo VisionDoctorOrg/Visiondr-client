@@ -1,8 +1,26 @@
 import React, { useState } from "react";
 import * as Slider from "@radix-ui/react-slider";
 
-const MedicationItem = ({ name, dosage, time, completionPercentage, checked, imgPath }) => {
-  const [isChecked, setIsChecked] = useState(checked);
+const MedicationItem = ({ data, time }) => {
+  const [isChecked, setIsChecked] = useState(data.completedForThisMedication);
+  const [imgPath, setImgPath] = useState(
+    data.medicationType === "Eye Drop"
+      ? "/images/yeast_eye_drop_img.png"
+      : data.medicationType === "Capsule"
+      ? "/images/karate_capsule_img.png"
+      : "/images/yeast_eye_tablets_img.png"
+  );
+
+  const getTime = (isoTime) => {
+    const date = new Date(isoTime);
+
+    // Extract hours and minutes
+    const hours = date.getHours().toString().padStart(2, "0"); // Convert to 2-digit format
+    const minutes = date.getMinutes().toString().padStart(2, "0"); // Convert to 2-digit format
+
+    const readableTime = `${hours}:${minutes}`;
+    return readableTime;
+  };
 
   const toggleChecked = () => {
     setIsChecked(!isChecked);
@@ -12,22 +30,26 @@ const MedicationItem = ({ name, dosage, time, completionPercentage, checked, img
       <div class="h-20 justify-between items-center inline-flex w-full px-5 md:px-2">
         <div class="self-stretch p-2 justify-start items-center gap-2 flex">
           <div class="w-[54px] h-[54px] bg-black/20 rounded-lg">
-            <img src={imgPath} alt="medication" class="w-full h-full object-cover rounded-lg" />
+            <img
+              src={imgPath}
+              alt="medication"
+              class="w-full h-full object-cover rounded-lg"
+            />
           </div>
           <div class="flex-col justify-center items-start gap-3 inline-flex">
             <div class="self-stretch h-[30px] flex-col justify-start items-start gap-1 flex">
               <div class="text-gray-950 text-xs font-medium font-['Plus Jakarta Sans'] leading-[14.40px]">
-                {name}
+                {data.medicationName}
               </div>
               <div class="justify-start items-start gap-1 inline-flex">
                 <div class="justify-start items-center gap-0.5 flex">
                   <div class="w-[53px] text-[#404453] text-[10px] font-normal font-['Plus Jakarta Sans'] leading-3">
-                    {dosage}
+                    {data.dosage}
                   </div>
                 </div>
                 <div class="justify-start items-center gap-0.5 flex">
                   <div class="text-[#404453] text-[10px] font-normal font-['Plus Jakarta Sans'] leading-3">
-                    {time}
+                    {getTime(time.reminderTime)}
                   </div>
                 </div>
               </div>
@@ -36,7 +58,7 @@ const MedicationItem = ({ name, dosage, time, completionPercentage, checked, img
               <div class="w-[83px] h-2 relative">
                 <Slider.Root
                   className="relative flex items-center select-none touch-none w-[83px] h-2"
-                  defaultValue={[completionPercentage]}
+                  defaultValue={[data.progress]}
                   max={100}
                   step={1}
                   disabled
@@ -52,7 +74,7 @@ const MedicationItem = ({ name, dosage, time, completionPercentage, checked, img
               </div>
               <div class="justify-start items-start gap-1 inline-flex">
                 <div class="text-[#404453] text-[10px] font-normal font-['Plus Jakarta Sans'] leading-3">
-                  {completionPercentage} %
+                  {data.progress} %
                 </div>
                 <div class="justify-start items-center gap-0.5 flex">
                   <div class="text-[#404453] text-[10px] font-normal font-['Plus Jakarta Sans'] leading-3">

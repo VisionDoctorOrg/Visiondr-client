@@ -73,7 +73,7 @@ const ForgetPassword = ({reset_password, refresh, user, error, message}) => {
     <AuthPage>
       <div class="md:w-[400px] h-[671px] flex-col justify-start items-start gap-[72px] inline-flex">
         <div class="h-10 py-1 items-center gap-2 inline-flex">
-        <img src="/logo_blue_black.svg" alt="logo" className="h-10" />
+        <img src="/logo_blue_black.svg" alt="logo" className="h-10 w-[102px]" />
         </div>
         <form class="self-stretch h-[439px] flex-col justify-start items-center gap-6 flex" onSubmit={handleSubmit(onSubmit)}>
           <div class="h-[103px] flex-col justify-start items-start gap-3 flex">

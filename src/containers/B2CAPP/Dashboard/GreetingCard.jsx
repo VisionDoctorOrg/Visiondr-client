@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Dashboard.css";
 import { MdArrowOutward } from "react-icons/md";
+import { connect } from "react-redux";
 
-function GreetingCard() {
-  const userInfo = JSON.parse(localStorage.getItem("user"));
-  const subscribed = userInfo.subscriptions?.length > 0;
+function GreetingCard({userData}) {
 
   const handleClick = () => {
-    if (subscribed) {
+    if (userData?.subscriptionActive === "Active") {
       window.location.href = "https://wa.me/message/5KU2UK5QN4HNN1";
     } else {
       window.location.href = "/app/profile/billing";
@@ -18,7 +17,7 @@ function GreetingCard() {
       <div class="py-[38px] flex-col justify-center items-start gap-10 inline-flex">
         <div class="h-[82px] flex-col justify-start items-start gap-2 flex">
           <div class="text-white text-[22px] font-semibold  leading-relaxed">
-            Good Morning, Chibundu Israel
+            Good Morning, {userData? userData.fullName : ""}
           </div>
           <div class="self-stretch text-white text-base font-medium  leading-normal">
             Get instant one on one eyecare advisory to solve your immediate
@@ -42,4 +41,10 @@ function GreetingCard() {
   );
 }
 
-export default GreetingCard;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  error: state.auth.error,
+  userData: state.auth.user,
+});
+
+export default connect(mapStateToProps)(GreetingCard);

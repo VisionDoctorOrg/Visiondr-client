@@ -1,19 +1,28 @@
 import React from "react";
 import EyeHealthSummaryCard from "./EyeHealthSummaryCard";
+import SubmitButton from "./SubmitButton";
+import { NavLink } from "react-router-dom";
 
 const EyeHealthSummary = () => {
   return (
     <div>
-      <div class="text-gray-950 text-base font-medium leading-normal my-4 mt-6 pl-4 md:pl-0">
-        Eye health summary
+      <div className="text-gray-950 text-base font-medium leading-normal my-4 mt-6 pl-4 md:pl-0">
+        Eye Health Summary
       </div>
       <div className="flex flex-col gap-4 lg:gap-6">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-6">
           <div className=" rounded-lg ">
-            <EyeHealthSummaryCard title="Refractive error risk level">
-              <div class="pl-2 justify-start items-center gap-2 flex">
-                <div class="w-6 h-6 justify-center items-center flex">
-                  <div class="w-6 h-6 relative">
+            <EyeHealthSummaryCard title="Take the refractive error test to know your risk level">
+              <div className="pl-2 justify-center items-center gap-2 flex w-full h-full">
+                <NavLink to="/app/refractive-error">
+                  <SubmitButton label="Take test" />
+                </NavLink>
+              </div>
+            </EyeHealthSummaryCard>
+            {/* <EyeHealthSummaryCard title="Refractive error risk level">
+              <div className="pl-2 justify-start items-center gap-2 flex">
+                <div className="w-6 h-6 justify-center items-center flex">
+                  <div className="w-6 h-6 relative">
                     <svg
                       width="24"
                       height="24"
@@ -31,25 +40,32 @@ const EyeHealthSummary = () => {
                     </svg>
                   </div>
                 </div>
-                <div class="text-center text-gray-950/60 text-xs font-medium  leading-[14.40px]">
+                <div className="text-center text-gray-950/60 text-xs font-medium  leading-[14.40px]">
                   Possible Myopia
                 </div>
               </div>
               <img
-                class="w-[154px] h-[124px] rounded-lg"
+                className="w-[154px] h-[124px] rounded-lg"
                 src="/images/Refractive-error-risk-level.png"
               />
-            </EyeHealthSummaryCard>
+            </EyeHealthSummaryCard> */}
           </div>
           <div className=" rounded-lg ">
-            <EyeHealthSummaryCard title="Glaucoma risk level">
-              <div class="h-[63px] pl-2 flex-col justify-center items-start gap-2 inline-flex">
-                <div class="text-center text-gray-950/60 text-xs font-medium  leading-[14.40px]">
+            <EyeHealthSummaryCard title="Take the glaucoma test to know your risk level">
+              <div className="pl-2 justify-center items-center gap-2 flex w-full h-full">
+                <NavLink to="/app/glaucoma">
+                  <SubmitButton label="Take test" />
+                </NavLink>
+              </div>
+            </EyeHealthSummaryCard>
+            {/* <EyeHealthSummaryCard title="Glaucoma risk level">
+              <div className="h-[63px] pl-2 flex-col justify-center items-start gap-2 inline-flex">
+                <div className="text-center text-gray-950/60 text-xs font-medium  leading-[14.40px]">
                   No risk
                 </div>
-                <div class="self-stretch justify-start items-center gap-2 inline-flex">
-                  <div class="w-6 h-6 justify-center items-center flex">
-                    <div class="w-6 h-6 relative">
+                <div className="self-stretch justify-start items-center gap-2 inline-flex">
+                  <div className="w-6 h-6 justify-center items-center flex">
+                    <div className="w-6 h-6 relative">
                       <svg
                         width="24"
                         height="25"
@@ -67,70 +83,188 @@ const EyeHealthSummary = () => {
                       </svg>
                     </div>
                   </div>
-                  <div class="text-center text-[#404453] text-base font-semibold  leading-normal">
+                  <div className="text-center text-[#404453] text-base font-semibold  leading-normal">
                     0/ 5
                   </div>
                 </div>
               </div>
-              <div class="w-[149.64px] h-[115.23px] pr-[7px] justify-start items-center inline-flex">
-                <div class="w-[142.64px] h-[115.23px] relative">
-                  <div class="h-[82px] left-[12px] top-[2px] absolute justify-start items-end gap-1 inline-flex">
-                    <div class="w-5 h-px rounded-tl-sm rounded-tr-sm border border-[#27be69]"></div>
-                    <div class="w-5 h-5 bg-[#1749fc] rounded-tl-sm rounded-tr-sm border border-[#1749fc]"></div>
-                    <div class="w-5 h-[41px] bg-[#fcca17] rounded-tl-sm rounded-tr-sm"></div>
-                    <div class="w-5 h-[61px] bg-[#f2415a] rounded-tl-sm rounded-tr-sm"></div>
-                    <div class="w-5 h-[82px] bg-[#e5102e] rounded-tl-sm rounded-tr-sm"></div>
+              <div className="w-[149.64px] h-[115.23px] pr-[7px] justify-start items-center inline-flex">
+                <div className="w-[142.64px] h-[115.23px] relative">
+                  <div className="h-[82px] left-[12px] top-[2px] absolute justify-start items-end gap-1 inline-flex">
+                    <div className="w-5 h-px rounded-tl-sm rounded-tr-sm border border-[#27be69]"></div>
+                    <div className="w-5 h-5 bg-[#1749fc] rounded-tl-sm rounded-tr-sm border border-[#1749fc]"></div>
+                    <div className="w-5 h-[41px] bg-[#fcca17] rounded-tl-sm rounded-tr-sm"></div>
+                    <div className="w-5 h-[61px] bg-[#f2415a] rounded-tl-sm rounded-tr-sm"></div>
+                    <div className="w-5 h-[82px] bg-[#e5102e] rounded-tl-sm rounded-tr-sm"></div>
                   </div>
-                  <div class="h-[82px] left-0 top-[4px] absolute flex-col justify-end items-end gap-2 inline-flex">
-                    <div class="text-center text-[#404453] text-[8px] font-normal  leading-[9.60px]">
+                  <div className="h-[82px] left-0 top-[4px] absolute flex-col justify-end items-end gap-2 inline-flex">
+                    <div className="text-center text-[#404453] text-[8px] font-normal  leading-[9.60px]">
                       4
                     </div>
-                    <div class="text-center text-[#404453] text-[8px] font-normal  leading-[9.60px]">
+                    <div className="text-center text-[#404453] text-[8px] font-normal  leading-[9.60px]">
                       3
                     </div>
-                    <div class="text-center text-[#404453] text-[8px] font-normal  leading-[9.60px]">
+                    <div className="text-center text-[#404453] text-[8px] font-normal  leading-[9.60px]">
                       2
                     </div>
-                    <div class="text-center text-[#404453] text-[8px] font-normal  leading-[9.60px]">
+                    <div className="text-center text-[#404453] text-[8px] font-normal  leading-[9.60px]">
                       1
                     </div>
-                    <div class="text-center text-[#404453] text-[8px] font-normal  leading-[9.60px]">
+                    <div className="text-center text-[#404453] text-[8px] font-normal  leading-[9.60px]">
                       0
                     </div>
                   </div>
-                  <div class="w-[124.64px] h-[28.23px] left-[18px] top-[87px] absolute">
-                    <div class="left-[6.43px] top-0 absolute origin-top-left rotate-[40deg] text-center text-[#404453] text-[8px] font-normal  leading-[9.60px]">
+                  <div className="w-[124.64px] h-[28.23px] left-[18px] top-[87px] absolute">
+                    <div className="left-[6.43px] top-0 absolute origin-top-left rotate-[40deg] text-center text-[#404453] text-[8px] font-normal  leading-[9.60px]">
                       No
                     </div>
-                    <div class="left-[28.05px] top-0 absolute origin-top-left rotate-[40deg] text-center text-[#404453] text-[8px] font-normal  leading-[9.60px]">
+                    <div className="left-[28.05px] top-0 absolute origin-top-left rotate-[40deg] text-center text-[#404453] text-[8px] font-normal  leading-[9.60px]">
                       Low
                     </div>
-                    <div class="left-[52.73px] top-0 absolute origin-top-left rotate-[40deg] text-center text-[#404453] text-[8px] font-normal  leading-[9.60px]">
+                    <div className="left-[52.73px] top-0 absolute origin-top-left rotate-[40deg] text-center text-[#404453] text-[8px] font-normal  leading-[9.60px]">
                       Medium
                     </div>
-                    <div class="left-[76.91px] top-0 absolute origin-top-left rotate-[40deg] text-center text-[#404453] text-[8px] font-normal  leading-[9.60px]">
+                    <div className="left-[76.91px] top-0 absolute origin-top-left rotate-[40deg] text-center text-[#404453] text-[8px] font-normal  leading-[9.60px]">
                       High
                     </div>
-                    <div class="left-[100.12px] top-0 absolute origin-top-left rotate-[40deg] text-center text-[#404453] text-[8px] font-normal  leading-[9.60px]">
+                    <div className="left-[100.12px] top-0 absolute origin-top-left rotate-[40deg] text-center text-[#404453] text-[8px] font-normal  leading-[9.60px]">
                       Extreme
                     </div>
                   </div>
                 </div>
               </div>
-            </EyeHealthSummaryCard>
+            </EyeHealthSummaryCard> */}
           </div>
         </div>
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-6">
           <div className=" rounded-lg ">
-            <EyeHealthSummaryCard title="Blood pressure">
-              <div class="h-[63px] pl-2 flex-col justify-center items-start gap-2 inline-flex">
-                <div class="text-center text-gray-950/60 text-xs font-medium  leading-[14.40px]">
+            <EyeHealthSummaryCard title="Input blood pressure unit">
+              <div className="h-[63px] pl-2 flex-col justify-center items-start gap-2 inline-flex mb-10">
+                <div className="flex">
+                  <img
+                    className="w-[154px] h-[124px] rounded-lg"
+                    src="/images/blood_pressure.svg"
+                  />
+                  <div className="flex bg-[#d2dbfe]/20 rounded-lg shadow p-2">
+                    <div className="relative flex flex-col items-center max-w-[3rem]">
+                      <button
+                        type="button"
+                        id="increment-button"
+                        data-input-counter-increment="quantity-input"
+                        className="bg-gray-100 p-1 h-6 "
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                        >
+                          <path
+                            d="M11.9998 11.828L9.17184 14.657L7.75684 13.243L11.9998 9L16.2428 13.243L14.8278 14.657L11.9998 11.828Z"
+                            fill="#030712"
+                          />
+                        </svg>
+                      </button>
+                      <input
+                        type="number"
+                        id="quantity-input"
+                        data-input-counter
+                        aria-describedby="helper-text-explanation"
+                        className="bg-white border-x-0 h-11 text-center text-gray-900 text-sm block w-full py-1 focus:border-0 focus:outline-none"
+                        placeholder="999"
+                        required
+                      />
+
+                      <button
+                        type="button"
+                        id="decrement-button"
+                        data-input-counter-decrement="quantity-input"
+                        className="bg-gray-100  p-1 h-6"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                        >
+                          <path
+                            d="M11.9998 15L7.75684 10.757L9.17184 9.34302L11.9998 12.172L14.8278 9.34302L16.2428 10.757L11.9998 15Z"
+                            fill="#030712"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="text-center text-gray-950 text-base font-medium leading-normal flex items-center mx-2">
+                      /
+                    </div>
+                    <div className="relative flex flex-col items-center max-w-[3rem]">
+                      <button
+                        type="button"
+                        id="increment-button"
+                        data-input-counter-increment="quantity-input"
+                        className="bg-gray-100 p-1 h-6 "
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                        >
+                          <path
+                            d="M11.9998 11.828L9.17184 14.657L7.75684 13.243L11.9998 9L16.2428 13.243L14.8278 14.657L11.9998 11.828Z"
+                            fill="#030712"
+                          />
+                        </svg>
+                      </button>
+                      <input
+                        type="number"
+                        id="quantity-input"
+                        data-input-counter
+                        aria-describedby="helper-text-explanation"
+                        className="bg-white border-x-0 h-11 text-center text-gray-900 text-sm block w-full py-1 focus:border-0 focus:outline-none"
+                        placeholder="999"
+                        required
+                      />
+
+                      <button
+                        type="button"
+                        id="decrement-button"
+                        data-input-counter-decrement="quantity-input"
+                        className="bg-gray-100  p-1 h-6"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                        >
+                          <path
+                            d="M11.9998 15L7.75684 10.757L9.17184 9.34302L11.9998 12.172L14.8278 9.34302L16.2428 10.757L11.9998 15Z"
+                            fill="#030712"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div className="w-full my-2">
+                  <SubmitButton label="Save" className="w-10 mx-auto" />
+                </div>
+              </div>
+            </EyeHealthSummaryCard>
+            {/* <EyeHealthSummaryCard title="Blood pressure">
+              <div className="h-[63px] pl-2 flex-col justify-center items-start gap-2 inline-flex">
+                <div className="text-center text-gray-950/60 text-xs font-medium  leading-[14.40px]">
                   Normal
                 </div>
-                <div class="flex-col justify-center items-start gap-6 flex">
-                  <div class="self-stretch justify-start items-center gap-0.5 inline-flex">
-                    <div class="w-6 h-6 justify-center items-center flex">
-                      <div class="w-6 h-6 relative">
+                <div className="flex-col justify-center items-start gap-6 flex">
+                  <div className="self-stretch justify-start items-center gap-0.5 inline-flex">
+                    <div className="w-6 h-6 justify-center items-center flex">
+                      <div className="w-6 h-6 relative">
                         <svg
                           width="24"
                           height="25"
@@ -148,26 +282,47 @@ const EyeHealthSummary = () => {
                         </svg>
                       </div>
                     </div>
-                    <div class="text-center text-[#404453] text-base font-semibold  leading-normal">
+                    <div className="text-center text-[#404453] text-base font-semibold  leading-normal">
                       140/ 70
                     </div>
-                    <div class="text-center text-[#404453] text-sm font-normal  leading-[16.80px]">
+                    <div className="text-center text-[#404453] text-sm font-normal  leading-[16.80px]">
                       sys
                     </div>
                   </div>
                 </div>
               </div>
               <img
-                class="w-[154px] h-[124px] rounded-lg"
+                className="w-[154px] h-[124px] rounded-lg"
                 src="/images/signal_img.png"
               />
-            </EyeHealthSummaryCard>
+            </EyeHealthSummaryCard> */}
           </div>
           <div className=" rounded-lg ">
-            <EyeHealthSummaryCard title="Colour vision risk level">
-              <div class="w-[74px] h-6 justify-start items-center gap-2 inline-flex">
-                <div class="w-6 h-6 justify-center items-center flex">
-                  <div class="w-6 h-6 relative">
+            <EyeHealthSummaryCard title="Select your colour vision level">
+              <div className="w-full justify-start items-center gap-2 inline-flex flex-col">
+                <div className="w-full pl-2 h-20">
+                  <div className="w-full flex gap-2">
+                    <input
+                      type="radio"
+                      id="normal"
+                      name="color-vision"
+                    />
+                    <label htmlFor="normal">Normal</label>
+                  </div>
+                  <div className="flex gap-2">
+                    <input type="radio" id="abnormal" name="color-vision" />
+                    <label htmlFor="abnormal">Abnormal</label>
+                  </div>
+                </div>
+                <div className="w-full">
+                  <SubmitButton label="Save" className="mx-auto w-fit" />
+                </div>
+              </div>
+            </EyeHealthSummaryCard>
+            {/* <EyeHealthSummaryCard title="Colour vision risk level">
+              <div className="w-[74px] h-6 justify-start items-center gap-2 inline-flex">
+                <div className="w-6 h-6 justify-center items-center flex">
+                  <div className="w-6 h-6 relative">
                     <svg
                       width="24"
                       height="24"
@@ -185,15 +340,15 @@ const EyeHealthSummary = () => {
                     </svg>
                   </div>
                 </div>
-                <div class="text-center text-gray-950/60 text-xs font-medium  leading-[14.40px]">
+                <div className="text-center text-gray-950/60 text-xs font-medium  leading-[14.40px]">
                   Normal
                 </div>
               </div>
               <img
-                class="w-[154px] h-[124px] rounded-lg"
+                className="w-[154px] h-[124px] rounded-lg"
                 src="/images/signal_img.png"
               />
-            </EyeHealthSummaryCard>
+            </EyeHealthSummaryCard> */}
           </div>
         </div>
       </div>

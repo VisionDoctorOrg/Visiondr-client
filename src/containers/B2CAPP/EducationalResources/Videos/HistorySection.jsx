@@ -25,38 +25,6 @@ function HistorySection({ dataContext }) {
           />
         ))}
       </CardLayout>
-      <div class="text-gray-950 text-base font-medium mt-10 leading-normal">
-        Yesterday
-      </div>
-      <CardLayout>
-        {items.map((item, index) => (
-          <VideoCard
-            key={index}
-            index={index}
-            imageSrc={item.imageSrc}
-            imageAlt={item.imageAlt}
-            date={item.date}
-            title={item.title}
-            id={item.id}
-          />
-        ))}
-      </CardLayout>
-      <div class="text-gray-950 text-base font-medium mt-10 leading-normal">
-        September 2
-      </div>
-      <CardLayout>
-        {items.map((item, index) => (
-          <VideoCard
-            key={index}
-            index={index}
-            imageSrc={item.imageSrc}
-            imageAlt={item.imageAlt}
-            date={item.date}
-            title={item.title}
-            id={item.id}
-          />
-        ))}
-      </CardLayout>
     </div>
   );
 }

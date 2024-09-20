@@ -1,22 +1,21 @@
 import React, { useState, createContext } from "react";
+import { connect } from "react-redux";
 export const DataContext = createContext();
 
-const DataProvider = ({ children }) => {
-  const userInfo = JSON.parse(localStorage.getItem("user"));
-  
+const DataProvider = ({ children, userData }) => {
   const personalInfo = [
-    { question: "Name:", answer: userInfo ? userInfo.fullName : "John doe", id: "name" },
-    { question: "Age:", answer: "35", id: "age" },
-    { question: "Gender:", answer: "Male", id: "gender" },
+    { question: "Name:", answer: userData ? userData.fullName : "", id: "name" },
+    { question: "Age:", answer: "", id: "age", editable: true },
+    { question: "Gender:", answer: userData ? userData.gender:  "", id: "gender" },
     {
       question: "Occupation:",
-      answer: "Software developer",
+      answer: userData ? userData.occupation:  "",
       id: "occupation",
     },
-    { question: "Email:", answer: userInfo ? userInfo.email : "example@gmail.com", id: "email" },
+    { question: "Email:", answer: userData ? userData.email : "", id: "email" },
     {
       question: "Phone number:",
-      answer: "+234 1234567890",
+      answer: userData ? userData.phoneNumber: "",
       id: "phoneNumber",
     },
   ];
@@ -174,4 +173,10 @@ const DataProvider = ({ children }) => {
   );
 };
 
-export default DataProvider;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  error: state.auth.error,
+  userData: state.auth.user,
+});
+
+export default connect(mapStateToProps)(DataProvider);

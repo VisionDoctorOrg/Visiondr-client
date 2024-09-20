@@ -33,8 +33,15 @@ const Profile = ({ dataContext }) => {
   // transform data to suite backend
   const transformData = (data) => {
     const formData = new FormData();
-    formData.append("file", data["uploadedFile"]);
-
+    if (data["uploadedFile"]) {
+      formData.append("file", data["uploadedFile"]);
+    }
+    formData.append("fullName", personalInfo[0].answer);
+    formData.append("DOB", personalInfo[1].answer);
+    formData.append("gender", personalInfo[2].answer);
+    formData.append("phoneNumber", personalInfo[4].answer);
+    formData.append("occupation", personalInfo[5].answer);
+    formData.append("hobbies", personalInfo[6].answer);
 
     // const transformArray = (arr) => {
     //   return arr.map(({ question, answer }) => ({ question, answer }));
@@ -49,25 +56,14 @@ const Profile = ({ dataContext }) => {
 
   // check if there is an empty field
   const hasEmptyAnswer = (data) => {
-    // Function to check for empty answers in an array
-    // const containsEmptyAnswer = (arr) => {
-    //   if (arr) {
-    //     return arr.some(({ answer }) => answer.trim() === "");
-    //   }
-    //   return false;
-    // };
-
-    // Check each property of the data object
-    // return Object.values(data).some(containsEmptyAnswer);
-    console.log(data);
-    return data.uploadedFile === null;
+    return false;
   };
 
   const requestBackend = async (formData) => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}casefile/questionnaire/`,
+        `${import.meta.env.VITE_API_URL}users/update-user-profile/`,
         formData,
         {
           headers: {
@@ -136,7 +132,11 @@ const Profile = ({ dataContext }) => {
             tag="personalInformation"
           />
         ))}
-        <SubmitButton label={isLoading? "loading" :"Update Profile"} className="w-[200px] mt-10 " onClick={handleSubmit}/>
+        <SubmitButton
+          label={isLoading ? "loading" : "Update Profile"}
+          className="w-[200px] mt-10 "
+          onClick={handleSubmit}
+        />
       </div>
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogTrigger />
@@ -162,9 +162,9 @@ const Profile = ({ dataContext }) => {
           </DialogClose>
           <Success
             title="Hurray!!!"
-            subtitle="You've completed the questionnaire, you will get a response shortly with your result  and recommendations"
-            action="Get Report"
-            actionPath="/app/recommendation"
+            subtitle="You've successfully updated your profile"
+            action="Go to dashboard"
+            actionPath="/app/dashboard"
           />
         </DialogContent>
       </Dialog>

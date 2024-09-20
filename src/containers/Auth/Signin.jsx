@@ -80,7 +80,7 @@ const Signin = ({ login, refresh, user, error }) => {
     <AuthPage>
       <div class="md:w-[410px] md:h-[791px] flex-col justify-start items-start gap-[72px] inline-flex">
         <NavLink to="/" className="h-10 py-1 items-center gap-2 inline-flex">
-        <img src="/logo_blue_black.svg" alt="logo" className="h-10" />
+        <img src="/logo_blue_black.svg" alt="logo" className="h-10 w-[102px]" />
         </NavLink>
         <form
           class="self-stretch h-[559px] flex-col justify-start items-center gap-6 flex"

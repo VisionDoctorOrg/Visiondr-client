@@ -4,49 +4,49 @@ export const DataContext = createContext();
 const questions = [
   {
     title: 'Main complaint',
-    id: 'MainComplaint',
+    id: 'mainComplaint',
     question: 'How can VisionDR help your eyes today?',
     answer: "",
   },
   {
     title: 'Visual/Eye history',
-    id: 'Visual/EyeHistory',
+    id: 'eyeHistory',
     question: 'Have you had any previous eye issues?',
     answer: "",
   },
   {
     title: 'Medical history',
-    id: 'MedicalHistory',
+    id: 'medicalHistory',
     question: 'Do you have any medical conditions? Name, if any',
     answer: "",
   },
   {
     title: 'Last Eye Examination',
-    id: 'LastEyeExamination',
+    id: 'lastEyeExamination',
     question: 'When was your last eye exam or check up?',
     answer: "",
   },
   {
     title: 'Family visual history',
-    id: 'FamilyVisualHistory',
+    id: 'familyVisualHistory',
     question: 'Does anyone in your family have issues with their eyes? Elaborate on who and what type?',
     answer: "",
   },
   {
     title: 'Family medical history',
-    id: 'FamilyMedicalHistory',
+    id: 'familyMedicalHistory',
     question: 'Any known medical history in your family?',
     answer: "",
   },
   {
     title: 'Allergies',
-    id: 'Allergies',
+    id: 'allergies',
     question: 'Name any allergies you experience?',
     answer: "",
   },
   {
     title: 'Current drug use',
-    id: 'CurrentDrugUse',
+    id: 'currentDrugUse',
     question: 'Are you currently on any eye or general medication?',
     answer: "",
   }

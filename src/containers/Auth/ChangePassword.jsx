@@ -58,7 +58,7 @@ const ChangePassword = ({reset_password_confirm, refresh, user, error}) => {
     <AuthPage>
       <div class="md:w-[400px] w-full h-[419px] flex-col justify-start items-start gap-[72px] inline-flex">
         <div class="h-10 py-1 items-center gap-2 inline-flex">
-        <img src="/logo_blue_black.svg" alt="logo" className="h-10" />
+        <img src="/logo_blue_black.svg" alt="logo" className="h-10 w-[102px]" />
         </div>
         <form class="self-stretch h-[307px] flex-col justify-start items-center gap-6 flex" onSubmit={handleSubmit(onSubmit)} >
           <div class="self-stretch h-[43px] flex-col justify-start items-start gap-3 flex">

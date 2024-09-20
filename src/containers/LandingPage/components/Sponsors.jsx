@@ -44,17 +44,7 @@ const Sponsors = () => {
       id="partners"
     >
       <section className="md:mx-32 w-[80%] mx-auto">
-        <span className="inline-flex items-center justify-center rounded-full bg-[#e8e9eb] pr-2 text-slate-900">
-          <svg
-            className="h-5 w-5 text-primary"
-            viewBox="0 0 100 100"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="50" cy="50" r="20" className="fill-current" />
-          </svg>
-
-          <p className="whitespace-nowrap text-[0.5rem]">Meet our partners</p>
-        </span>
+        
         <h1 className="font-medium md:text-[28px] text-[22px]">
           We have amazing sponsors
         </h1>

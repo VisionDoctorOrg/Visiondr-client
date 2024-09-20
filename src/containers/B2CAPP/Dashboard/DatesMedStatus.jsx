@@ -1,6 +1,6 @@
 import React from "react";
 
-const DatesMedStatus = () => {
+const DatesMedStatus = ({data}) => {
   return (
     <div class=" w-full h-11 py-2 justify-between items-center inline-flex my-4 px-5 md:px-2">
       <div class="w-6 h-6 relative">
@@ -50,8 +50,8 @@ const DatesMedStatus = () => {
             <div class="text-black text-xs font-medium font-['Plus Jakarta Sans'] leading-[14.40px]">
               Today
             </div>
-            <div class="text-center text-black text-[8px] font-normal font-['Plus Jakarta Sans'] leading-[9.60px]">
-              4/8 Taken
+            <div class="text-center text-black text-[10px] font-normal font-['Plus Jakarta Sans'] leading-[9.60px]">
+              {data.completedRemindersForTheDay+ " / " + data.totalRemindersForTheDay} Taken
             </div>
           </div>
         </div>

@@ -62,9 +62,10 @@ export default function (state = initialState, action) {
         user: payload,
       };
     case USER_LOADED_SUCCESS:
+      localStorage.setItem("user", JSON.stringify(payload.data));
       return {
         ...state,
-        user: payload,
+        user: payload.data,
       };
     case AUTHENTICATED_FAIL:
       return {

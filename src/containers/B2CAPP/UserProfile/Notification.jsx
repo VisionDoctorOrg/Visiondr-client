@@ -1,8 +1,15 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Switch } from "@/components/ui/switch";
-import React from "react";
+import React, { useState } from "react";
 
 const Notification = () => {
+  const [generalNotification, setGeneralNotification] = useState(false);
+  const [email, setEmail] = useState(false);
+  const [sms, setSms] = useState(false);
+  const [whatsapp, setWhatsapp] = useState(false);
+  const [medicationReminder, setMedicationReminder] = useState(false);
+  const [paymentReminder, setPaymentReminder] = useState(false);
+
   return (
     <section className="flex flex-col p-6 rounded-lg border border-violet-200 border-solid w-full text-gray-950 max-md:px-5">
       <header className="flex flex-col w-full max-md:max-w-full">
@@ -22,7 +29,11 @@ const Notification = () => {
               </div>
               <div class="w-10 h-10 justify-center items-center flex">
                 <div class="w-10 h-10 relative">
-                  <Switch id="general-notification" />{" "}
+                  <Switch
+                    id="general-notification"
+                    checked={generalNotification}
+                    onCheckedChange={setGeneralNotification}
+                  />{" "}
                 </div>
               </div>
             </div>
@@ -78,7 +89,9 @@ const Notification = () => {
                 Set reminder for medications 5 minutes before time
               </li>
               <div class="w-10 h-10 justify-center items-center flex">
-                <div class="w-10 h-10 relative"><Switch/></div>
+                <div class="w-10 h-10 relative">
+                  <Switch />
+                </div>
               </div>
             </div>
           </div>
@@ -91,7 +104,9 @@ const Notification = () => {
                 Set reminder for payment due dates.
               </li>
               <div class="w-10 h-10 justify-center items-center flex">
-                <div class="w-10 h-10 relative"><Switch/></div>
+                <div class="w-10 h-10 relative">
+                  <Switch />
+                </div>
               </div>
             </div>
           </div>

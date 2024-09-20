@@ -32,13 +32,14 @@ const SubmitForm = () => {
   // transform data to suite backend
   const transformData = (data) => {
     // Function to extract 'question' and 'answer' from objects
-    const transformArray = (arr) => {
-      return arr.map(({ question, answer }) => ({ question, answer }));
-    };
+    function formatQuestions(questions) {
+      return questions.reduce((acc, question) => {
+        acc[question.id] = [{ question: question.question, answer: question.answer }];
+        return acc;
+      }, {});
+    }
     // Create a new object with the same keys but transformed arrays
-    const newData = {
-      caseFile: transformArray(data.caseFile),
-    };
+    const newData = formatQuestions(data.caseFile);
 
     return newData;
   };

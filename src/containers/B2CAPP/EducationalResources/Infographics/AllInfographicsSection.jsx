@@ -18,33 +18,6 @@ function AllInfographicsSection({ dataContext }) {
             title={item.title}
           />
         ))}
-        {items.map((item, index) => (
-          <InfographicsCard
-            key={index}
-            index={index}
-            imageSrc={item.imageSrc}
-            imageAlt={item.imageAlt}
-            title={item.title}
-          />
-        ))}
-        {items.map((item, index) => (
-          <InfographicsCard
-            key={index}
-            index={index}
-            imageSrc={item.imageSrc}
-            imageAlt={item.imageAlt}
-            title={item.title}
-          />
-        ))}
-        {items.map((item, index) => (
-          <InfographicsCard
-            key={index}
-            index={index}
-            imageSrc={item.imageSrc}
-            imageAlt={item.imageAlt}
-            title={item.title}
-          />
-        ))}
       </CardLayout>
     </div>
   );

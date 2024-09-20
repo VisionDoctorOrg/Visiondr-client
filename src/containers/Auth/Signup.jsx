@@ -89,7 +89,7 @@ const Signup = ({signup, refresh, user, error}) => {
     <RegPage>
       <div class="md:w-[400px] md:min-h-[1026px] w-full flex-col justify-start items-start gap-[72px] inline-flex">
         <NavLink to="/" className="h-10 py-1 items-center gap-2 inline-flex">
-        <img src="/logo_blue_black.svg" alt="logo" className="h-10" />
+        <img src="/logo_blue_black.svg" alt="logo" className="h-10 w-[102px]" />
         </NavLink>
         <form onSubmit={handleSubmit(onSubmit)} class="self-stretch h-[770px] flex-col justify-start items-center gap-6 flex">
           <div class="self-stretch h-[146px] flex-col justify-start items-start gap-3 flex">

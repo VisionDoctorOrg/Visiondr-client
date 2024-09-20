@@ -9,8 +9,16 @@ import WelcomeHeader from "./WelcomeHeader";
 import SearchBar from "./SearchBar";
 import IconButton from "./IconButton";
 import Onboarding from "./Onboarding";
+import { load_user } from "@/actions/auth";
+import { connect } from "react-redux";
 
-const Layout = () => {
+const Layout = ({load_user, userData}) => {
+  useEffect(() => {
+    load_user();
+  }, []);
+  useEffect(() => {
+    console.log(userData);
+  }, [userData]);
   const caseFiles = [
     {
       icon: "M4 3H20C20.2652 3 20.5196 3.10536 20.7071 3.29289C20.8946 3.48043 21 3.73478 21 4V20C21 20.2652 20.8946 20.5196 20.7071 20.7071C20.5196 20.8946 20.2652 21 20 21H4C3.73478 21 3.48043 20.8946 3.29289 20.7071C3.10536 20.5196 3 20.2652 3 20V4C3 3.73478 3.10536 3.48043 3.29289 3.29289C3.48043 3.10536 3.73478 3 4 3ZM5 5V19H19V5H5ZM11 11V7H13V11H17V13H13V17H11V13H7V11H11Z",
@@ -72,7 +80,7 @@ const Layout = () => {
     {
       icon: "M11 2L18.298 4.28C18.5015 4.34354 18.6794 4.47048 18.8057 4.64229C18.932 4.81409 19.0001 5.02177 19 5.235V7H21C21.2652 7 21.5196 7.10536 21.7071 7.29289C21.8946 7.48043 22 7.73478 22 8V16C22 16.2652 21.8946 16.5196 21.7071 16.7071C21.5196 16.8946 21.2652 17 21 17L17.78 17.001C17.393 17.511 16.923 17.961 16.38 18.331L11 22L5.62 18.332C4.81252 17.7815 4.15175 17.042 3.69514 16.1779C3.23853 15.3138 2.9999 14.3513 3 13.374V5.235C3.00012 5.02194 3.06829 4.81449 3.19456 4.64289C3.32084 4.47128 3.49862 4.34449 3.702 4.281L11 2ZM11 4.094L5 5.97V13.374C4.99986 13.9862 5.14025 14.5903 5.41036 15.1397C5.68048 15.6892 6.07311 16.1692 6.558 16.543L6.747 16.679L11 19.58L14.782 17H10C9.73478 17 9.48043 16.8946 9.29289 16.7071C9.10536 16.5196 9 16.2652 9 16V8C9 7.73478 9.10536 7.48043 9.29289 7.29289C9.48043 7.10536 9.73478 7 10 7H17V5.97L11 4.094ZM11 12V15H20V12H11ZM11 10H20V9H11V10Z",
       label: "Subscriptions",
-      path: "/app/subscriptions",
+      path: "/app/profile/billing",
     },
     {
       icon: "M5 22C4.73478 22 4.48043 21.8946 4.29289 21.7071C4.10536 21.5196 4 21.2652 4 21V3C4 2.73478 4.10536 2.48043 4.29289 2.29289C4.48043 2.10536 4.73478 2 5 2H19C19.2652 2 19.5196 2.10536 19.7071 2.29289C19.8946 2.48043 20 2.73478 20 3V6H18V4H6V20H18V18H20V21C20 21.2652 19.8946 21.5196 19.7071 21.7071C19.5196 21.8946 19.2652 22 19 22H5ZM18 16V13H11V11H18V8L23 12L18 16Z",
@@ -95,7 +103,6 @@ const Layout = () => {
     "help": "Help",
     "subscriptions": "Subscriptions",
     "logout": "Log out",
-
   }
 
   const location = useLocation();
@@ -156,15 +163,15 @@ const Layout = () => {
           aria-label="Global"
         >
           <div class="me-5 lg:me-0 lg:hidden">
-            <NavLink to="/" className="h-10 justify-center items-center gap-2 inline-flex">
-              <img src="/logo_blue_black.svg" alt="logo" className="w-full" />
+            <NavLink to="/" className="h-10 ml-3 justify-center items-center gap-2 inline-flex">
+              <img src="/logo_blue_black.svg" alt="logo" className="w-[150px]" />
               
             </NavLink>
           </div>
 
           <div class="w-full flex items-center justify-end ms-auto sm:justify-between sm:gap-x-3 sm:order-3">
             <main className="flex flex-wrap xl:gap-10 lg:justify-between justify-end items-center w-full pl-1">
-              <WelcomeHeader name="Chibundu Israel" />
+              <WelcomeHeader name={userData? userData.fullName : ""} />
               <section className="flex justify-end gap-6 items-center self-stretch py-2 pr-3 pl-3 my-auto text-sm leading-tight text-center whitespace-nowrap bg-[#D2DBFE33] bg-opacity-20 md:min-w-[240px] md:max-w-full rounded-[32px] text-neutral-400  max-md:max-w-full ">
                 <SearchBar />
                 <IconButton
@@ -177,16 +184,17 @@ const Layout = () => {
                 </IconButton>
                 <div className="flex gap-2 cursor-pointer" onMouseLeave={() => setUserIcon(false)} onClick={gotoProfile}>
                 <IconButton
-                  src="/icons/profile_pic.png"
+                  src={user?.image?.url ?? "/icons/profile_pic.png"}
                   alt="Profile"
-                  className="w-10"
+                  className="w-10 rounded-full overflow-hidden"
                   size="10"
                   onMouseEnter={handleOnMouseEnter}
+                  imgClassName="object-cover"
                   
                 />
                 <div className={`${userIcon? "xl:w-[120px] w-0": "w-0"} transition-all duration-500 overflow-hidden text-neutral-950 text-left`}>
-                  <p className="text-base font-medium tracking-tight">Chibundu Israel</p>
-                  <p className="text-xs">NCR - Champan</p>
+                  <p className="text-base font-medium tracking-tight">{userData? userData.fullName : ""}</p>
+                  <p className="text-xs">{userData? userData.email : ""}</p>
                 </div>
 
                 </div>
@@ -258,8 +266,8 @@ const Layout = () => {
         {showOnboarding && <Onboarding scrollToBottom={scrollToBottom}/>}
         <div className="flex flex-col px-3 pb-10 w-full">
           <header className="flex flex-col w-full text-center">
-            <NavLink to="/" className="flex gap-2 items-center self-start px-0 py-1 text-base font-semibold min-h-[40px] text-gray-950">
-            <img src="/logo_blue_black.svg" alt="logo" className="h-10" />
+            <NavLink to="/" className="flex gap-2 items-center self-start px-3 py-1 text-base font-semibold min-h-[40px] text-gray-950">
+            <img src="/logo_blue_black.svg" alt="logo" className="h-10 w-[102px]" />
             </NavLink>
             <SidebarItem
               icon="M13 21V11H21V21H13ZM3 13V3H11V13H3ZM9 11V5H5V11H9ZM3 21V15H11V21H3ZM5 19H9V17H5V19ZM15 19H19V13H15V19ZM13 3H21V9H13V3ZM15 5V7H19V5H15Z"
@@ -279,7 +287,7 @@ const Layout = () => {
               icon={item.icon}
               label={item.label}
               path={item.path}
-              className="mt-3"
+              className="mt-3 w-3/4"
             />
           ))}
         </div>
@@ -293,4 +301,10 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  error: state.auth.error,
+  userData: state.auth.user,
+});
+
+export default connect(mapStateToProps, { load_user })(Layout);

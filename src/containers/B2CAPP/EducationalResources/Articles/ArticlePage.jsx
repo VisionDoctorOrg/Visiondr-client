@@ -37,7 +37,7 @@ const ArticlePage = ({ dataContext }) => {
                   {item.title}
                 </div>
                 <div class="self-stretch text-[#404453] text-sm font-normal  leading-[16.80px]">
-                  Potter ipsum wand elf parchment wingardium.
+                  {item.description}
                 </div>
               </div>
               <div class="rounded-sm justify-start items-center gap-1 flex">
@@ -57,54 +57,13 @@ const ArticlePage = ({ dataContext }) => {
                     </svg>
                   </div>
                 </div>
-                <div class="text-center text-gray-950 text-xs font-medium leading-[14.40px]">
+                <div class="text-center text-gray-950 text-xs font-medium leading-[14.40px] min-w-[80px]">
                   {item.timeText} read
                 </div>
               </div>
             </div>
             <div class="w-full text-gray-950 text-sm font-normal leading-[16.80px]">
-              Potter ipsum wand elf parchment wingardium. Lies flat answer
-              horntail portrait fawkes time-turner time-turner veil horntail.
-              Padfoot spider potter glory filch together bag he. Match the
-              detention palominos parseltongue fenrir patronum elemental.
-              Remember stand parseltongue match honeydukes a. Dementors harry
-              floating doe would schedule wand jinxes. Totalus hippogriffs black
-              sound for. House voldemort scarlet tap-dancing erumpent portkey
-              floor.
-              <br />
-              <br />
-              Weekly potter restricted ipsum my diddykins sorcerer's smile
-              banquet. Hiya beuxbatons butter portrait polyjuice dirigible
-              splinched nagini moon captivity. Mellow hand 9¾ owl snivellus
-              totalus hexed parchment every mimbletonia. Scarlet should wheels
-              polyjuice it blubber headmaster cakes requirement. Unwilling
-              ground glory smile plums steak holly daisies. Tears beaded ipsum
-              gamp’s last sir daily. Lady aragog hollow venom voldemort phials.
-              Splinched socks them devil’s lemon padfoot.
-              <br />
-              <br />
-              Hall potion doxycide parchment mewing winky potion tweak
-              tap-dancing cabbage. Prophet last nearly-headless law captivity
-              filch potter vanishing. Honeydukes bertie cannot grayback padfoot
-              parchment. Inches potter sorcerer's half-blood tail. Butter butter
-              witch avada sopophorous chasers. Cursed niffler nearly-headless
-              letters sopophorous hungarian house teacup cannot. <br />
-              <br />
-              Hall potion doxycide parchment mewing winky potion tweak
-              tap-dancing cabbage. Prophet last nearly-headless law captivity
-              filch potter vanishing. Honeydukes bertie cannot grayback padfoot
-              parchment. Inches potter sorcerer's half-blood tail. Butter butter
-              witch avada sopophorous chasers. Cursed niffler nearly-headless
-              letters sopophorous hungarian house teacup cannot. <br />
-              <br />
-              Hall potion doxycide parchment mewing winky potion tweak
-              tap-dancing cabbage. Prophet last nearly-headless law captivity
-              filch potter vanishing. Honeydukes bertie cannot grayback padfoot
-              parchment. Inches potter sorcerer's half-blood tail. Butter butter
-              witch avada sopophorous chasers. Cursed niffler nearly-headless
-              letters sopophorous hungarian house teacup cannot. Hall potion
-              doxycide parchment mewing winky potion tweak tap-dancing cabbage.
-              Prophet last nearly-headless law captivity filch potte
+              {item.article}
             </div>
           </div>
           <div class="self-stretch md:h-40 flex-col justify-start items-start gap-10 flex px-2">

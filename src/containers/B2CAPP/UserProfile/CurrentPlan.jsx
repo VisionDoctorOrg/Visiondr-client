@@ -39,7 +39,8 @@ const CurrentPlan = ({ dataContext }) => {
     const subscriptionId = billing.subscriptionId;
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}subscription/cancel/${subscriptionId}`,
+        `${import.meta.env.VITE_API_URL}subscription/cancel/${subscriptionId}/`,
+        {},
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("access")}`,
@@ -53,6 +54,7 @@ const CurrentPlan = ({ dataContext }) => {
     } catch (error) {
       throw error; // Re-throw the error to be caught by the caller
     } finally {
+      console.log(`Bearer ${localStorage.getItem("access")}`);
       setIsLoading(false);
     }
   };
@@ -74,10 +76,10 @@ const CurrentPlan = ({ dataContext }) => {
 
   // Handle form submission
   const handleCancelSubscription = async () => {
-      try {
-        await submitFormMutation();
-      } catch (e) {
-        console.log(e);
+    try {
+      await submitFormMutation();
+    } catch (e) {
+      console.log(e);
     }
   };
   return (
@@ -151,11 +153,13 @@ const CurrentPlan = ({ dataContext }) => {
             Change Plan
           </div>
         </button>
-        <button onClick={handleCancelSubscription} class="md:w-[245px] h-[60px] p-3 rounded-lg border-2 border-[#1749fc] justify-center items-center gap-2.5 inline-flex">
+        <button
+          onClick={handleCancelSubscription}
+          class="md:w-[245px] h-[60px] p-3 rounded-lg border-2 border-[#1749fc] justify-center items-center gap-2.5 inline-flex"
+        >
           <div class="text-center text-[#1749fc] md:text-[22px] font-medium font-['Plus Jakarta Sans'] leading-relaxed">
             {isLoading ? "Loading" : "Cancel Subscription"}
           </div>
-          
         </button>
       </div>
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>

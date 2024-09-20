@@ -14,6 +14,7 @@ import Videos from "./EducationalResources/Videos/Videos";
 import Infographics from "./EducationalResources/Infographics/Infographics";
 import Community from "./EducationalResources/Community/Community";
 import Podcasts from "./EducationalResources/Podcasts/Podcasts";
+import Help from "./Help/Help";
 
 const Routing = () => {
   return (
@@ -37,6 +38,7 @@ const Routing = () => {
         <Route path="/community/*" element={<Community />} />
         <Route path="/podcast/*" element={<Podcasts />} />
         <Route path="/profile/*" element={<Layout />} />
+        <Route path="/help/" element={<Help />} />
       </Routes>
     </div>
   );

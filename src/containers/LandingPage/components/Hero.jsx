@@ -82,7 +82,7 @@ const Hero = () => {
             <h1 className="md:mt-20 font-medium text-[28px] md:text-[62px] text-5xl text-center md:tracking-tight">
               See Clearly, Live Fully!
             </h1>
-            <p className="text-center text-[16px] text-slate-300 md:mt-8 mt-10 md:text-[22px]  md:leading-[1.1] md:tracking-tight">
+            <p className="text-center text-[16px] text-slate-300 md:mt-8 mt-10 md:text-[22px]  md:leading-relaxed md:tracking-tight">
               Enjoy a clearer view of your world with VisionDR. With our
               exclusive offerings for your optimal eye health, we will take you
               on your personalized eye health journey through eye health

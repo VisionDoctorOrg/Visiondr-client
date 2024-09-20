@@ -41,19 +41,6 @@ function RecentlyAddedSection({ dataContext }) {
             description={item.description}
           />
         ))}
-        {items.map((item, index) => (
-          <ImageCard
-            key={index}
-            index={index}
-            imageSrc={item.imageSrc}
-            imageAlt={item.imageAlt}
-            timeSrc={item.timeSrc}
-            timeAlt={item.timeAlt}
-            timeText={item.timeText}
-            title={item.title}
-            description={item.description}
-          />
-        ))}
       </CardLayout>
     </div>
   );
