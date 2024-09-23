@@ -105,14 +105,14 @@ const Signin = ({ login, refresh, user, error }) => {
                 <input
                   type="email"
                   id="email"
-                  placeholder="Email"
+                  placeholder="Email or Phone Number"
                   className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
                   {...register("email")}
                   required
                 />
 
                 <span className="absolute start-0 top-1 text-base  -translate-y-3/4 text-[#8c8f98] font-medium transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
-                  Enter your email
+                  Enter your email or phone number
                 </span>
               </label>
             </div>

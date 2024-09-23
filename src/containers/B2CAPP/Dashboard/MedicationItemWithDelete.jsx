@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import * as Slider from "@radix-ui/react-slider";
 import axios from "axios";
+import { set } from "react-hook-form";
+import { Loader2 } from "lucide-react";
 
-const MedicationItem = ({ data, time }) => {
-  const [isChecked, setIsChecked] = useState(data.completedForThisMedication);
+const MedicationItemWithDelete = ({ data, time, dataContext }) => {
   const [imgPath, setImgPath] = useState(
     data.medicationType === "Eye Drop"
       ? "/images/yeast_eye_drop_img.png"
@@ -23,37 +24,40 @@ const MedicationItem = ({ data, time }) => {
     return readableTime;
   };
 
-  const checkMedication = async () => {
-    // Call backend to get medication
+  const [isLoading, setIsLoading] = useState(false);
+
+  const deleteMedication = async () => {
+    // Call backend to delete medication
     const token = localStorage.getItem("access");
-    console.log(time.id);
+    setIsLoading(true);
+
     if (token) {
       try {
-        const res = await axios.patch(
-          `${import.meta.env.VITE_API_URL}notification/update-reminder-status/`,
-          {
-            reminderId: time.id,
-            completed: !isChecked,
-          },
+        const res = await axios.delete(
+          `${import.meta.env.VITE_API_URL}notification/medication-reminder/${time.id}/`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
               "Content-Type": "application/json",
             },
+            params: {
+              id: time.id,
+            },
           }
         );
-  
+
         console.log(res.data);
       } catch (err) {
         console.log(err);
+      } finally {
+        setIsLoading(false);
       }
     }
   };
-  
 
-  const toggleChecked = () => {
-    checkMedication();
-    setIsChecked(!isChecked);
+  const onDelete = async () => {
+    await deleteMedication();
+    dataContext.getMedicationData();
   };
   return (
     <>
@@ -117,25 +121,17 @@ const MedicationItem = ({ data, time }) => {
         </div>
         <div class="w-6 h-6 justify-center items-center flex">
           <div class="w-6 h-6 justify-center items-center inline-flex">
-            <div
-              class={`w-5 h-5 relative cursor-pointer items-center justify-center flex `}
-              onClick={toggleChecked}
-            >
-              {isChecked ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5 bg-white"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    d="M4 3H20C20.2652 3 20.5196 3.10536 20.7071 3.29289C20.8946 3.48043 21 3.73478 21 4V20C21 20.2652 20.8946 20.5196 20.7071 20.7071C20.5196 20.8946 20.2652 21 20 21H4C3.73478 21 3.48043 20.8946 3.29289 20.7071C3.10536 20.5196 3 20.2652 3 20V4C3 3.73478 3.10536 3.48043 3.29289 3.29289C3.48043 3.10536 3.73478 3 4 3ZM11.003 16L18.073 8.929L16.659 7.515L11.003 13.172L8.174 10.343L6.76 11.757L11.003 16Z"
-                    fill="#1749FC"
-                  />
-                </svg>
-              ) : (
+            {isLoading ? (
+              <Loader2
+                className={` ${
+                  isLoading ? "" : "hidden"
+                }  ml-2 h-4 w-4 animate-spin`}
+              />
+            ) : (
+              <div
+                class={`w-5 h-5 relative cursor-pointer items-center justify-center flex `}
+                onClick={onDelete}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -144,12 +140,12 @@ const MedicationItem = ({ data, time }) => {
                   fill="none"
                 >
                   <path
-                    d="M4 3H20C20.2652 3 20.5196 3.10536 20.7071 3.29289C20.8946 3.48043 21 3.73478 21 4V20C21 20.2652 20.8946 20.5196 20.7071 20.7071C20.5196 20.8946 20.2652 21 20 21H4C3.73478 21 3.48043 20.8946 3.29289 20.7071C3.10536 20.5196 3 20.2652 3 20V4C3 3.73478 3.10536 3.48043 3.29289 3.29289C3.48043 3.10536 3.73478 3 4 3ZM5 5V19H19V5H5Z"
-                    fill="#1749FC"
+                    d="M7 4V2H17V4H22V6H20V21C20 21.2652 19.8946 21.5196 19.7071 21.7071C19.5196 21.8946 19.2652 22 19 22H5C4.73478 22 4.48043 21.8946 4.29289 21.7071C4.10536 21.5196 4 21.2652 4 21V6H2V4H7ZM6 6V20H18V6H6ZM9 9H11V17H9V9ZM13 9H15V17H13V9Z"
+                    fill="#F2415A"
                   />
                 </svg>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -157,4 +153,4 @@ const MedicationItem = ({ data, time }) => {
   );
 };
 
-export default MedicationItem;
+export default MedicationItemWithDelete;

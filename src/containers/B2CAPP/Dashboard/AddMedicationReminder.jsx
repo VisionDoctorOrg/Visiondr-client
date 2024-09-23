@@ -16,7 +16,7 @@ import Success from "../components/Success";
 import { cn } from "@/lib/utils";
 import { FaPlus } from "react-icons/fa";
 
-const AddMedicationReminder = ({ children }) => {
+const AddMedicationReminder = ({ children, dataContext }) => {
   const { toast } = useToast();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -162,6 +162,7 @@ const AddMedicationReminder = ({ children }) => {
     mutationFn: requestBackend,
     onSuccess: () => {
       openDialog();
+      dataContext.getMedicationData();
     },
     onError: (error) => {
       console.error("Error:", error);

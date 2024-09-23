@@ -1,111 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import MedicationItem from "./MedicationItem";
 import DatesMedStatus from "./DatesMedStatus";
 import "./Dashboard.css";
 import SubmitButton from "./SubmitButton";
 import AddMedicationReminder from "./AddMedicationReminder";
-import axios from "axios";
+import { DataContext } from "./DataContext";
 
-const MedicationReminder = () => {
-  const medicationData = [
-    {
-      name: "Yeast Eye drop",
-      dosage: "2 Drops",
-      time: "10:00 AM",
-      completionPercentage: 58,
-      checked: true,
-      imgPath: "/images/yeast_eye_drop_img.png",
-    },
-    {
-      name: "Karate Capsule",
-      dosage: "2 Capsules",
-      time: "10:00 AM",
-      completionPercentage: 58,
-      checked: true,
-      imgPath: "/images/karate_capsule_img.png",
-    },
-    {
-      name: "Yeast Eye Tablets",
-      dosage: "2 Tablets",
-      time: "10:00 AM",
-      completionPercentage: 58,
-      checked: true,
-      imgPath: "/images/yeast_eye_tablets_img.png",
-    },
-    {
-      name: "Omega 3 Capsule",
-      dosage: "1 Capsule",
-      time: "10:00 AM",
-      completionPercentage: 58,
-      checked: true,
-      imgPath: "/images/omega3_capsule_img.png",
-    },
-    {
-      name: "Yeast Eye drop",
-      dosage: "2 Drops",
-      time: "10:00 AM",
-      completionPercentage: 58,
-      checked: false,
-      imgPath: "/images/yeast_eye_drop_img.png",
-    },
-    {
-      name: "Karate Capsule",
-      dosage: "2 Capsules",
-      time: "10:00 AM",
-      completionPercentage: 58,
-      checked: false,
-      imgPath: "/images/karate_capsule_img.png",
-    },
-    {
-      name: "Yeast Eye Tablets",
-      dosage: "2 Tablets",
-      time: "10:00 AM",
-      completionPercentage: 58,
-      checked: false,
-      imgPath: "/images/yeast_eye_tablets_img.png",
-    },
-    {
-      name: "Omega 3 Capsule",
-      dosage: "1 Capsule",
-      time: "10:00 AM",
-      completionPercentage: 58,
-      checked: false,
-      imgPath: "/images/omega3_capsule_img.png",
-    },
-  ];
-
-  const [medData, setMedData] = useState(null);
-
-  const getMedicationData = async () => {
-    // Call backend to get medication
-    if (localStorage.getItem("access")) {
-      const date = new Date().toISOString();
-      try {
-        const res = await axios.get(
-          `${import.meta.env.VITE_API_URL}notification/medication-reminders/`,
-          {
-            params: {
-              date: date, // Send the date as a query parameter
-            },
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("access")}`,
-              "Content-Type": "application/json",
-              // Add any other headers your API requires
-            },
-          }
-        );
-
-        console.log(res.data);
-        setMedData(res.data);
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  };
-
-  useEffect(() => {
-    getMedicationData();
-  }, []);
+const MedicationReminder = ({}) => {
+  const dataContext = useContext(DataContext);
 
   return (
     <div className="bg-[#d2dbfe]/20">
@@ -135,22 +37,22 @@ const MedicationReminder = () => {
           </div>
         </div>
       </div>
-      {medData ? (
+      {dataContext.medData?.medications.length > 0 ? (
         <>
-          <DatesMedStatus data={medData}/>
+          <DatesMedStatus data={dataContext.medData} dataContext={dataContext}/>
           <section className="flex flex-col gap-2 justify-between leading-tight w-full">
-            {medData.medications.map((medicationData) => (
+            {dataContext.medData.medications.map((medicationData) =>
               medicationData.reminderTimes.map((time, index) => (
-                <MedicationItem data={medicationData} time={time} key={index}/>
+                <MedicationItem data={medicationData} time={time} key={index} />
               ))
-            ))}
+            )}
           </section>
         </>
       ) : (
         <div className="w-full h-[500px] flex justify-center items-center flex-col ">
           <div>
             <div className="text-center my-3">No medication added</div>
-            <AddMedicationReminder>
+            <AddMedicationReminder dataContext={dataContext}>
               <SubmitButton label="Add medications" />
             </AddMedicationReminder>
           </div>

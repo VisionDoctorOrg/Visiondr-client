@@ -184,14 +184,14 @@ export const checkAuthenticated = () => {
   }
 };
 
-export const login = (email, password) => async (dispatch) => {
+export const login = (username, password) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
     },
   };
 
-  const body = JSON.stringify({ email, password });
+  const body = JSON.stringify({ username, password });
 
   try {
     const res = await axios.post(
@@ -216,7 +216,7 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 export const signup =
-  (fullName, email, password, confirmPassword, organizationName, type) =>
+  (fullName, email, password, confirmPassword, organizationName, type, phoneNumber) =>
   async (dispatch) => {
     const config = {
       headers: {
@@ -224,14 +224,24 @@ export const signup =
       },
     };
 
-    const body = JSON.stringify({
+
+    const jsonBody = {
       fullName,
-      email,
       password,
       confirmPassword,
       organizationName,
       type,
-    });
+      phoneNumber,
+    };
+    
+    // Add the email field only if it's not an empty string
+    if (email !== '') {
+      jsonBody.email = email;
+    }
+    
+    // Convert to JSON
+    const body = JSON.stringify(jsonBody);
+    console.log(body);
 
     try {
       const res = await axios.post(

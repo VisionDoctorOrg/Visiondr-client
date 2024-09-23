@@ -21,16 +21,26 @@ import {
 import SignupSuccess from "./SignupSuccess";
 import { cn } from "@/lib/utils";
 
-const schema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8, { message: "Password must be at least 8 characters long" }),
-  confirmPassword: z.string(),
-  fullName: z.string(),
-  organizationName: z.string().optional(),
-}).refine(data => data.password === data.confirmPassword, {
-  message: "Passwords do not match",
-  path: ["confirmPassword"], // Set the error on the confirmPassword field
-});
+const phoneRegex = new RegExp(
+  /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/
+  );
+
+  const schema = z.object({
+    email: z.string().optional(),
+    phoneNumber: z.string().optional(),
+    password: z.string().min(8, { message: "Password must be at least 8 characters long" }),
+    confirmPassword: z.string(),
+    fullName: z.string(),
+    organizationName: z.string().optional(),
+  })
+  .refine(data => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"], // Set the error on the confirmPassword field
+  })
+  .refine(data => data.email || data.phoneNumber, {
+    message: "Either email or phone number must be provided",
+    path: ["email"], // Set the error on the email field, you can also set it on phoneNumber
+  });
 
 const Signup = ({signup, refresh, user, error}) => {
   refresh();
@@ -66,7 +76,7 @@ const Signup = ({signup, refresh, user, error}) => {
     try {
       console.log(data);
       const capitalizedType = type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
-      await signup(data.fullName, data.email, data.password, data.confirmPassword, data.organizationName, capitalizedType);
+      await signup(data.fullName, data.email, data.password, data.confirmPassword, data.organizationName, capitalizedType, data.phoneNumber);
     } catch (error) {
       console.log(error);
     }
@@ -150,11 +160,30 @@ const Signup = ({signup, refresh, user, error}) => {
                   placeholder="Email"
                   className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
                   {...register("email")}
-                  required
+                  
                 />
 
                 <span className="absolute start-0 top-1 text-base  -translate-y-3/4 text-[#8c8f98] font-medium transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
                   Enter your email
+                </span>
+              </label>
+            </div>
+            <div class={`w-full mt-3`}>
+              <label
+                htmlFor="phoneNumber"
+                className=" relative block border-b-2 border-[#d2dbfe] bg-transparent pt-3 focus-within:border-blue-600 w-full"
+              >
+                <input
+                  type="tel"
+                  id="phoneNumber"
+                  placeholder="Phone Number"
+                  className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                  {...register("phoneNumber")}
+                  
+                />
+
+                <span className="absolute start-0 top-1 text-base  -translate-y-3/4 text-[#8c8f98] font-medium transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                  Enter your Phone Number
                 </span>
               </label>
             </div>
