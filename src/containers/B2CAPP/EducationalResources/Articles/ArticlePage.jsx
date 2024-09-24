@@ -62,8 +62,10 @@ const ArticlePage = ({ dataContext }) => {
                 </div>
               </div>
             </div>
-            <div class="w-full text-gray-950 text-sm font-normal leading-[16.80px]">
-              {item.article}
+            <div class="w-full text-gray-950 text-sm font-normal leading-[16.80px] flex flex-col gap-2">
+              {item.article.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
             </div>
           </div>
           <div class="self-stretch md:h-40 flex-col justify-start items-start gap-10 flex px-2">
