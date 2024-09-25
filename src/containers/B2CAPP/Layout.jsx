@@ -13,9 +13,7 @@ import { load_user } from "@/actions/auth";
 import { connect } from "react-redux";
 
 const Layout = ({load_user, userData}) => {
-  useEffect(() => {
-    load_user();
-  }, []);
+  
   useEffect(() => {
     console.log(userData);
   }, [userData]);
@@ -110,13 +108,17 @@ const Layout = ({load_user, userData}) => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    if(!localStorage.getItem('user')) {
-      navigate('/auth/signin/individual')
-    }else{
-      setUser(JSON.parse(localStorage.getItem('user')));
+  const checkAuthenticated = async () => {
+    const res = await load_user();
+    if(!res){
+      navigate("/auth/signin/individual");
     }
-  }, [])
+  }
+
+  useEffect(() => {
+    checkAuthenticated();
+  }, []);
+
 
   useEffect(() => {
     // Split the pathname into parts by '/'

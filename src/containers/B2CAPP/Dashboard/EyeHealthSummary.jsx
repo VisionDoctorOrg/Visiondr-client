@@ -3,16 +3,17 @@ import EyeHealthSummaryCard from "./EyeHealthSummaryCard";
 import SubmitButton from "./SubmitButton";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { connect } from "react-redux";
 
-const EyeHealthSummary = () => {
-  const [visionLevel, setVisionLevel] = useState("Normal");
+const EyeHealthSummary = ({user}) => {
+  const [visionLevel, setVisionLevel] = useState(user?.visionLevel?.visionLevel);
   const [visionSaveLoading, setVisionSaveLoading] = useState(false);
-  const [systolic, setSystolic] = useState("");
-  const [diastolic, setDiastolic] = useState("");
+  const [systolic, setSystolic] = useState(user?.bloodPressure?.systolic);
+  const [diastolic, setDiastolic] = useState(user?.bloodPressure?.diastolic);
   const [bloodPressureSaveLoading, setBloodPressureSaveLoading] =
     useState(false);
-  const [isVisionSubmitted, setIsVisionSubmitted] = useState(false);
-  const [isBloodSubmitted, setIsBloodSubmitted] = useState(false);
+  const [isVisionSubmitted, setIsVisionSubmitted] = useState(user?.visionLevel?.visionLevel);
+  const [isBloodSubmitted, setIsBloodSubmitted] = useState(user?.bloodPressure?.systolic);
 
   const saveVisionLevel = async () => {
     const data = JSON.stringify({ visionLevel });
@@ -475,4 +476,10 @@ const EyeHealthSummary = () => {
   );
 };
 
-export default EyeHealthSummary;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  error: state.auth.error,
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps)(EyeHealthSummary); ;

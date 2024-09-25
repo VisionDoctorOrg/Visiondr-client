@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import * as Slider from "@radix-ui/react-slider";
 import axios from "axios";
 
-const MedicationItem = ({ data, time }) => {
-  const [isChecked, setIsChecked] = useState(data.completedForThisMedication);
+const MedicationItem = ({ data, time, dataContext }) => {
+  const [isChecked, setIsChecked] = useState(time.completed);
   const [imgPath, setImgPath] = useState(
     data.medicationType === "Eye Drop"
       ? "/images/yeast_eye_drop_img.png"
@@ -30,11 +30,12 @@ const MedicationItem = ({ data, time }) => {
     if (token) {
       try {
         const res = await axios.patch(
-          `${import.meta.env.VITE_API_URL}notification/update-reminder-status/`,
-          {
-            reminderId: time.id,
-            completed: !isChecked,
-          },
+          `${
+            import.meta.env.VITE_API_URL
+          }notification/update-reminder-status/?reminderId=${
+            time.id
+          }&completed=${!isChecked}`,
+          {},
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -42,14 +43,14 @@ const MedicationItem = ({ data, time }) => {
             },
           }
         );
-  
+
         console.log(res.data);
+        dataContext.getMedicationData();
       } catch (err) {
         console.log(err);
       }
     }
   };
-  
 
   const toggleChecked = () => {
     checkMedication();
@@ -88,7 +89,7 @@ const MedicationItem = ({ data, time }) => {
               <div class="w-[83px] h-2 relative">
                 <Slider.Root
                   className="relative flex items-center select-none touch-none w-[83px] h-2"
-                  defaultValue={[time.progress]}
+                  value={[time.progress]}
                   max={100}
                   step={1}
                   disabled

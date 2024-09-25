@@ -5,8 +5,9 @@ import "./Dashboard.css";
 import SubmitButton from "./SubmitButton";
 import AddMedicationReminder from "./AddMedicationReminder";
 import { DataContext } from "./DataContext";
+import { connect } from "react-redux";
 
-const MedicationReminder = ({}) => {
+const MedicationReminder = ({user}) => {
   const dataContext = useContext(DataContext);
 
   return (
@@ -37,13 +38,13 @@ const MedicationReminder = ({}) => {
           </div>
         </div>
       </div>
-      {dataContext.medData?.medications.length > 0 ? (
+      {user?.medicationReminder.length > 0 ? (
         <>
           <DatesMedStatus data={dataContext.medData} dataContext={dataContext}/>
           <section className="flex flex-col gap-2 justify-between leading-tight w-full">
             {dataContext.medData.medications.map((medicationData) =>
               medicationData.reminderTimes.map((time, index) => (
-                <MedicationItem data={medicationData} time={time} key={index} />
+                <MedicationItem data={medicationData} time={time} key={index} dataContext={dataContext}/>
               ))
             )}
           </section>
@@ -62,4 +63,10 @@ const MedicationReminder = ({}) => {
   );
 };
 
-export default MedicationReminder;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  error: state.auth.error,
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps)(MedicationReminder);

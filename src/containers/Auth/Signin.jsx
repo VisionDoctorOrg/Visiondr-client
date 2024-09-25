@@ -55,7 +55,10 @@ const Signin = ({ login, refresh, user, error }) => {
   const onSubmit = async (data) => {
     try {
       console.log(data);
-      await login(data.email, data.password);
+      const res = await login(data.email, data.password);
+      if(res){
+        openDialog();
+      }
     } catch (error) {
       console.log(error);
     }
@@ -68,13 +71,6 @@ const Signin = ({ login, refresh, user, error }) => {
       });
     }
   }, [error]);
-
-  useEffect(() => {
-    if (user) {
-      console.log(localStorage.getItem("access"));
-      openDialog();
-    }
-  }, [user]);
 
   return (
     <AuthPage>

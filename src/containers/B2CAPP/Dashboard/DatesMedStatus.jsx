@@ -29,9 +29,9 @@ const DatesMedStatus = ({ data, dataContext }) => {
           </DeleteMedicationItem>
         </div>
       </div>
-      <div class="h-7 justify-between items-center flex gap-6">
+      <div class="h-7 justify-between items-center flex gap-3">
         <div class="w-6 h-6 justify-center items-center flex">
-          <div class="w-6 h-6 relative">
+          <div class="w-6 h-6 relative cursor-pointer" onClick={dataContext.prevDay}>
             <svg
               width="24"
               height="24"
@@ -52,18 +52,18 @@ const DatesMedStatus = ({ data, dataContext }) => {
         <div class="flex-col justify-center items-center gap-1 inline-flex">
           <div class="self-stretch h-7 flex-col justify-start items-center gap-1 flex">
             <div class="text-black text-xs font-medium font-['Plus Jakarta Sans'] leading-[14.40px]">
-              Today
+              {dataContext.getReadableDate(dataContext.date)}
             </div>
             <div class="text-center text-black text-[10px] font-normal font-['Plus Jakarta Sans'] leading-[9.60px]">
-              {data.completedRemindersForTheDay +
+              {data?.completedRemindersForTheDay +
                 " / " +
-                data.totalRemindersForTheDay}{" "}
+                data?.totalRemindersForTheDay }{" "}
               Taken
             </div>
           </div>
         </div>
         <div class="w-6 h-6 justify-center items-center flex">
-          <div class="w-6 h-6 relative">
+          <div class="w-6 h-6 relative cursor-pointer" onClick={dataContext.nextDay}>
             <svg
               width="24"
               height="24"

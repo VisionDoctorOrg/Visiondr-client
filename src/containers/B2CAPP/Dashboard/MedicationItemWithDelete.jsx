@@ -34,14 +34,14 @@ const MedicationItemWithDelete = ({ data, time, dataContext }) => {
     if (token) {
       try {
         const res = await axios.delete(
-          `${import.meta.env.VITE_API_URL}notification/medication-reminder/${time.id}/`,
+          `${import.meta.env.VITE_API_URL}notification/medication-reminder/${time.medicationReminderId}/`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
               "Content-Type": "application/json",
             },
             params: {
-              id: time.id,
+              id: time.medicationReminderId,
             },
           }
         );

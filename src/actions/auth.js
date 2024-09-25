@@ -43,6 +43,7 @@ export const load_user = () => async (dispatch) => {
         payload: res.data,
       });
       console.log(res.data);
+      return res.data;
     } catch (err) {
       dispatch({
         type: USER_LOADED_FAIL,
@@ -205,7 +206,7 @@ export const login = (username, password) => async (dispatch) => {
       payload: res.data,
     });
     console.log(res.data);
-    // dispatch(load_user());
+    return res.data;
   } catch (err) {
     dispatch({
       type: LOGIN_FAIL,
