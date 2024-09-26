@@ -21,7 +21,7 @@ import {
 import SigninSuccess from "./SigninSuccess";
 
 const schema = z.object({
-  email: z.string().email(),
+  email: z.string(),
   password: z
     .string()
     .min(8, { message: "Password must be at least 8 characters long" }),
@@ -99,7 +99,7 @@ const Signin = ({ login, refresh, user, error }) => {
                 className=" relative block border-b-2 border-[#d2dbfe] bg-transparent pt-3 focus-within:border-blue-600 w-full"
               >
                 <input
-                  type="email"
+                  type="text"
                   id="email"
                   placeholder="Email or Phone Number"
                   className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"

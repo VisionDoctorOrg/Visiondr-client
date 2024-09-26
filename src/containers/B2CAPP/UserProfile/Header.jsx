@@ -17,8 +17,8 @@ const Header = ({userData, logout}) => {
     <main className="flex flex-wrap gap-10 justify-between items-end px-4 md:px-0 mt-20">
       <UserInfo
         imageSrc={userData?.image?.url ?? "/icons/profile_pic.png"}
-        name="Chibundu Israel"
-        age={35}
+        name={userData?.fullName ?? ""}
+        age={userData?.age ?? null}
         plan="Basic"
         dataContext={dataContext}
       />

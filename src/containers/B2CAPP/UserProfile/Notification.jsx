@@ -1,6 +1,7 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Switch } from "@/components/ui/switch";
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const Notification = () => {
   const [generalNotification, setGeneralNotification] = useState(false);
@@ -9,6 +10,89 @@ const Notification = () => {
   const [whatsapp, setWhatsapp] = useState(false);
   const [medicationReminder, setMedicationReminder] = useState(false);
   const [paymentReminder, setPaymentReminder] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const saveNotificationPreference = async ({
+    email,
+    sms,
+    whatsapp,
+    medicationReminder,
+    paymentReminder,
+  }) => {
+    const data = JSON.stringify({
+      email,
+      sms,
+      whatsapp,
+      medicationReminder,
+      paymentReminder,
+    });
+    console.log(data);
+    setIsLoading(true);
+    try {
+      const response = await axios.put(
+        `${import.meta.env.VITE_API_URL}notification/preferences/`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access")}`,
+            "Content-Type": "application/json",
+            // Add any other headers your API requires
+          },
+        }
+      );
+
+      console.log(response.data);
+
+      return response.data; // Assuming the response contains data you want to return
+    } catch (error) {
+      console.log(error); // Re-throw the error to be caught by the caller
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const saveChanges = (type, preference) => {
+    let data = { email, sms, whatsapp, medicationReminder, paymentReminder };
+    switch (type) {
+      case "email":
+        setEmail(preference);
+        if (generalNotification) {
+          data = { ...data, email: preference };
+        } else return;
+        break;
+      case "sms":
+        setSms(preference);
+        if (generalNotification) {
+          data = { ...data, sms: preference };
+        } else return;
+        break;
+      case "whatsapp":
+        setWhatsapp(preference);
+        if (generalNotification) {
+          data = { ...data, whatsapp: preference };
+        } else return;
+        break;
+      case "medicationReminder":
+        data = { ...data, medicationReminder: preference };
+        setMedicationReminder(preference);
+        break;
+      case "paymentReminder":
+        data = { ...data, paymentReminder: preference };
+        setPaymentReminder(preference);
+        break;
+      case "generalNotification":
+        if (!preference) {
+          data = { ...data, email: false, sms: false, whatsapp: false };
+          setEmail(false);
+          setSms(false);
+          setWhatsapp(false);
+        }
+        setGeneralNotification(preference);
+      default:
+        break;
+    }
+    saveNotificationPreference({ ...data });
+  };
 
   return (
     <section className="flex flex-col p-6 rounded-lg border border-violet-200 border-solid w-full text-gray-950 max-md:px-5">
@@ -17,7 +101,11 @@ const Notification = () => {
           Notification
         </h2>
       </header>
-      <div className="flex flex-col mt-5 w-full text-base font-medium max-w-[812px] max-md:max-w-full">
+      <div
+        className={`flex flex-col mt-5 w-full text-base font-medium max-w-[812px] max-md:max-w-full ${
+          isLoading ? "opacity-50" : ""
+        }`}
+      >
         <div class=" md:h-[226px] p-6 border border-[#d2dbfe] flex-col justify-start items-start gap-1 inline-flex">
           <div class="w-full md:h-[57px] flex-col justify-start items-start flex">
             <div class="text-center text-[#404453] text-sm font-semibold font-['Plus Jakarta Sans'] leading-[16.80px]">
@@ -32,7 +120,9 @@ const Notification = () => {
                   <Switch
                     id="general-notification"
                     checked={generalNotification}
-                    onCheckedChange={setGeneralNotification}
+                    onCheckedChange={(e) =>
+                      saveChanges("generalNotification", e)
+                    }
                   />{" "}
                 </div>
               </div>
@@ -46,7 +136,12 @@ const Notification = () => {
               <div class="justify-start items-center gap-8 inline-flex">
                 <div class="w-6 h-6 justify-center items-center flex">
                   <div class="w-6 h-6 relative">
-                    <Checkbox id="sendemail" className="w-5 h-5" />
+                    <Checkbox
+                      id="sendemail"
+                      className="w-5 h-5"
+                      checked={email}
+                      onCheckedChange={(e) => saveChanges("email", e)}
+                    />
                   </div>
                 </div>
                 <div class="text-center text-[#8c8f98] text-sm font-normal font-['Plus Jakarta Sans'] leading-[16.80px]">
@@ -56,7 +151,12 @@ const Notification = () => {
               <div class="justify-start items-center gap-8 inline-flex">
                 <div class="w-6 h-6 justify-center items-center flex">
                   <div class="w-6 h-6 relative">
-                    <Checkbox id="sms" className="w-5 h-5" />
+                    <Checkbox
+                      id="sms"
+                      className="w-5 h-5"
+                      checked={sms}
+                      onCheckedChange={(e) => saveChanges("sms", e)}
+                    />
                   </div>
                 </div>
                 <div class="text-center text-[#8c8f98] text-sm font-normal font-['Plus Jakarta Sans'] leading-[16.80px]">
@@ -66,7 +166,12 @@ const Notification = () => {
               <div class="justify-start items-center gap-8 inline-flex">
                 <div class="w-6 h-6 justify-center items-center flex">
                   <div class="w-6 h-6 relative">
-                    <Checkbox id="whatsapp" className="w-5 h-5" />
+                    <Checkbox
+                      id="whatsapp"
+                      className="w-5 h-5"
+                      checked={whatsapp}
+                      onCheckedChange={(e) => saveChanges("whatsapp", e)}
+                    />
                   </div>
                 </div>
                 <div class="text-center text-[#8c8f98] text-sm font-normal font-['Plus Jakarta Sans'] leading-[16.80px]">
@@ -90,7 +195,12 @@ const Notification = () => {
               </li>
               <div class="w-10 h-10 justify-center items-center flex">
                 <div class="w-10 h-10 relative">
-                  <Switch />
+                  <Switch
+                    checked={medicationReminder}
+                    onCheckedChange={(e) =>
+                      saveChanges("medicationReminder", e)
+                    }
+                  />
                 </div>
               </div>
             </div>
@@ -105,7 +215,10 @@ const Notification = () => {
               </li>
               <div class="w-10 h-10 justify-center items-center flex">
                 <div class="w-10 h-10 relative">
-                  <Switch />
+                  <Switch
+                    checked={paymentReminder}
+                    onCheckedChange={(e) => saveChanges("paymentReminder", e)}
+                  />
                 </div>
               </div>
             </div>
