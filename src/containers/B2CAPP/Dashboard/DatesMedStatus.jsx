@@ -55,9 +55,9 @@ const DatesMedStatus = ({ data, dataContext }) => {
               {dataContext.getReadableDate(dataContext.date)}
             </div>
             <div class="text-center text-black text-[10px] font-normal font-['Plus Jakarta Sans'] leading-[9.60px]">
-              {data?.completedRemindersForTheDay +
+              {data?.completedReminders +
                 " / " +
-                data?.totalRemindersForTheDay }{" "}
+                data?.totalReminders }{" "}
               Taken
             </div>
           </div>

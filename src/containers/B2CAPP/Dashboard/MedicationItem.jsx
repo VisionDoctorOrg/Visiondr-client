@@ -80,7 +80,7 @@ const MedicationItem = ({ data, time, dataContext }) => {
                 </div>
                 <div class="justify-start items-center gap-0.5 flex">
                   <div class="text-[#404453] text-[10px] font-normal font-['Plus Jakarta Sans'] leading-3">
-                    {getTime(time.reminderTime)}
+                    {getTime(time.time)}
                   </div>
                 </div>
               </div>

@@ -119,22 +119,44 @@ const AddMedicationReminder = ({ children, dataContext }) => {
     ]);
   };
 
-  const transformData = (data) => {
-    // Use map to iterate through reminderTimes, remove the id property, and convert reminderTime to ISO format
-    const transformedReminderTimes = data.reminderTimes.map(({ id, reminderTime, ...rest }) => ({
-      ...rest,
-      reminderTime: convertToISO(reminderTime)  // Convert reminderTime to ISO format
-    }));
+  const convertTo12HourFormat = (time) => {
+    // Split the time into hours and minutes
+    let [hours, minutes] = time.split(':');
   
-    // Return the transformed data with reminderTimes without id
-    return {
-      ...data,
-      reminderTimes: transformedReminderTimes
+    // Convert hours to a number for calculation
+    hours = parseInt(hours, 10);
+  
+    // Determine if it's AM or PM
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+  
+    // Convert the hours to 12-hour format
+    hours = hours % 12 || 12; // If hours is 0 or 12, display as 12
+  
+    // Return the formatted time
+    return `${hours}:${minutes}${ampm}`;
+  };
+
+  const transformData = (formData) => {
+    const { medicationName, medicationType, dosage, duration, reminderTimes } = formData;
+
+    // Mapping reminderTimes to get only the reminderTime values
+    const times = reminderTimes.map((timeObj) => convertTo12HourFormat(timeObj.reminderTime));
+  
+    // Creating the new format object
+    const newDataFormat = {
+      medicationName,
+      medicationType,
+      dosage,
+      times,
+      duration,
     };
+  
+    return newDataFormat;
   };
 
   const requestBackend = async (formData) => {
     const data = JSON.stringify({ ...formData });
+    console.log(data);
     setIsLoading(true);
     try {
       const response = await axios.post(

@@ -8,6 +8,12 @@ import { useLocation } from "react-router-dom";
 import "preline/preline";
 import { Toaster } from "./components/ui/toaster";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+// import Hotjar from '@hotjar/browser';
+
+// const siteId = 5135264;
+// const hotjarVersion = 6;
+
+// Hotjar.init(siteId, hotjarVersion);
 
 const queryClient = new QueryClient();
 
