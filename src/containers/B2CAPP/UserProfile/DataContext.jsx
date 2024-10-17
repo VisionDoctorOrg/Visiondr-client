@@ -27,12 +27,13 @@ const DataProvider = ({ children }) => {
       question: "Email:",
       answer: userInfo ? userInfo.email : "example@gmail.com",
       id: "email",
+      editable: false,
     },
     {
       question: "Phone number:",
       answer: userInfo ? userInfo.phoneNumber : "",
       id: "phoneNumber",
-      editable: true,
+      editable: userInfo ? userInfo.authProvider === "EMAIL" : false,
     },
     {
       question: "Occupation:",
@@ -59,26 +60,38 @@ const DataProvider = ({ children }) => {
       answer: "",
     },
   ];
+
+  const getActiveSubscription = () => {
+    let activeSubscription = null;
+    userInfo?.subscriptions.forEach((subscription) => {
+      if (subscription.status === "active") {
+        activeSubscription = subscription;
+      }
+    })
+    return activeSubscription;
+  }
+
   const [data, setData] = useState({
     personalInformation: personalInfo,
     additionalInformation: additionalInformation,
     uploadedFile: null,
+    authProvider: userInfo?.authProvider,
   });
   const [billing, setBilling] = useState({
     tab: "changePlan",
     type:
-      userInfo?.subscriptions.length > 0
-        ? userInfo.subscriptions[0].plan
+      userInfo?.subscriptionActive === "Active"
+        ? getActiveSubscription()?.plan
         : "basic",
     status:
       userInfo?.subscriptions.length > 0
-        ? userInfo.subscriptions[0].status
+        ? userInfo.subscriptionActive
         : "",
     subscriptionId:
-      userInfo?.subscriptions.length > 0 ? userInfo.subscriptions[0].id : "",
+      userInfo?.subscriptions.length > 0 ? getActiveSubscription()?.id : "",
     nextPaymentDate:
       userInfo?.subscriptions.length > 0
-        ? userInfo.subscriptions[0].nextPaymentDate
+        ? getActiveSubscription()?.nextPaymentDate
         : "",
     choosenPlan: "starter",
     amount: "200",

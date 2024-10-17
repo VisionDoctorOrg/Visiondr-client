@@ -84,33 +84,33 @@ const CurrentPlan = ({ dataContext }) => {
   };
   return (
     <div>
-      <div class="w-full px-6 py-5 bg-white rounded-lg border border-[#d2dbfe] justify-start items-start gap-10 inline-flex">
-        <div class="w-full flex-col justify-start items-start gap-10 inline-flex">
-          <div class="text-gray-950 text-base font-medium font-['Plus Jakarta Sans'] leading-normal">
+      <div className="w-full px-6 py-5 bg-white rounded-lg border border-[#d2dbfe] justify-start items-start gap-10 inline-flex">
+        <div className="w-full flex-col justify-start items-start gap-10 inline-flex">
+          <div className="text-gray-950 text-base font-medium font-['Plus Jakarta Sans'] leading-normal">
             Current Plan
           </div>
-          <div class="flex-col justify-start items-start gap-4 flex">
-            <div class="justify-start items-center gap-10 inline-flex">
-              <div class="text-center text-[#1749fc] text-[22px] font-semibold font-['Plus Jakarta Sans'] leading-relaxed">
+          <div className={`flex-col justify-start items-start gap-4 flex`}>
+            <div className="justify-start items-center gap-10 inline-flex">
+              <div className="text-center text-[#1749fc] text-[22px] font-semibold font-['Plus Jakarta Sans'] leading-relaxed">
                 {billing.type}
               </div>
-              <div class="text-center text-gray-950 text-sm font-normal font-['Plus Jakarta Sans'] leading-[16.80px]">
+              <div className="text-center text-gray-950 text-sm font-normal font-['Plus Jakarta Sans'] leading-[16.80px]">
                 ₦ 2,000 / month
               </div>
             </div>
-            <div class="md:w-[632px] text-gray-950 text-sm font-normal font-['Plus Jakarta Sans'] leading-[16.80px]">
+            <div className="md:w-[632px] text-gray-950 text-sm font-normal font-['Plus Jakarta Sans'] leading-[16.80px]">
               Access to ask VisionDR sessions, Casefiles for 1, System Checker
               for 1, all personalized eye health resources and community.
             </div>
           </div>
-          <div class="flex-col justify-start items-start gap-4 flex">
-            <div class="justify-start items-start gap-6 inline-flex">
-              <div class="text-[#404453] text-base font-medium font-['Plus Jakarta Sans'] leading-normal">
+          <div className="flex-col justify-start items-start gap-4 flex">
+            <div className="justify-start items-start gap-6 inline-flex">
+              <div className="text-[#404453] text-base font-medium font-['Plus Jakarta Sans'] leading-normal">
                 Status:
               </div>
-              <div class="justify-center items-start gap-2 flex">
-                <div class="w-6 h-6 justify-center items-center flex">
-                  <div class="w-6 h-6 relative">
+              <div className="justify-center items-start gap-2 flex">
+                <div className="w-6 h-6 justify-center items-center flex">
+                  <div className="w-6 h-6 relative">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -125,7 +125,7 @@ const CurrentPlan = ({ dataContext }) => {
                     </svg>
                   </div>
                 </div>
-                <div class="text-[#404453] text-base font-medium font-['Plus Jakarta Sans'] leading-normal">
+                <div className="text-[#404453] text-base font-medium font-['Plus Jakarta Sans'] leading-normal">
                   {billing.status}
                 </div>
               </div>
@@ -139,25 +139,25 @@ const CurrentPlan = ({ dataContext }) => {
               </span>
             </div>
           </div>
-          <div class="w-full h-[0px] border border-[#8c8f98]/20"></div>
+          <div className="w-full h-[0px] border border-[#8c8f98]/20"></div>
           {/* <PaymentMethod>
-            <div class="text-[#1749fc] text-base font-semibold font-['Plus Jakarta Sans'] leading-normal">
+            <div className="text-[#1749fc] text-base font-semibold font-['Plus Jakarta Sans'] leading-normal">
               Change Payment Method
             </div>
           </PaymentMethod> */}
         </div>
       </div>
       <div className="mt-10 flex gap-5">
-        <button class="md:w-[238px] h-[60px] p-3 bg-[#1749fc] rounded-lg justify-center items-center gap-3 inline-flex">
-          <div class="text-center text-white md:text-[22px] font-medium font-['Plus Jakarta Sans'] leading-relaxed">
+        <button className="md:w-[238px] h-[60px] p-3 bg-[#1749fc] rounded-lg justify-center items-center gap-3 inline-flex">
+          <div className="text-center text-white md:text-[22px] font-medium font-['Plus Jakarta Sans'] leading-relaxed">
             Change Plan
           </div>
         </button>
         <button
           onClick={handleCancelSubscription}
-          class="md:w-[245px] h-[60px] p-3 rounded-lg border-2 border-[#1749fc] justify-center items-center gap-2.5 inline-flex"
+          className="md:w-[245px] h-[60px] p-3 rounded-lg border-2 border-[#1749fc] justify-center items-center gap-2.5 inline-flex"
         >
-          <div class="text-center text-[#1749fc] md:text-[22px] font-medium font-['Plus Jakarta Sans'] leading-relaxed">
+          <div className="text-center text-[#1749fc] md:text-[22px] font-medium font-['Plus Jakarta Sans'] leading-relaxed">
             {isLoading ? "Loading" : "Cancel Subscription"}
           </div>
         </button>

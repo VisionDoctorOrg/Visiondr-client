@@ -68,7 +68,7 @@ const Billing = ({ dataContext }) => {
             </svg>
           </SubscriptionPlanCard>
           <SubscriptionPlanCard
-            title="Change Card"
+            title="Make Payment"
             tab="changeCard"
             discription="Change payment method"
             dataContext={dataContext}

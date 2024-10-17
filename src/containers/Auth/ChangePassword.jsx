@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { connect } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const schema = z
   .object({
@@ -38,10 +39,12 @@ const ChangePassword = ({reset_password_confirm, refresh, user, error}) => {
     formState: { errors, isSubmitting },
   } = useForm({ resolver: zodResolver(schema)});
 
+  const { token } = useParams();
+
   const onSubmit = async (data) => {
     try {
       console.log(data);
-      await reset_password_confirm(localStorage.getItem("access"), data.password, data.confirmPassword);
+      await reset_password_confirm(token, data.password, data.confirmPassword);
     } catch (error) {
       console.log(error);
     }

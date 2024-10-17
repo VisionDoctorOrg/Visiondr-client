@@ -11,9 +11,15 @@ import IconButton from "./IconButton";
 import Onboarding from "./Onboarding";
 import { load_user } from "@/actions/auth";
 import { connect } from "react-redux";
+import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
-const Layout = ({load_user, userData}) => {
-  
+const Layout = ({ load_user, userData }) => {
   useEffect(() => {
     console.log(userData);
   }, [userData]);
@@ -88,56 +94,55 @@ const Layout = ({load_user, userData}) => {
   ];
 
   const pathList = {
-    "dashboard" : "Dashboard",
+    dashboard: "Dashboard",
     "add-new": "Add new",
-    "recommendation": "Recommendation",
+    recommendation: "Recommendation",
     "refractive-error": "Refractive error",
-    "glaucoma": "Glaucoma",
-    "infographics": "Infographics",
-    "articles": "Articles",
-    "videos": "Videos",
-    "podcast": "Podcast",
-    "community": "Community",
-    "help": "Help",
-    "subscriptions": "Subscriptions",
-    "logout": "Log out",
-  }
+    glaucoma: "Glaucoma",
+    infographics: "Infographics",
+    articles: "Articles",
+    videos: "Videos",
+    podcast: "Podcast",
+    community: "Community",
+    help: "Help",
+    subscriptions: "Subscriptions",
+    logout: "Log out",
+  };
 
   const location = useLocation();
-  const [path, setPath] = useState('');
+  const [path, setPath] = useState("");
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
   const checkAuthenticated = async () => {
     const res = await load_user();
-    if(!res){
+    if (!res) {
       navigate("/auth/signin/individual");
     }
-  }
+  };
 
   useEffect(() => {
     checkAuthenticated();
   }, []);
 
-
   useEffect(() => {
     // Split the pathname into parts by '/'
-    const parts = location.pathname.split('/');
+    const parts = location.pathname.split("/");
     // The part after the second '/' will be at index 2
-    const secondPart = parts[2] || ''; // Default to empty string if not present
+    const secondPart = parts[2] || ""; // Default to empty string if not present
     setPath(pathList[secondPart]);
   }, [location]);
 
   const [userIcon, setUserIcon] = useState(false);
-  console.log(userIcon)
+  console.log(userIcon);
 
   const handleOnMouseEnter = () => {
     setUserIcon(true);
-  }
+  };
 
   const gotoProfile = () => {
-    navigate('/app/profile');
-  }
+    navigate("/app/profile");
+  };
 
   const sidebarRef = useRef(null);
   const scrollToBottom = () => {
@@ -149,13 +154,12 @@ const Layout = ({load_user, userData}) => {
   const [showOnboarding, setShowOnboarding] = useState(false);
 
   useEffect(() => {
-    if(window.innerWidth > 768){
-      if(!localStorage.getItem('onboarding')){
+    if (window.innerWidth > 768) {
+      if (!localStorage.getItem("onboarding")) {
         setShowOnboarding(true);
       }
     }
-  }, [])
-
+  }, []);
 
   return (
     <div>
@@ -165,15 +169,21 @@ const Layout = ({load_user, userData}) => {
           aria-label="Global"
         >
           <div class="me-5 lg:me-0 lg:hidden">
-            <NavLink to="/" className="h-10 ml-3 justify-center items-center gap-2 inline-flex">
-              <img src="/logo_blue_black.svg" alt="logo" className="w-[150px]" />
-              
+            <NavLink
+              to="/"
+              className="h-10 ml-3 justify-center items-center gap-2 inline-flex"
+            >
+              <img
+                src="/logo_blue_black.svg"
+                alt="logo"
+                className="w-[150px]"
+              />
             </NavLink>
           </div>
 
           <div class="w-full flex items-center justify-end ms-auto sm:justify-between sm:gap-x-3 sm:order-3">
             <main className="flex flex-wrap xl:gap-10 lg:justify-between justify-end items-center w-full pl-1">
-              <WelcomeHeader name={userData? userData.fullName : ""} />
+              <WelcomeHeader name={userData ? userData.fullName : ""} />
               <section className="flex justify-end gap-6 items-center self-stretch py-2 pr-3 pl-3 my-auto text-sm leading-tight text-center whitespace-nowrap bg-[#D2DBFE33] bg-opacity-20 md:min-w-[240px] md:max-w-full rounded-[32px] text-neutral-400  max-md:max-w-full ">
                 <SearchBar />
                 <IconButton
@@ -184,21 +194,29 @@ const Layout = ({load_user, userData}) => {
                 >
                   <div className="absolute top-2 right-2 p-1 rounded-full bg-red-500 blink-button"></div>
                 </IconButton>
-                <div className="flex gap-2 cursor-pointer" onMouseLeave={() => setUserIcon(false)} onClick={gotoProfile}>
-                <IconButton
-                  src={user?.image?.url ?? "/icons/profile_pic.png"}
-                  alt="Profile"
-                  className="w-10 rounded-full overflow-hidden"
-                  size="10"
-                  onMouseEnter={handleOnMouseEnter}
-                  imgClassName="object-cover"
-                  
-                />
-                <div className={`${userIcon? "xl:w-[120px] w-0": "w-0"} transition-all duration-500 overflow-hidden text-neutral-950 text-left`}>
-                  <p className="text-base font-medium tracking-tight">{userData? userData.fullName : ""}</p>
-                  <p className="text-xs">{userData? userData.email : ""}</p>
-                </div>
-
+                <div
+                  className="flex gap-2 cursor-pointer"
+                  onMouseLeave={() => setUserIcon(false)}
+                  onClick={gotoProfile}
+                >
+                  <IconButton
+                    src={user?.image?.url ?? "/icons/profile_pic.png"}
+                    alt="Profile"
+                    className="w-10 rounded-full overflow-hidden"
+                    size="10"
+                    onMouseEnter={handleOnMouseEnter}
+                    imgClassName="object-cover"
+                  />
+                  <div
+                    className={`${
+                      userIcon ? "xl:w-[120px] w-0" : "w-0"
+                    } transition-all duration-500 overflow-hidden text-neutral-950 text-left`}
+                  >
+                    <p className="text-base font-medium tracking-tight">
+                      {userData ? userData.fullName : ""}
+                    </p>
+                    <p className="text-xs">{userData ? userData.authProvider === "EMAIL"? userData.email: userData.phoneNumber : ""}</p>
+                  </div>
                 </div>
               </section>
             </main>
@@ -265,11 +283,27 @@ const Layout = ({load_user, userData}) => {
         ref={sidebarRef}
         class="hs-overlay [--auto-close:lg] hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform hidden fixed overflow-y-auto inset-y-0 start-0 z-[50] pt-10 pl-3 leading-tight bg-white border-r border-neutral-400 border-opacity-20 w-[230px] lg:block lg:translate-x-0 lg:end-auto lg:bottom-0"
       >
-        {showOnboarding && <Onboarding scrollToBottom={scrollToBottom}/>}
+        {showOnboarding && <Onboarding scrollToBottom={scrollToBottom} />}
         <div className="flex flex-col px-3 pb-10 w-full">
           <header className="flex flex-col w-full text-center">
-            <NavLink to="/" className="flex gap-2 items-center self-start px-3 py-1 text-base font-semibold min-h-[40px] text-gray-950">
-            <img src="/logo_blue_black.svg" alt="logo" className="h-10 w-[102px]" />
+            <NavLink
+              to="/"
+              className="flex gap-2 items-center self-start px-3 py-1 text-base font-semibold min-h-[40px] text-gray-950"
+            >
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <img
+                      src="/logo_blue_black.svg"
+                      alt="logo"
+                      className="h-10 w-[102px]"
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent className=" text-primary mb-[-10px]">
+                    <p>Go to homepage</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </NavLink>
             <SidebarItem
               icon="M13 21V11H21V21H13ZM3 13V3H11V13H3ZM9 11V5H5V11H9ZM3 21V15H11V21H3ZM5 19H9V17H5V19ZM15 19H19V13H15V19ZM13 3H21V9H13V3ZM15 5V7H19V5H15Z"
@@ -293,7 +327,6 @@ const Layout = ({load_user, userData}) => {
             />
           ))}
         </div>
-        
       </div>
 
       <div class="w-full lg:ps-60 mt-10 md:mt-0">

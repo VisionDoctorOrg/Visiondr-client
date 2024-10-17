@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PlanCard from "./PlanCard";
+import axios from "axios";
 
 const ChangePlan = ({ dataContext }) => {
-  const plans = [
+  const initialPlans = [
     {
       title: "Basic",
       price: "0",
@@ -38,6 +39,9 @@ const ChangePlan = ({ dataContext }) => {
       type: "Family",
     },
   ];
+
+  const [plans, setPlans] = useState(initialPlans);
+
   return (
     <div>
       <div class=" text-gray-950 text-base font-medium font-['Plus Jakarta Sans'] leading-normal">

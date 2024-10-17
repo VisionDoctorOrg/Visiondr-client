@@ -39,9 +39,12 @@ const Profile = ({ dataContext }) => {
     formData.append("fullName", personalInfo[0].answer);
     formData.append("DOB", personalInfo[1].answer);
     formData.append("gender", personalInfo[2].answer);
-    formData.append("phoneNumber", personalInfo[4].answer);
     formData.append("occupation", personalInfo[5].answer);
     formData.append("hobbies", personalInfo[6].answer);
+
+    data["authProvider"] === "EMAIL"
+      ? formData.append("phoneNumber", personalInfo[4].answer)
+      : "";
 
     // const transformArray = (arr) => {
     //   return arr.map(({ question, answer }) => ({ question, answer }));

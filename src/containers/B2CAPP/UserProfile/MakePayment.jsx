@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CardInput from "./CardInput";
 import FormInput from "./FormInput";
 import CountrySelect from "./CountrySelect";
@@ -6,66 +6,81 @@ import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import SubmitButton from "../components/SubmitButton";
 import { useNavigate } from "react-router-dom";
+import { getSubscriptionPlans } from "@/lib/subscriptionPlans";
 
-const MakePayment = ({dataContext}) => {
-    const navigate = useNavigate();
-    const [isLoading, setIsLoading] = useState(false)
-    const requestBackend = async () => {
-      setIsLoading(true)
-        let plan = "PLN_0ektrhm9lf8ap6z";
-        let amount = "500";
-        if(dataContext.billing.chosenPlan === "Starter"){
-            amount = "200";
-        }else{
-          plan = "PLN_fti42oat316rpp5";
+const MakePayment = ({ dataContext }) => {
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [planCodes, setPlanCodes] = useState([]);
+
+  const fetchPlans = async () => {
+    const response = await getSubscriptionPlans();
+    response.data.map((plan) =>
+      setPlanCodes((codes) => [...codes, plan])
+    );
+  };
+
+  useEffect(() => {
+    fetchPlans();
+  }, []);
+
+  const requestBackend = async () => {
+    setIsLoading(true);
+    let plan = planCodes[0]?.plan_code ?? null;
+    let amount = planCodes[0]?.amount ?? "";
+    if (dataContext.billing.chosenPlan === "Starter") {
+      amount = planCodes[2]?.amount ?? "";
+      plan = planCodes[2]?.plan_code ?? null;
+    } else if (dataContext.billing.chosenPlan === "Family") {
+      amount = planCodes[1]?.amount ?? "";
+      plan = planCodes[1]?.plan_code ?? null;
+    }
+    const data = JSON.stringify({ plan, amount });
+    console.log(data);
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}subscription/initialize`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access")}`,
+            "Content-Type": "application/json",
+            // Add any other headers your API requires
+          },
         }
-        const data = JSON.stringify({ plan, amount });
-        console.log(data);
-        try {
-          const response = await axios.post(
-            `${import.meta.env.VITE_API_URL}subscription/initialize`,
-            data,
-            {
-              headers: {
-                Authorization: `Bearer ${localStorage.getItem("access")}`,
-                "Content-Type": "application/json",
-                // Add any other headers your API requires
-              },
-            }
-          );
-          console.log(response)
-    
-    
-          return response.data; // Assuming the response contains data you want to return
-        } catch (error) {
-          throw error; // Re-throw the error to be caught by the caller
-        } 
-      };
-    
-      // Integrating with useMutation
-      const { mutateAsync: submitFormMutation } = useMutation({
-        mutationFn: requestBackend,
-        onSuccess: () => {
-          console.log("Success")
-        },
-        onError: (error) => {
-          console.error("Error:", error);
-        },
-      });
-    
-      // Handle form submission
-      const handleSubmit = async () => {
-        setIsLoading(false);
-          try {
-            const response = await submitFormMutation();
-            window.location.href = response.data.authorization_url;
-          } catch (e) {
-            console.log(e);
-        }
-      };
-      function capitalize(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-      }
+      );
+      console.log(response);
+
+      return response.data; // Assuming the response contains data you want to return
+    } catch (error) {
+      throw error; // Re-throw the error to be caught by the caller
+    }
+  };
+
+  // Integrating with useMutation
+  const { mutateAsync: submitFormMutation } = useMutation({
+    mutationFn: requestBackend,
+    onSuccess: () => {
+      console.log("Success");
+    },
+    onError: (error) => {
+      console.error("Error:", error);
+    },
+  });
+
+  // Handle form submission
+  const handleSubmit = async () => {
+    setIsLoading(false);
+    try {
+      const response = await submitFormMutation();
+      window.location.href = response.data.authorization_url;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
   return (
     <div>
       <div class="my-5 text-gray-950 text-base font-semibold font-['Plus Jakarta Sans'] leading-normal">
@@ -78,7 +93,8 @@ const MakePayment = ({dataContext}) => {
               {capitalize(dataContext.billing.chosenPlan ?? "Starter")}
             </div>
             <div class="text-gray-950 text-sm font-normal font-['Plus Jakarta Sans'] leading-[16.80px]">
-              ₦ {dataContext.billing.chosenPlan === "Family"? "5,000": "2,000"}
+              ₦{" "}
+              {dataContext.billing.chosenPlan === "Family" ? "5,000" : "2,000"}
             </div>
           </div>
           <div class="md:w-[400px] w-full justify-between items-start inline-flex">
@@ -97,7 +113,8 @@ const MakePayment = ({dataContext}) => {
               Total
             </div>
             <div class="text-gray-950 text-[22px] font-semibold font-['Plus Jakarta Sans'] leading-relaxed">
-              ₦ {dataContext.billing.chosenPlan === "Family"? "5,000": "2,000"}
+              ₦{" "}
+              {dataContext.billing.chosenPlan === "Family" ? "5,000" : "2,000"}
             </div>
           </div>
           <div class="md:w-[182px] text-[#404453] text-sm font-normal font-['Plus Jakarta Sans'] leading-[16.80px]">
@@ -137,7 +154,10 @@ const MakePayment = ({dataContext}) => {
           imageUrl="https://cdn.builder.io/api/v1/image/assets/TEMP/bb08a07ce30c1ef2247031a4879ae53640ee8be4c70d69df92af0834f664395b?placeholderIfAbsent=true&apiKey=06e54cbb0c8d4ebdbfa1852341f08638"
         />
       </form> */}
-      <SubmitButton label={isLoading? "loading" :"Make Payment"} onClick={handleSubmit} />
+      <SubmitButton
+        label={isLoading ? "loading" : "Make Payment"}
+        onClick={handleSubmit}
+      />
     </div>
   );
 };

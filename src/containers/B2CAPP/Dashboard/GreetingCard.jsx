@@ -17,7 +17,7 @@ function GreetingCard({userData}) {
       <div class="py-[38px] flex-col justify-center items-start gap-10 inline-flex">
         <div class="h-[82px] flex-col justify-start items-start gap-2 flex">
           <div class="text-white text-[22px] font-semibold  leading-relaxed">
-            Good Morning, {userData? userData.fullName : ""}
+            Hello, {userData? userData.fullName : ""}
           </div>
           <div class="self-stretch text-white text-base font-medium  leading-normal">
             Get instant one on one eyecare advisory to solve your immediate
