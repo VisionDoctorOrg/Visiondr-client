@@ -16,7 +16,7 @@ function RecentlyAddedSection({ dataContext }) {
               className={`w-fit  text-sm font-medium leading-[16.80px] pb-1 border-b-2 cursor-pointer ${
                 dataContext.currentCategory == category
                   ? "border-[#1749fc] text-[#1749fc]"
-                  : "border-b-0 text-gray-950"
+                  : "border-b-0 text-gray-950 border-white"
               } `}
               onClick={() => dataContext.setCurrentCategory(category)}
             >

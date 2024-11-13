@@ -8,7 +8,7 @@ const AuthPage = ({ children }) => {
           {children}
         </div>
 
-        <div class="relative lg:col-span-6 w-[720px] mx-auto lg:px-6 hidden lg:block">
+        <div class="relative lg:col-span-6 max-w-[720px] mx-auto lg:px-6 hidden lg:block">
           <img
             class="w-full rounded-lg"
             src="/images/Auth_page.png"

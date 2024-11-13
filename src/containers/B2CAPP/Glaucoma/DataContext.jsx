@@ -6,7 +6,7 @@ const DataProvider = ({ children, userData }) => {
   
   const personalInfo = [
     { question: "Name:", answer: userData ? userData.fullName : "", id: "name" },
-    { question: "Age:", answer: "", id: "age", editable: true },
+    { question: "Age:", answer: "", id: "age"},
     { question: "Gender:", answer: userData ? userData.gender:  "", id: "gender" },
     {
       question: "Occupation:",

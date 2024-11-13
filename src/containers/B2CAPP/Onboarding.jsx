@@ -10,32 +10,48 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
-const Onboarding = ({scrollToBottom}) => {
+import { Button } from "@/components/ui/button";
+import { NavLink } from "react-router-dom";
+
+const Onboarding = ({ scrollToBottom }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(true);
+  const [isProfileDialogOpen, setIsProfileDialogOpen] = useState(false);
   const [steps, setSteps] = useState(0);
 
   const openDialog = () => {
     setIsDialogOpen(true);
   };
-
   const closeDialog = () => {
     setIsDialogOpen(false);
   };
-  
+  const openProfileDialog = () => {
+    setIsProfileDialogOpen(true);
+  };
+  const closeProfileDialog = () => {
+    setIsProfileDialogOpen(false);
+  };
 
   const handleNext = () => {
-   if(steps > 2){
-    scrollToBottom();
-   }
+    if (steps > 2) {
+      scrollToBottom();
+    }
     setSteps(steps + 1);
-  }
+  };
 
   const onSkip = () => {
+    openProfileDialog();
     localStorage.setItem("onboarding", "true");
-  }
-
+  };
 
   const onboardingItems = [
     {
@@ -71,14 +87,14 @@ const Onboarding = ({scrollToBottom}) => {
       class: "top-[380px] left-[300px]",
       direction: "left",
       description:
-      "Quickly assess your vision using our refractive error checker. This tool helps you identify potential issues like myopia, hyperopia, or astigmatism and guides you on the next steps for correction.",
+        "Quickly assess your vision using our refractive error checker. This tool helps you identify potential issues like myopia, hyperopia, or astigmatism and guides you on the next steps for correction.",
     },
     {
       title: "Glaucoma Checker",
       class: "top-[420px] left-[300px]",
       direction: "left",
       description:
-      "Early detection is key in managing glaucoma. Our glaucoma checker allows you to monitor risk factors and track symptoms, offering personalized recommendations for timely intervention",
+        "Early detection is key in managing glaucoma. Our glaucoma checker allows you to monitor risk factors and track symptoms, offering personalized recommendations for timely intervention",
     },
     {
       title: "Case Files",
@@ -103,8 +119,18 @@ const Onboarding = ({scrollToBottom}) => {
         className="relative"
       >
         <AlertDialogTrigger />
-        <AlertDialogContent className={`absolute  ${onboardingItems[steps].class} max-w-[300px]`}>
-          <div className={`absolute ${onboardingItems[steps].direction == "left"? "top-[-50px]" : onboardingItems[steps].direction == "right-bottom" ? "transform scale-x-[-1] scale-y-[-1] right-0 bottom-[-50px]": "top-[-50px] transform scale-x-[-1] right-0"}  `}>
+        <AlertDialogContent
+          className={`absolute  ${onboardingItems[steps].class} max-w-[300px]`}
+        >
+          <div
+            className={`absolute ${
+              onboardingItems[steps].direction == "left"
+                ? "top-[-50px]"
+                : onboardingItems[steps].direction == "right-bottom"
+                ? "transform scale-x-[-1] scale-y-[-1] right-0 bottom-[-50px]"
+                : "top-[-50px] transform scale-x-[-1] right-0"
+            }  `}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="32"
@@ -170,13 +196,35 @@ const Onboarding = ({scrollToBottom}) => {
           </AlertDialogHeader>
           <AlertDialogFooter className="flex sm:justify-between">
             {steps < 7 && <Button onClick={handleNext}>Next</Button>}
-            
-            <AlertDialogCancel className="border-primary text-primary" onClick={onSkip}>
+
+            <AlertDialogCancel
+              className="border-primary text-primary"
+              onClick={onSkip}
+            >
               {steps === 7 ? "Done" : "Skip"}
             </AlertDialogCancel>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+      <Dialog open={isProfileDialogOpen} onOpenChange={setIsProfileDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Your profile is incomplete</DialogTitle>
+            <DialogDescription>
+              Complete your profile to get personalized recommendation and
+              optimized your experience
+            </DialogDescription>
+            <DialogFooter>
+              <Button onClick={closeProfileDialog}>
+                <NavLink to="/app/profile">Yes, complete</NavLink>
+              </Button>
+              <Button onClick={closeProfileDialog} variant="outline">
+                Cancel
+              </Button>
+            </DialogFooter>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

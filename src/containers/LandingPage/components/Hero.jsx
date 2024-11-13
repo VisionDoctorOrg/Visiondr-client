@@ -77,7 +77,7 @@ const Hero = () => {
 
       <div className="md:mt-10 mt-5 relative z-10 hero-bg ">
         <Navbar />
-        <section className="flex flex-col items-center justify-center text-white md:w-[70%] w-[80%] mx-auto md:pt-48 pt-36 md:min-h-screen">
+        <section className="flex flex-col items-center justify-center text-white md:w-[70%] w-[80%] mx-auto md:pt-48 pt-36 min-h-screen">
           <div className="flex flex-col items-center justify-center ">
             <h1 className="md:mt-20 font-medium text-[28px] md:text-[62px] text-5xl text-center md:tracking-tight">
               See Clearly, Live Fully!

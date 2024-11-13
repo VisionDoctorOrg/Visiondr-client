@@ -7,7 +7,7 @@ const CommingSoon = () => {
       <main id="content">
         <div class="text-center py-10 px-4 sm:px-6 lg:px-8">
           <h1 class="block text-3xl font-bold text-gray-800 sm:text-7xl">
-            Comming Soon
+            Coming Soon
           </h1>
           <div class="mt-5 flex flex-col justify-center items-center gap-2 sm:flex-row sm:gap-3">
             <NavLink

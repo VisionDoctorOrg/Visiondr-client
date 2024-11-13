@@ -140,9 +140,10 @@ const Navbar = () => {
             }`}
             onMouseLeave={handleNavMouseLeave}
           >
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between py-2 lg:py-0 lg:ps-7 lg:grow">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between py-2 lg:py-0 lg:ps-0 lg:grow">
               {/* ... (rest of the navbar content remains the same) */}
-              <div className="flex lg:justify-center grow gap-4 lg:flex-row flex-col lg:w-[500px]">
+              <div className="flex lg:justify-center grow">
+              <div className="flex lg:justify-center grow gap-4 lg:flex-row flex-col lg:max-w-[500px]">
                 <div className="mt-10 lg:mt-0 flex items-center py-3 lg:py-4 ps-px sm:px-3 ">
                   <a
                     className=" text-white hover:text-neutral-300 focus:outline-none focus:text-neutral-300 hover:border-b-primary hover:border-b-2 border-b-2 border-b-transparent duration-300 transition-all lg:text-[16px]"
@@ -204,9 +205,11 @@ const Navbar = () => {
                 </div>
               </div>
 
+              </div>
+
               <div>
                 <a
-                  className={`hidden mt-5 group lg:inline-flex items-center text-lg gap-x-2 py-2 px-6 bg-primary rounded-lg focus:outline-none border-2 border-primary transition-all duration-300 lg:text-[16px] tracking-tight ${
+                  className={`min-w-32 hidden mt-5 group lg:inline-flex items-center text-lg gap-x-2 py-2 px-6 bg-primary rounded-lg focus:outline-none border-2 border-primary transition-all duration-300 lg:text-[16px] tracking-tight ${
                     isExpanded ? "border-white text-white bg-transparent" : ""
                   }`}
                   href="#"

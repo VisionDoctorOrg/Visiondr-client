@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import CardLayout from "../../components/CardLayout";
 import ImageCard from "./ImageCard";
 import { useParams } from "react-router-dom";
+import ArticleRenderer from "./ArticleRender";
 
 const ArticlePage = ({ dataContext }) => {
   const items = dataContext.data;
@@ -63,9 +64,10 @@ const ArticlePage = ({ dataContext }) => {
               </div>
             </div>
             <div class="w-full text-gray-950 text-sm font-normal leading-[16.80px] flex flex-col gap-2">
-              {item.article.map((paragraph, index) => (
+              {/* {item.article.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
-              ))}
+              ))} */}
+              <ArticleRenderer content={item.article} />
             </div>
           </div>
           <div class="self-stretch md:h-40 flex-col justify-start items-start gap-10 flex px-2">

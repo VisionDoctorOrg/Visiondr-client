@@ -192,7 +192,7 @@ const Layout = ({ load_user, userData }) => {
                   size="6"
                   className="border-white border-2 rounded-full p-[6px] bg-[#8C8F981A] relative"
                 >
-                  <div className="absolute top-2 right-2 p-1 rounded-full bg-red-500 blink-button"></div>
+                  {/* <div className="absolute top-2 right-2 p-1 rounded-full bg-red-500 blink-button"></div> */}
                 </IconButton>
                 <div
                   className="flex gap-2 cursor-pointer"

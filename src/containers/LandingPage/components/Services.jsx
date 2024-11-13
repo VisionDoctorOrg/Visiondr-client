@@ -13,7 +13,7 @@ const Services = () => {
         id="ourservices"
       >
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-7 lg:gap-12">
-          <div className="lg:col-span-4 flex flex-col gap-10 mt-5 lg:mt-0">
+          <div className="lg:col-span-4 flex flex-col gap-10 mt-5 lg:mt-0 order-2 md:order-1">
             <FeaturesCard
               title="Online Appointment Scheduling"
               discription="Streamline the process of scheduling eye care appointments for your patients or team members. Our platform allows easy booking, ensuring that your staff or patients can access care at their convenience."
@@ -66,7 +66,7 @@ const Services = () => {
               </svg>
             </FeaturesCard>
           </div>
-          <div className="lg:col-span-3 flex items-center justify-center">
+          <div className="lg:col-span-3 flex items-center justify-center order-1">
             <div class=" flex-col justify-center items-start lg:gap-14 gap-7 inline-flex mt-10 lg:mt-0 text-center lg:text-left">
               <div class="flex-col justify-start items-start gap-6 flex">
                 <div class="flex-col justify-start items-start gap-3 flex">
