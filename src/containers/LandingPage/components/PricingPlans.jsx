@@ -15,7 +15,7 @@ const PricingPlans = () => {
     },
     {
         title: "Ask a VisionDR",
-        price:"1,000",
+        price:"200",
         buttonText: "Subscribe",
         features:[
             "One time access to ask VisionDR session",
@@ -25,7 +25,7 @@ const PricingPlans = () => {
     },
     {
       title: "Essential Care",
-      price: "2,000",
+      price: "500",
       buttonText: "Subscribe",
       features: [
         "Access to Ask VisionDR sessions",
@@ -37,7 +37,7 @@ const PricingPlans = () => {
     },
     {
       title: "Family Care",
-      price: "5,000",
+      price: "1000",
       buttonText: "Subscribe",
       features: [
         "Access to Ask VisionDR sessions",
