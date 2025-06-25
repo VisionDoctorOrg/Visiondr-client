@@ -18,11 +18,11 @@ function PlanCard({ title, price, buttonText, features, className, type }) {
   const requestBackend = async () => {
     setIsLoading(true);
     const plan = "PLN_fti42oat316rpp5";
-    let amount = "5000";
+    let amount = "1000";
     if (type === "starter") {
-      amount = "2000";
+      amount = "500";
     } else if (type == "askVisionDR") {
-      amount = "1000";
+      amount = "200";
     }
     const data = JSON.stringify({ plan, amount });
     console.log(data);
