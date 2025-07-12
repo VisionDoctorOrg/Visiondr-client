@@ -27,6 +27,12 @@ jobs:
       - name: 🔍 List Built Files
         run: ls -R dist/
 
+      - name: 🔍 Verify Build Output Size
+        run: du -sh dist/
+
+      - name: 📝 Show Vite Config
+        run: cat vite.config.js || echo "No vite.config.js found"
+
       - name: 🚀 Deploy via FTP to cPanel
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
