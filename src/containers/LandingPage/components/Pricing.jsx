@@ -18,7 +18,8 @@ const Pricing = () => {
                 tab == 'individual' ? 'text-gray-950 font-semibold' : ''
               }`}
             >
-              For IndividualsssssTTTTTTTTTTTTTTTTTTTTTTT
+              TTTTTTTTTTTTTTTTTTTTTTTTT For
+              IndividualssssssssssssssssssssssssssTTTTTTTTTTTTTTTTTTTTTTT
             </div>
             <div
               className={` text-[#8c8f98] text-base font-medium font-['Plus Jakarta Sans'] leading-normal cursor-pointer ${
