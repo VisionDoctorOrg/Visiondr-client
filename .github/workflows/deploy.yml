@@ -67,6 +67,9 @@ jobs:
       - name: 📦 Install Dependencies
         run: npm install
 
+      - name: 🛠️ Create .env file
+        run: |
+          echo "VITE_API_URL=https://visiondr.onrender.com/" > .env
       - name: 🏗️ Build Vite App
         run: npm run build
 
