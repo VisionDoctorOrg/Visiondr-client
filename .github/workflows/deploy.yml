@@ -23,7 +23,7 @@ jobs:
 
       - name: 🛠️ Create .env file
         run: |
-          echo "VITE_API_URL=https://visiondr.onrender.com/api/v1" > .env
+          echo "VITE_API_URL=https://visiondr.onrender.com/api/v1/" > .env
       - name: 🏗️ Build Vite App
         run: npm run build
 
