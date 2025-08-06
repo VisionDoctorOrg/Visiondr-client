@@ -14,7 +14,7 @@ function PlanCard({ title, price, buttonText, features, className, type }) {
       return 'Subscribe';
     }
   };
-
+  //
   const requestBackend = async () => {
     setIsLoading(true);
     let plan = 'PLN_etllxl3jr687dfg';
